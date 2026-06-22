@@ -9,8 +9,8 @@ interface PropsLink {
 }
 
 const publicLinks: PropsLink[] = [
-  { href: "/", placeholder: "Discover" },
-  { href: "/pricing", placeholder: "Pricing" },
+  { href: "/", placeholder: "Home" },
+  { href: "/pricing", placeholder: "Planos" },
   { href: "/guia", placeholder: "Guia" },
 ];
 
