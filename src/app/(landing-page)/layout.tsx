@@ -9,10 +9,10 @@ export default function LayoutLandingPage({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="bg-gray-100/75">
       <header
         className={cn(
-          `flex items-center justify-center py-2.5 bg-gray-50/80 border-b border-gray-100 text-base`,
+          `flex items-center justify-center py-2.5 bg-gray-50/80 border-b border-gray-200 text-base`,
           geist.className,
         )}
       >
@@ -66,6 +66,6 @@ export default function LayoutLandingPage({
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
