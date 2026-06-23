@@ -1,3 +1,4 @@
+import ButtonLink from "@/components/landing-page/button-link";
 import HomeGridCards from "@/components/landing-page/home-grid-cards";
 import StaticDevice from "@/components/landing-page/static-device";
 import { cn } from "@/lib/tw-merge";
@@ -20,12 +21,16 @@ export default function Home() {
             editorial minimalista. Sem ruído social, apenas o que importa.
           </h2>
           <div className="flex items-center justify-center gap-x-6">
-            <button className="block py-6 px-12 bg-indigo-900 hover:bg-indigo-800 transition-all cursor-pointer font-medium text-white text-sm rounded-lg">
-              Comece gratuitamente
-            </button>
-            <button className="block py-6 px-12 bg-white hover:bg-gray-200 transition-all cursor-pointer font-medium text-zinc-900 text-sm rounded-lg border border-neutral-300">
-              Ver Exemplos
-            </button>
+            <ButtonLink
+              href="/auth/sign-in"
+              label="Comece gratuitamente"
+              className="bg-indigo-900 hover:bg-indigo-800 text-white"
+            />
+            <ButtonLink
+              href="/guia"
+              label="Ver exemplos"
+              className="bg-white hover:bg-gray-200 text-zinc-900 border-neutral-300"
+            />
           </div>
         </div>
       </section>
@@ -65,7 +70,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-gray-100 pt-20 pb-12">
+      <section className="bg-gray-200/30 pt-20 pb-12">
         <div className="max-w-268 mx-auto  text-center">
           <h3 className="text-zinc-900 text-[32px] leading-10 font-semibold mb-3">
             Feito para profissionais.
@@ -74,6 +79,34 @@ export default function Home() {
             Funcionalidades essenciais sem a desordem visual.
           </h4>
           <HomeGridCards />
+        </div>
+      </section>
+      <section>
+        <div className="max-w-268 mx-auto text-center my-20 bg-gray-200/30 rounded-3xl">
+          <div className="max-w-2xl mx-auto p-20">
+            <h3 className="text-zinc-900 text-[40px] leading-12 font-semibold mb-6">
+              Pronto para elevar sua presença?
+            </h3>
+            <h4 className="text-lg leading-7 text-zinc-600 mb-12">
+              Junte-se a mais de 50.000 criadores que escolheram o Curate para
+              compartilhar seu trabalho de forma sofisticada.
+            </h4>
+            <div className="flex items-center justify-center gap-x-6">
+              <ButtonLink
+                href="/auth/sign-in"
+                label="Comece gratuitamente"
+                className="bg-indigo-900 hover:bg-indigo-800 text-white"
+              />
+              <ButtonLink
+                href="/pricing"
+                label="Planos e Preços"
+                className="bg-white hover:bg-gray-200 text-zinc-900 border-neutral-300"
+              />
+            </div>
+            <span className="text-zinc-600 text-xs font-semibold  block mt-6">
+              Nenhum cartão de crédito necessário para começar.
+            </span>
+          </div>
         </div>
       </section>
     </div>

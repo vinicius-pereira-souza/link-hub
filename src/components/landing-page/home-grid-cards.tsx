@@ -21,7 +21,7 @@ export default function HomeGridCards() {
           layouts que reflitam sua marca pessoal sem precisar de código.`}
           />
           <div className="grid grid-cols-4 gap-x-3 mt-12">
-            {optionsColor.map((color, i) => (
+            {optionsColor.map((color) => (
               <div key={color} className={cn(`h-24 rounded-lg`, color)} />
             ))}
           </div>
