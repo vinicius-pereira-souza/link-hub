@@ -1,7 +1,6 @@
 import ButtonLink from "@/components/landing-page/button-link";
 import HomeGridCards from "@/components/landing-page/home-grid-cards";
 import StaticDevice from "@/components/landing-page/static-device";
-import { cn } from "@/lib/tw-merge";
 import { BadgeCheck } from "lucide-react";
 
 export default function Home() {
