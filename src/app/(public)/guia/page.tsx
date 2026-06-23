@@ -1,9 +1,13 @@
+import Image from "next/image";
 import WrapperCardDetails from "@/components/landing-page/cards-detail-guia";
+import WrapperButtonCallapseList from "@/components/landing-page/collapse-buttons";
+import { questionGuiaPage } from "@/lib/placeholder";
+import ButtonLink from "@/components/landing-page/button-link";
 
 export default function Guia() {
   return (
     <div>
-      <main>
+      <main className="px-6">
         <section className="max-w-268 mx-auto pt-0 my-20">
           <h1 className="text-[40px] leading-12 font-semibold text-zinc-900 mb-6 text-center">
             Como começar no LinkHub
@@ -17,6 +21,38 @@ export default function Guia() {
           </div>
         </section>
       </main>
+      <Image
+        className="max-w-268 mx-auto mt-20 mb-30 rounded-2xl"
+        src={"/images/guia-banner.png"}
+        alt="banner ilustrando um disposivito de celular"
+        width={1072}
+        height={400}
+      />
+      <section className="px-6">
+        <div className="max-w-3xl mx-auto pt-0 my-20">
+          <h2 className="text-[32px] leading-10 font-semibold text-zinc-900 mb-20 text-center">
+            Dúvidas Frequentes
+          </h2>
+          <WrapperButtonCallapseList questionList={questionGuiaPage} />
+        </div>
+      </section>
+      <section className="px-6">
+        <div className="max-w-268 mx-auto p-20 bg-indigo-900 rounded-2xl text-center">
+          <h3 className="text-[32px] leading-10 text-white font-semibold mb-6">
+            Pronto para começar?
+          </h3>
+          <h4 className="text-lg leading-7 text-white mb-12">
+            Crie sua página agora e leve sua presença digital para o próximo
+            nível.
+          </h4>
+          <ButtonLink
+            href="/auth/sign-in"
+            label="Comece gratuitamente"
+            className="bg-white hover:bg-indigo-500 hover:text-white text-indigo-800 
+            transition-all text-lg font-bold max-w-89.25 mx-auto"
+          />
+        </div>
+      </section>
     </div>
   );
 }
