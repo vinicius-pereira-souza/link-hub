@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@layer utilities {
+  .card-base {
+    @apply p-12 rounded-lg border hover:-translate-y-1.5 hover:shadow transition-all;
+  }
+
+  .card-white {
+    @apply bg-white border-neutral-300;
+  }
+}

@@ -1,4 +1,6 @@
+import HomeGridCards from "@/components/landing-page/home-grid-cards";
 import StaticDevice from "@/components/landing-page/static-device";
+import { cn } from "@/lib/tw-merge";
 import { BadgeCheck } from "lucide-react";
 
 export default function Home() {
@@ -61,6 +63,17 @@ export default function Home() {
             </div>
             <StaticDevice />
           </div>
+        </div>
+      </section>
+      <section className="bg-gray-100 pt-20 pb-12">
+        <div className="max-w-268 mx-auto  text-center">
+          <h3 className="text-zinc-900 text-[32px] leading-10 font-semibold mb-3">
+            Feito para profissionais.
+          </h3>
+          <h4 className="text-base leading-6 text-zinc-600 mb-12">
+            Funcionalidades essenciais sem a desordem visual.
+          </h4>
+          <HomeGridCards />
         </div>
       </section>
     </div>

@@ -27,6 +27,7 @@ export default function StaticDevice() {
           alt="avatar user image"
           width={64}
           height={64}
+          className="fill-amber-50"
         />
         <span className="text-zinc-900 text-2xl leading-8 font-medium mt-3">
           Alex Rivera
