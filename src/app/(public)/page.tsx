@@ -1,7 +1,7 @@
 import ButtonLink from "@/components/landing-page/button-link";
 import HomeGridCards from "@/components/landing-page/home-grid-cards";
 import StaticDevice from "@/components/landing-page/static-device";
-import { BadgeCheck } from "lucide-react";
+import { BadgeCheck, CircleCheck } from "lucide-react";
 
 export default function Home() {
   return (
@@ -47,21 +47,27 @@ export default function Home() {
                 de botões.
               </h4>
               <ul>
-                <li className="mb-6">
-                  <span className="block text-zinc-900 font-medium leading-5 text-sm">
-                    Layouts Tactile-First
-                  </span>
-                  <span className="block text-zinc-600 font-semibold leading-3 text-xs">
-                    Micro-interações suaves para uma navegação premium.
-                  </span>
+                <li className="mb-6 flex items-start gap-x-6">
+                  <CircleCheck className="text-indigo-900 w-5" />
+                  <div>
+                    <span className="block text-zinc-900 font-medium leading-5 text-sm">
+                      Layouts Tactile-First
+                    </span>
+                    <span className="block text-zinc-600 font-semibold leading-3 text-xs">
+                      Micro-interações suaves para uma navegação premium.
+                    </span>
+                  </div>
                 </li>
-                <li>
-                  <span className="block text-zinc-900 font-medium leading-5 text-sm">
-                    Analytics Silencioso
-                  </span>
-                  <span className="block text-zinc-600 font-semibold leading-3 text-xs">
-                    Dados profundos sem sacrificar a privacidade do usuário.
-                  </span>
+                <li className="flex items-start gap-x-6">
+                  <CircleCheck className="text-indigo-900  w-5" />
+                  <div>
+                    <span className="block text-zinc-900 font-medium leading-5 text-sm">
+                      Analytics Silencioso
+                    </span>
+                    <span className="block text-zinc-600 font-semibold leading-3 text-xs">
+                      Dados profundos sem sacrificar a privacidade do usuário.
+                    </span>
+                  </div>
                 </li>
               </ul>
             </div>

@@ -48,7 +48,7 @@ export default function Guia() {
           <ButtonLink
             href="/auth/sign-in"
             label="Comece gratuitamente"
-            className="bg-white hover:bg-indigo-500 hover:text-white text-indigo-800 
+            className="bg-white hover:shadow-2xl text-indigo-800 
             transition-all text-lg font-bold max-w-89.25 mx-auto"
           />
         </div>

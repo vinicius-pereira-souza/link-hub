@@ -63,7 +63,10 @@ function Card({ icon, stap, title, description }: CardDetail) {
   const iconName = icons[icon];
 
   return (
-    <article className="bg-white rounded-xl border border-gray-100 p-12 flex flex-col gap-y-5">
+    <article
+      className="bg-white rounded-xl border border-gray-100 hover:bg-gray-100/50
+   p-12 flex flex-col gap-y-5  hover:-translate-y-1.5 hover:shadow transition-all"
+    >
       <span className="block p-3 rounded-lg bg-indigo-100 text-indigo-900 w-max">
         {iconName}
       </span>

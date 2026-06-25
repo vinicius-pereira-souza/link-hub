@@ -40,3 +40,32 @@ export const questionPricingPage: Question[] = [
       "Domínios personalizados estão disponíveis em nossos planos Professional e Agency. Oferecemos guias completos de configuração de DNS.",
   },
 ];
+
+export const optionsPlansData = [
+  {
+    title: "free",
+    price: 0,
+    advantages: ["links ilimitados", "análise básica", "1 tema (Clássico)"],
+  },
+  {
+    title: "pro",
+    price: 12,
+    advantages: [
+      "Análise avançada",
+      "Todos os temas (Moderno, Ousado, Suave)",
+      "Domínio personalizado",
+      "Remoção da marca",
+      "Suporte prioritário",
+    ],
+  },
+  {
+    title: "premiun",
+    price: 48,
+    advantages: [
+      "Tudo do plano Pro",
+      "Até 5 perfis",
+      "Colaboração em equipe",
+      "Gerente de conta dedicado",
+    ],
+  },
+];
