@@ -18,7 +18,7 @@ export default function LayoutLandingPage({
       >
         <div className="flex items-center justify-between flex-1 max-w-280 px-6">
           <span className="font-bold text-2xl text-indigo-900">LinkHub</span>
-          <nav className="flex-1">
+          <nav className="flex-1 hidden md:block">
             <ul className="flex items-center gap-x-6 ml-20">
               <PublicLinks />
               <li className="ml-auto mr-9">

@@ -7,11 +7,11 @@ export default function Home() {
   return (
     <div>
       <section>
-        <div className="max-w-268 mx-auto text-center mt-20 mb-12">
-          <span className="mb-6 max-w-max flex items-center justify-center gap-x-1 rounded-full text-blue-950 text-xs uppercase font-semibold py-1 px-3 pr-4 mx-auto bg-indigo-100 tracking-[1.2px]">
+        <div className="max-w-268 mx-auto text-center mt-20 mb-12 px-6">
+          <span className="mb-5 lg:mb-6 max-w-max flex items-center justify-center gap-x-1 rounded-full text-blue-950 text-xs uppercase font-semibold py-1 px-3 pr-4 mx-auto bg-indigo-100 tracking-[1.2px]">
             <BadgeCheck height={15} /> o novo padrão para links
           </span>
-          <h1 className="text-[40px] leading-12.5 font-semibold text-zinc-900 max-w-4xl mx-auto mb-6">
+          <h1 className="text-[28px] lg:text-[40px] leading-8.75 lg:leading-12.5 font-semibold text-zinc-900 max-w-4xl mx-auto mb-6">
             Cure sua presença digital com{" "}
             <span className="text-indigo-900">elegância e intenção.</span>
           </h1>
@@ -19,23 +19,23 @@ export default function Home() {
             LinkHub transforma seu &quot;link na bio&quot; em uma experiência
             editorial minimalista. Sem ruído social, apenas o que importa.
           </h2>
-          <div className="flex items-center justify-center gap-x-6">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <ButtonLink
               href="/auth/sign-in"
               label="Comece gratuitamente"
-              className="bg-indigo-900 hover:bg-indigo-800 text-white"
+              className="bg-indigo-900 hover:bg-indigo-800 text-white w-63 lg:w-auto"
             />
             <ButtonLink
               href="/guia"
               label="Ver exemplos"
-              className="bg-white hover:bg-gray-200 text-zinc-900 border-neutral-300"
+              className="bg-white hover:bg-gray-200 text-zinc-900 border-neutral-300 w-63 lg:w-auto"
             />
           </div>
         </div>
       </section>
       <section>
-        <div className="max-w-268 mx-auto text-left mt-20 mb-12">
-          <div className="grid grid-cols-[400px_400px] items-center justify-between">
+        <div className="max-w-268 mx-auto text-left mt-20 mb-12 px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[400px_400px] items-center justify-between">
             <div>
               <h3 className="text-zinc-900 text-[32px] leading-10 font-semibold mb-6">
                 Sua identidade em um único canvas.
