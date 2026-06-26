@@ -42,7 +42,10 @@ export default function LayoutLandingPage({
       </header>
       {children}
       <footer className="border-t border-gray-200 py-20">
-        <div className="flex items-center justify-between flex-1 max-w-280 px-6 mx-auto">
+        <div
+          className="flex flex-col md:flex-row items-center justify-between flex-1 max-w-280 px-6 mx-auto
+        text-center md:text-left"
+        >
           <div>
             <span className="font-bold text-2xl text-indigo-900">LinkHub</span>
             <p className="text-zinc-700 font-medium text-sm my-1">
