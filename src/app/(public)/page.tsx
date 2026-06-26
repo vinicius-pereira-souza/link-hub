@@ -91,15 +91,15 @@ export default function Home() {
       </section>
       <section>
         <div className="max-w-268 mx-auto text-center my-20 bg-gray-200/30 rounded-3xl">
-          <div className="max-w-2xl mx-auto p-20">
-            <h3 className="text-zinc-900 text-[40px] leading-12 font-semibold mb-6">
+          <div className="max-w-2xl mx-auto p-12 lg:p-20">
+            <h3 className="text-zinc-900 text-[28px] md:text-[40px] leading-9 md:leading-12 font-semibold mb-6">
               Pronto para elevar sua presença?
             </h3>
-            <h4 className="text-lg leading-7 text-zinc-600 mb-12">
+            <h4 className="text-base md:text-lg leading-6 md:leading-7 text-zinc-600 mb-12">
               Junte-se a mais de 50.000 criadores que escolheram o Curate para
               compartilhar seu trabalho de forma sofisticada.
             </h4>
-            <div className="flex items-center justify-center gap-x-6">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
               <ButtonLink
                 href="/auth/sign-in"
                 label="Comece gratuitamente"
@@ -108,10 +108,10 @@ export default function Home() {
               <ButtonLink
                 href="/pricing"
                 label="Planos e Preços"
-                className="bg-white hover:bg-gray-200 text-zinc-900 border-neutral-300"
+                className="bg-white hover:bg-gray-200 text-zinc-900 border-neutral-300 w-63 lg:w-auto"
               />
             </div>
-            <span className="text-zinc-600 text-xs font-semibold  block mt-6">
+            <span className="text-zinc-600 text-xs font-semibold  block mt-6 w-63 lg:w-auto">
               Nenhum cartão de crédito necessário para começar.
             </span>
           </div>
