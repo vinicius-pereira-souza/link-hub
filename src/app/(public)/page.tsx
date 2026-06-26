@@ -34,9 +34,12 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="max-w-268 mx-auto text-left mt-20 mb-12 px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[400px_400px] items-center justify-between">
-            <div>
+        <div className="max-w-268 mx-auto text-left mt-20 mb-20 md:mb-12 px-6">
+          <div
+            className="grid grid-cols-1 lg:grid-cols-[400px_400px] items-center justify-between
+          gap-y-20 lg:gap-y-0"
+          >
+            <div className="order-last lg:order-first">
               <h3 className="text-zinc-900 text-[32px] leading-10 font-semibold mb-6">
                 Sua identidade em um único canvas.
               </h3>
@@ -53,7 +56,7 @@ export default function Home() {
                     <span className="block text-zinc-900 font-medium leading-5 text-sm">
                       Layouts Tactile-First
                     </span>
-                    <span className="block text-zinc-600 font-semibold leading-3 text-xs">
+                    <span className="block text-zinc-600 font-semibold leading-4 md:leading-3 text-xs">
                       Micro-interações suaves para uma navegação premium.
                     </span>
                   </div>
@@ -64,7 +67,7 @@ export default function Home() {
                     <span className="block text-zinc-900 font-medium leading-5 text-sm">
                       Analytics Silencioso
                     </span>
-                    <span className="block text-zinc-600 font-semibold leading-3 text-xs">
+                    <span className="block text-zinc-600 font-semibold leading-4 md:leading-3 text-xs">
                       Dados profundos sem sacrificar a privacidade do usuário.
                     </span>
                   </div>

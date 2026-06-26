@@ -17,7 +17,7 @@ const links = [
 
 export default function StaticDevice() {
   return (
-    <div className="shadow-2xl border-12 border-zinc-800 rounded-[48px] h-211">
+    <div className="shadow-2xl border-12 border-zinc-800 rounded-[48px] h-180.25 lg:h-211">
       <div
         className="p-6 flex flex-col items-center bg-white border-b border-zinc-200 rounded-t-4xl
       "
