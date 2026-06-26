@@ -78,8 +78,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-gray-200/30 pt-20 pb-12">
-        <div className="max-w-268 mx-auto  text-center">
+      <section className="bg-gray-200/30 py-20">
+        <div className="max-w-268 mx-auto text-center px-6">
           <h3 className="text-zinc-900 text-[32px] leading-10 font-semibold mb-3">
             Feito para profissionais.
           </h3>

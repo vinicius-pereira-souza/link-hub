@@ -11,8 +11,8 @@ const optionsColor = [
 
 export default function HomeGridCards() {
   return (
-    <div className="grid grid-cols-4 text-left gap-6">
-      <article className="col-span-3 card-base card-white">
+    <div className="grid grid-cols-1 lg:grid-cols-4 text-left gap-7 lg:gap-6">
+      <article className="lg:col-span-3 card-base card-white">
         <div className="max-w-md">
           <Palette width={26} className="mb-6 text-indigo-900" />
           <Titles
@@ -22,19 +22,22 @@ export default function HomeGridCards() {
           />
           <div className="grid grid-cols-4 gap-x-3 mt-12">
             {optionsColor.map((color) => (
-              <div key={color} className={cn(`h-24 rounded-lg`, color)} />
+              <div
+                key={color}
+                className={cn(`h-16 lg:h-24 rounded-lg`, color)}
+              />
             ))}
           </div>
         </div>
       </article>
-      <article className="col-span-1 card-base card-white">
+      <article className="lg:col-span-1 card-base card-white">
         <ChartNoAxesColumn width={26} className="mb-6 text-indigo-900" />
         <Titles
           title="Analytics"
           subtitle={`Saiba de onde vem seu tráfego com gráficos limpos e acionáveis.`}
         />
       </article>
-      <article className="col-span-1 card-base card-white">
+      <article className="lg:col-span-1 card-base card-white">
         <Clock width={26} className="mb-6 text-indigo-900" />
         <Titles
           title="Agendamento"
@@ -42,14 +45,14 @@ export default function HomeGridCards() {
         />
       </article>
       <article
-        className="col-span-3 card-base bg-indigo-900
+        className="lg:col-span-3 card-base bg-indigo-900
        border-0 flex items-center relative group overflow-hidden"
       >
-        <div className="max-w-94.5">
+        <div className="max-w-94.5 ">
           <Titles
             title="Integração Total"
-            classTitle="text-white"
-            classSubtitle="text-indigo-200"
+            classTitle="text-white relative z-10"
+            classSubtitle="text-indigo-200 relative z-10"
             subtitle={`Conecte seu Instagram, TikTok, YouTube e newsletter em segundos.
     Centralize sua vida digital.`}
           />
