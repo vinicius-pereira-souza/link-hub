@@ -1,7 +1,7 @@
 import Image from "next/image";
 import WrapperCardDetails from "@/components/landing-page/cards-detail-guia";
 import WrapperButtonCallapseList from "@/components/landing-page/collapse-buttons";
-import { questionGuiaPage } from "@/lib/placeholder";
+import { questionGuiaPage } from "@/lib/landing-page-data.ts";
 import ButtonLink from "@/components/landing-page/button-link";
 
 export default function Guia() {
@@ -36,7 +36,7 @@ export default function Guia() {
           <WrapperButtonCallapseList questionList={questionGuiaPage} />
         </div>
       </section>
-      <section className="px-6">
+      <section className="px-6 mb-20">
         <div className="max-w-268 mx-auto p-20 bg-indigo-900 rounded-2xl text-center">
           <h3 className="text-[32px] leading-10 text-white font-semibold mb-6">
             Pronto para começar?

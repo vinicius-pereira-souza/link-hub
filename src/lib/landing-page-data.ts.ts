@@ -69,3 +69,43 @@ export const optionsPlansData = [
     ],
   },
 ];
+
+export const compareFeaturesTableHead: string[] = [
+  "Recurso",
+  "Gratuito",
+  "Profissional",
+  "Agência",
+];
+
+export const compareFeaturesTableData = [
+  {
+    feature: "Links ilimitados",
+    free: true,
+    professional: true,
+    agency: true,
+  },
+  {
+    feature: "Análise de dados",
+    free: "Básico",
+    professional: "Avançado",
+    agency: "Tempo real",
+  },
+  {
+    feature: "Domínios personalizados",
+    free: false,
+    professional: true,
+    agency: true,
+  },
+  {
+    feature: "Remoção de marca",
+    free: false,
+    professional: true,
+    agency: true,
+  },
+  {
+    feature: "Suporte",
+    free: "Central de Ajuda",
+    professional: "E-mail prioritário",
+    agency: "Agente dedicado",
+  },
+];
