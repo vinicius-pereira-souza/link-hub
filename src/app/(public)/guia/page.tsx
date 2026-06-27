@@ -16,18 +16,27 @@ export default function Guia() {
             Seu guia passo a passo para criar uma presença digital marcante em
             minutos.
           </h2>
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <WrapperCardDetails />
           </div>
         </section>
       </main>
-      <Image
-        className="max-w-268 mx-auto mt-20 mb-30 rounded-2xl"
-        src={"/images/guia-banner.png"}
-        alt="banner ilustrando um disposivito de celular"
-        width={1072}
-        height={400}
-      />
+      <figure className="px-6 mt-20 mb-30">
+        <div className="max-w-268 mx-auto h-100 relative">
+          <Image
+            className="rounded-2xl object-cover hidden md:block"
+            src={"/images/guia-banner-desktop.png"}
+            alt="banner ilustrando um disposivito de celular"
+            fill
+          />
+          <Image
+            className="rounded-2xl object-cover block md:hidden "
+            src={"/images/guia-banner-mobile.png"}
+            alt="banner ilustrando um disposivito de celular"
+            fill
+          />
+        </div>
+      </figure>
       <section className="px-6">
         <div className="max-w-3xl mx-auto pt-0 my-20">
           <h2 className="text-[32px] leading-10 font-semibold text-zinc-900 mb-20 text-center">
@@ -37,7 +46,7 @@ export default function Guia() {
         </div>
       </section>
       <section className="px-6 mb-20">
-        <div className="max-w-268 mx-auto p-20 bg-indigo-900 rounded-2xl text-center">
+        <div className="max-w-268 mx-auto py-20 px-6 md:p-20 bg-indigo-900 rounded-2xl text-center">
           <h3 className="text-[32px] leading-10 text-white font-semibold mb-6">
             Pronto para começar?
           </h3>

@@ -65,14 +65,14 @@ function Card({ icon, stap, title, description }: CardDetail) {
   return (
     <article
       className="bg-white rounded-xl border border-gray-100 hover:bg-gray-100/50
-   p-12 flex flex-col gap-y-5  hover:-translate-y-1.5 hover:shadow transition-all"
+    p-10 md:p-12 flex flex-col gap-y-3 md:gap-y-5  hover:-translate-y-1.5 hover:shadow transition-all"
     >
       <span className="block p-3 rounded-lg bg-indigo-100 text-indigo-900 w-max">
         {iconName}
       </span>
       <span
-        className="block p-2  py-1 rounded-sm w-max bg-indigo-100 text-indigo-900 
-      uppercase text-xs font-semibold tracking-[0.6px] leading-4"
+        className="block p-2 py-1 rounded-sm w-max bg-indigo-100 text-indigo-900 
+      uppercase text-xs font-semibold tracking-[0.6px] leading-4 mt-2 md:mt-0"
       >
         {stap}
       </span>
