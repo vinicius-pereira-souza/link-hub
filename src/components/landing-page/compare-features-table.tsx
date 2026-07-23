@@ -57,7 +57,7 @@ function TableRow(tableData: TableDataProps) {
       <tr className="border-b border-gray-200 text-sm leading-5 font-light">
         {compareFeaturesTableHead.map((tableHead: string, i: number) => (
           <td
-            className="py-6 px-2 md:p-6 text-center first-of-type:text-left last-of-type:hidden"
+            className="py-6 px-2 md:p-6 text-center first-of-type:text-left last-of-type:hidden md:last-of-type:block"
             key={tableHead}
           >
             {renderCurrentTableData(tableDataValues[i])}
