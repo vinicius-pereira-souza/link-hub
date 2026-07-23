@@ -20,7 +20,7 @@ export default function PricingPlans() {
 
   return (
     <div>
-      <div className="flex items-center justify-center gap-x-6 text-zinc-700 text-sm leading-5 mx-auto mb-12">
+      <div className="flex items-center justify-center gap-x-3 md:gap-x-6 text-zinc-700 text-sm leading-5 mx-auto mb-12">
         <span>mensal</span>
         <button
           className="block rounded-full w-14 h-8 bg-gray-200 relative cursor-pointer"
@@ -38,7 +38,7 @@ export default function PricingPlans() {
           <span className="font-semibold text-indigo-900">(Economize 20%)</span>
         </span>
       </div>
-      <section className="grid grid-cols-3 items-center gap-x-3.5">
+      <section className="grid grid-cols-1 md:grid-cols-3 items-center gap-y-6 md:gap-x-3.5 ">
         {optionsPlansData.map((planData: CardPrice) => (
           <CardPlan key={planData.title} planTime={planTime} {...planData} />
         ))}
@@ -72,7 +72,7 @@ function CardPlan({ title, price, advantages, planTime }: CardProps) {
       )}
     >
       {title == "pro" && (
-        <span className="block py-1 px-6 rounded-full bg-indigo-900 absolute -top-4 right-2/4 translate-x-2/4 text-white font-bold text-sm  tracking-[1.2px] uppercase">
+        <span className="block py-1 px-6 rounded-full bg-indigo-900 absolute -top-4 right-2/4 translate-x-2/4 text-white font-bold text-sm  tracking-[1.2px] uppercase  text-center">
           mais popular
         </span>
       )}

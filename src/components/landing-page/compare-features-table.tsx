@@ -20,7 +20,7 @@ export default function CompareFeaturesTable() {
             {compareFeaturesTableHead.map((tHead: string) => (
               <th
                 key={tHead}
-                className="p-6 font-normal text-center first-of-type:text-left"
+                className="py-6 px-2 md:p-6 font-normal text-center first-of-type:text-left last-of-type:hidden md:last-of-type:block"
               >
                 {tHead}
               </th>
@@ -57,7 +57,7 @@ function TableRow(tableData: TableDataProps) {
       <tr className="border-b border-gray-200 text-sm leading-5 font-light">
         {compareFeaturesTableHead.map((tableHead: string, i: number) => (
           <td
-            className="p-6 text-center first-of-type:text-left"
+            className="py-6 px-2 md:p-6 text-center first-of-type:text-left last-of-type:hidden"
             key={tableHead}
           >
             {renderCurrentTableData(tableDataValues[i])}

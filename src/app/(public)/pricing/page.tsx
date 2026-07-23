@@ -12,7 +12,7 @@ export default function Pricing() {
         className="bg-rose-200 flex items-center justify-center 
       py-3 px-6 text-red-800 text-sm sticky top-0 z-10 gap-3"
       >
-        <TriangleAlert width={16} />
+        <TriangleAlert width={16} className="hidden md:block" />
         <p>
           INFORMAÇÃO IMPORTANTE: Esta página é apenas visual/demonstrativa, os
           planos NÃO estão funcionalmente ativos.
@@ -48,7 +48,7 @@ export default function Pricing() {
         </div>
       </section>
       <section className="px-6 mb-20">
-        <div className="max-w-268 mx-auto p-20 bg-indigo-100 rounded-2xl text-center">
+        <div className="max-w-268 mx-auto py-20 px-11 md:p-20 bg-indigo-100 rounded-2xl text-center">
           <h3 className="text-[32px] leading-10 text-blue-950 font-semibold mb-6">
             Pronto para fazer a curadoria da sua presença na web?
           </h3>
