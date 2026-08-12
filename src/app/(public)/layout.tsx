@@ -23,7 +23,7 @@ export default function LayoutLandingPage({
               <PublicLinks />
               <li className="ml-auto mr-9">
                 <Link
-                  href="sign-in"
+                  href="/sign-in"
                   className={`leading-6 text-zinc-600 hover:text-indigo-900 
                   transition-all relative text-sm font-medium`}
                 >
@@ -33,7 +33,7 @@ export default function LayoutLandingPage({
             </ul>
           </nav>
           <Link
-            href="/sign-in"
+            href="/sign-up"
             className="block bg-indigo-900 hover:bg-indigo-800 transition-all py-3 px-6 rounded-full cursor-pointer font-medium text-white text-sm"
           >
             Comece Gratuitamente
