@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest",
+    "test:unit": "vitest",
+    "test:integration": "",
+    "test:e2e": "",
     "db:migrate:create": "node-pg-migrate create",
     "db:migrate:up": "dotenv -e .env.local -- node-pg-migrate up --config-file-name src/config/migrate.ts",
     "db:migrate:down": "dotenv -e .env.local -- node-pg-migrate down --config-file-name src/config/migrate.ts"
@@ -43,6 +45,7 @@
     "node-pg-migrate": "^9.0.0",
     "tailwindcss": "^4",
     "typescript": "^5",
+    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.10"
   }
 }
