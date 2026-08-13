@@ -1,6 +1,11 @@
+"use client";
+import { useActionState } from "react";
 import { Input, ButtomSubmit } from "./form-elements";
+import { signUpWithEmail } from "@/lib/actions";
 
 export function RegisterForm() {
+  const [state, action, isPending] = useActionState(signUpWithEmail, null);
+
   return (
     <form action="">
       <Input
@@ -24,7 +29,7 @@ export function RegisterForm() {
       <Input
         label="Confirmação de Senha"
         type="password"
-        name="password"
+        name="confirmPassword"
         placeholder="**********"
       />
       <ButtomSubmit text="Entrar" />
