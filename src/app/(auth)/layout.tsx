@@ -1,3 +1,4 @@
+import FlashMessage from "@/components/auth/flash-message";
 import { Link2 } from "lucide-react";
 
 export default function AuthLayout({
@@ -7,6 +8,7 @@ export default function AuthLayout({
 }) {
   return (
     <main className="min-h-screen bg-gray-100/75 text-center px-6 grid">
+      <FlashMessage />
       <header className="pt-20">
         <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-indigo-900 text-white mb-6 mx-auto">
           <Link2 />

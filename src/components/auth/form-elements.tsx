@@ -1,16 +1,23 @@
 import { ArrowRight } from "lucide-react";
-
+import { cn } from "@/lib/tw-merge";
 interface PropsInput {
   label: string;
   type: InputTypes;
   name: string;
   placeholder: string;
+  subClass?: string | string[];
 }
 type InputTypes = "text" | "email" | "password";
 
-export function Input({ label, type, name, placeholder }: PropsInput) {
+export function Input({
+  label,
+  type,
+  name,
+  placeholder,
+  subClass,
+}: PropsInput) {
   return (
-    <div className="text-left mb-4">
+    <div className={cn(`text-left mb-2`, subClass)}>
       <label
         className="text-zinc-900 mb-1.5 font-medium text-sm"
         htmlFor={name}
@@ -29,13 +36,23 @@ export function Input({ label, type, name, placeholder }: PropsInput) {
   );
 }
 
-export function ButtomSubmit({ text }: { text: string }) {
+export function ButtomSubmit({
+  text,
+  isPending,
+}: {
+  text: string;
+  isPending: boolean;
+}) {
   return (
     <>
       <button
         type="submit"
-        className="w-full py-4 px-6 bg-indigo-900 text-white rounded-lg flex items-center justify-center 
-        gap-x-3 font-light cursor-pointer transition-all hover:bg-indigo-800"
+        className={cn(
+          `w-full py-4 px-6 bg-indigo-900 text-white rounded-lg flex items-center justify-center 
+        gap-x-3 font-light cursor-pointer transition-all hover:bg-indigo-800 mt-5`,
+          isPending && "bg-indigo-400 hover:bg-indigo-400 cursor-auto",
+        )}
+        disabled={isPending}
       >
         {text}
         <ArrowRight size={20} />

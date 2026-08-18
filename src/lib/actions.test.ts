@@ -1,4 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import { auth } from "@/lib/auth/server";
+import { redirect } from "next/navigation";
+import { signUpWithEmail } from "./actions";
 
 vi.mock("next/headers", () => ({
   cookies: vi.fn(() => ({
@@ -19,10 +22,6 @@ vi.mock("@/lib/auth/server", () => ({
     },
   },
 }));
-
-import { auth } from "@/lib/auth/server";
-import { redirect } from "next/navigation";
-import { signUpWithEmail } from "./actions";
 
 describe("signUpWithEmail Server Action", () => {
   beforeEach(() => {
@@ -57,6 +56,7 @@ describe("signUpWithEmail Server Action", () => {
   });
 
   it("should return a generic error_message when Neon Auth or the server fails", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
     const signUpEmailSpy = vi.mocked(auth.signUp.email);
 
     signUpEmailSpy.mockResolvedValueOnce({
