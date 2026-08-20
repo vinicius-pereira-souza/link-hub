@@ -1,11 +1,19 @@
 "use client";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { Input, ButtomSubmit } from "./form-elements";
 import { signUpWithEmail } from "@/lib/actions";
 import WrapperErrorMessages from "./error-message";
+import { useMessageStore } from "@/providers/message-store-provider";
 
-export function RegisterForm() {
+export function SignUpForm() {
   const [state, action, isPending] = useActionState(signUpWithEmail, undefined);
+  const showMessage = useMessageStore((state) => state.showMessage);
+
+  useEffect(() => {
+    if (!state?.error_message) return;
+
+    showMessage({ type: "erro", message: state?.error_message });
+  }, [state?.error_message, showMessage]);
 
   return (
     <form action={action}>
@@ -46,11 +54,6 @@ export function RegisterForm() {
         <WrapperErrorMessages errors={state.errors.confirmPassword} />
       )}
       <ButtomSubmit text="Cadastrar-se" isPending={isPending} />
-      {state?.error_message && (
-        <span className="block text-sm text-red-600 mt-6">
-          {state.error_message}
-        </span>
-      )}
     </form>
   );
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { RegisterForm } from "@/components/auth/form";
+import { RegisterForm } from "@/components/auth/forms";
 
 export default function SignIn() {
   return (
