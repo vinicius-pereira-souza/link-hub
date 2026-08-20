@@ -16,12 +16,14 @@ export const defaultInitState: MessageState = {
   hasMessage: false,
 };
 
+type NewMessageObject = Pick<MessageState, "message" | "type">;
+
 export const createMessageStore = (
   initState: MessageState = defaultInitState,
 ) => {
   return createStore<MessageStore>()((set) => ({
     ...initState,
-    showMessage: (newMessage: Pick<MessageState, "message" | "type">) =>
+    showMessage: (newMessage: NewMessageObject) =>
       set({
         type: newMessage.type,
         message: newMessage.message,
