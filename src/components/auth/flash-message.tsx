@@ -43,17 +43,20 @@ export default function FlashMessage() {
     hiddenMessage();
   };
 
+  if (!hasMessage) return null;
+
   return (
     <div
+      data-testid="flash-message-card"
       className={cn(
         `flex items-center gap-3 fixed top-3.5 right-3.5 z-10 p-4 pr-6  min-w-90 rounded-lg shadow`,
         currentMessageType.boxStyle,
-        !hasMessage && "hidden",
       )}
     >
       {currentMessageType.icon}
       <span className="flex-1">{message}</span>
       <button
+        data-testid="button-hidden-message"
         className="block w-3 cursor-pointer"
         onClick={onHiddenFlashMessage}
       >
