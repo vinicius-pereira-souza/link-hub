@@ -16,5 +16,9 @@ export default defineConfig({
         inline: ["@neondatabase/auth"],
       },
     },
+    env: {
+      // variable for the test environment only
+      NEON_AUTH_COOKIE_SECRET: "DvrwLYyj2o5YM8EfHZA55c5/18lqmB59KesYh4fHH2U=",
+    },
   },
 });

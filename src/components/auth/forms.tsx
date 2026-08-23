@@ -16,7 +16,7 @@ export function SignUpForm() {
   }, [state?.error_message, showMessage]);
 
   return (
-    <form action={action}>
+    <form action={action} data-testid="sign-up-form">
       <Input
         label="Nome de Usuário"
         type="text"
