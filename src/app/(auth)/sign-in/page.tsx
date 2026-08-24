@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { RegisterForm } from "@/components/auth/forms";
+import { SignInForm } from "@/components/auth/forms";
 
 export default function SignIn() {
   return (
@@ -8,7 +8,7 @@ export default function SignIn() {
         Junte-se ao LinkHub e organize seu mundo digital
       </h2>
       <div className="bg-white p-12 rounded-xl max-w-110 mx-auto mb-12">
-        <RegisterForm />
+        <SignInForm />
       </div>
       <p className="text-zinc-600 text-base">
         Já possui uma conta?{" "}

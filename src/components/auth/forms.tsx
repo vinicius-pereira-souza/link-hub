@@ -57,3 +57,38 @@ export function SignUpForm() {
     </form>
   );
 }
+
+export function SignInForm() {
+  const [state, action, isPending] = useActionState(signUpWithEmail, undefined);
+  const showMessage = useMessageStore((state) => state.showMessage);
+
+  useEffect(() => {
+    if (!state?.error_message) return;
+
+    showMessage({ type: "erro", message: state?.error_message });
+  }, [state?.error_message, showMessage]);
+
+  return (
+    <form action={action} data-testid="sign-up-form">
+      <Input
+        label="Endereço de E-mail"
+        type="email"
+        name="email"
+        placeholder="jonh.doh@company.com"
+      />
+      {state?.errors?.email && (
+        <WrapperErrorMessages errors={state.errors.email} />
+      )}
+      <Input
+        label="Senha"
+        type="password"
+        name="password"
+        placeholder="**********"
+      />
+      {state?.errors?.password && (
+        <WrapperErrorMessages errors={state.errors.password} />
+      )}
+      <ButtomSubmit text="Entrar" isPending={isPending} />
+    </form>
+  );
+}
