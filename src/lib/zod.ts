@@ -25,6 +25,21 @@ export const SignupFormSchema = z
     path: ["confirmPassword"],
   });
 
+export const SignInFormSchema = z.object({
+  email: z.email({
+    error: "Por favor, insira um e-mail válido.",
+  }),
+  password: z
+    .string()
+    .min(8, { error: "A senha deve ter pelo menos 6 caracteres." })
+    .regex(/[a-zA-Z]/, { error: "Conter pelo menos uma letra." })
+    .regex(/[0-9]/, { error: "Contenha pelo menos um número." })
+    .regex(/[^a-zA-Z0-9]/, {
+      error: "Contenha pelo menos um caractere especial.",
+    })
+    .trim(),
+});
+
 export type FormState =
   | {
       error_message?: string;
