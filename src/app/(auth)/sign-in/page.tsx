@@ -5,15 +5,15 @@ export default function SignIn() {
   return (
     <div className="self-stretch">
       <h2 className="text-base text-zinc-600 mb-12">
-        Junte-se ao LinkHub e organize seu mundo digital
+        Bem-vindo de volta ao seu espaço de trabalho
       </h2>
       <div className="bg-white p-12 rounded-xl max-w-110 mx-auto mb-12">
         <SignInForm />
       </div>
       <p className="text-zinc-600 text-base">
-        Já possui uma conta?{" "}
+        Ainda não possui uma conta?{" "}
         <Link href="/sign-up" className="text-indigo-900">
-          entrar gratuitamente
+          cadastre-se gratuitamente
         </Link>
       </p>
     </div>
