@@ -9,6 +9,7 @@
     "lint": "eslint",
     "test:unit": "vitest",
     "test:e2e": "",
+    "cypress:open": "cypress open",
     "db:migrate:create": "node-pg-migrate create",
     "db:migrate:up": "dotenv -e .env.local -- node-pg-migrate up --config-file-name src/config/migrate.ts",
     "db:migrate:down": "dotenv -e .env.local -- node-pg-migrate down --config-file-name src/config/migrate.ts"
@@ -31,6 +32,7 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^7.0.1",
