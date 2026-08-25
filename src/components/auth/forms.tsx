@@ -1,7 +1,7 @@
 "use client";
 import { useActionState, useEffect } from "react";
 import { Input, ButtomSubmit } from "./form-elements";
-import { signUpWithEmail } from "@/lib/actions";
+import { signUpWithEmail, signInWithEmail } from "@/lib/actions";
 import WrapperErrorMessages from "./error-message";
 import { useMessageStore } from "@/providers/message-store-provider";
 
@@ -59,7 +59,7 @@ export function SignUpForm() {
 }
 
 export function SignInForm() {
-  const [state, action, isPending] = useActionState(signUpWithEmail, undefined);
+  const [state, action, isPending] = useActionState(signInWithEmail, undefined);
   const showMessage = useMessageStore((state) => state.showMessage);
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export function SignInForm() {
   }, [state?.error_message, showMessage]);
 
   return (
-    <form action={action} data-testid="sign-up-form">
+    <form action={action} data-testid="sign-in-form">
       <Input
         label="Endereço de E-mail"
         type="email"
