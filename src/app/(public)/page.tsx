@@ -21,7 +21,7 @@ export default function Home() {
           </h2>
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <ButtonLink
-              href="/auth/sign-in"
+              href="/sign-in"
               label="Comece gratuitamente"
               className="bg-indigo-900 hover:bg-indigo-800 text-white w-63 lg:w-auto"
             />

@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:unit": "vitest",
-    "test:e2e": "",
+    "test:e2e": "cypress run",
     "cypress:open": "cypress open",
     "db:migrate:create": "node-pg-migrate create",
     "db:migrate:up": "dotenv -e .env.local -- node-pg-migrate up --config-file-name src/config/migrate.ts",
