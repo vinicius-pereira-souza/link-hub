@@ -1,4 +1,4 @@
-import { type Question } from "@/components/landing-page/collapse-buttons";
+import { type Question } from "@/components/marketing/collapse-buttons";
 
 export const questionGuiaPage: Question[] = [
   {

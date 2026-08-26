@@ -1,8 +1,8 @@
-import ButtonLink from "@/components/landing-page/button-link";
-import WrapperButtonCallapseList from "@/components/landing-page/collapse-buttons";
-import CompareFeaturesTable from "@/components/landing-page/compare-features-table";
-import PricingPlans from "@/components/landing-page/plans";
-import { questionPricingPage } from "@/lib/landing-page-data.ts";
+import ButtonLink from "@/components/marketing/button-link";
+import WrapperButtonCallapseList from "@/components/marketing/collapse-buttons";
+import CompareFeaturesTable from "@/components/marketing/compare-features-table";
+import PricingPlans from "@/components/marketing/plans";
+import { questionPricingPage } from "@/lib/marketing-data.ts";
 import { TriangleAlert } from "lucide-react";
 
 export default function Pricing() {

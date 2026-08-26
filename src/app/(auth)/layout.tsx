@@ -2,7 +2,7 @@ import FlashMessage from "@/components/auth/flash-message";
 import { MessageStoreProvider } from "@/providers/message-store-provider";
 import { Link2 } from "lucide-react";
 
-export default function AuthLayout({
+export default async function AuthLayout({
   children,
 }: {
   children: React.ReactNode;

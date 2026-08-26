@@ -1,8 +1,8 @@
 import Image from "next/image";
-import WrapperCardDetails from "@/components/landing-page/cards-detail-guia";
-import WrapperButtonCallapseList from "@/components/landing-page/collapse-buttons";
-import { questionGuiaPage } from "@/lib/landing-page-data.ts";
-import ButtonLink from "@/components/landing-page/button-link";
+import WrapperCardDetails from "@/components/marketing/cards-detail-guia";
+import WrapperButtonCallapseList from "@/components/marketing/collapse-buttons";
+import { questionGuiaPage } from "@/lib/marketing-data.ts";
+import ButtonLink from "@/components/marketing/button-link";
 
 export default function Guia() {
   return (
