@@ -1,7 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { auth } from "@/lib/auth/server";
 import { redirect } from "next/navigation";
-import { signUpWithEmail, signInWithEmail } from "./actions";
+import {
+  signUpWithEmail,
+  signInWithEmail,
+  signOut as actionSignOut,
+} from "./actions";
 
 vi.mock("next/headers", () => ({
   cookies: vi.fn(() => ({
@@ -23,6 +27,7 @@ vi.mock("@/lib/auth/server", () => ({
     signIn: {
       email: vi.fn(),
     },
+    signOut: vi.fn(),
   },
 }));
 
@@ -202,6 +207,43 @@ describe("Authentication actions", () => {
       });
 
       expect(redirect).toHaveBeenCalledWith("/dashboard");
+    });
+  });
+
+  describe("signOut Server Action", () => {
+    it(`should return a generic error_message when Neon Auth SignOut or the server fails`, async () => {
+      vi.spyOn(console, "error").mockImplementation(() => {});
+      const signOutSpy = vi.mocked(auth.signOut);
+
+      signOutSpy.mockResolvedValueOnce({
+        error: { message: "Failed to sign out", status: 500 },
+      });
+
+      const result = await actionSignOut();
+
+      expect(result).toEqual({
+        error_message:
+          "Houve um problema na realização do LogOut. Por favor, tente novamente mais tarde.",
+      });
+
+      expect(redirect).not.toHaveBeenCalled();
+    });
+
+    it(`"should call Neon Auth SignOut and redirect to '/sign-in' when everything is correct."`, async () => {
+      const signOutSpy = vi.mocked(auth.signOut);
+
+      signOutSpy.mockResolvedValueOnce({
+        data: {
+          success: true,
+        },
+        error: null,
+      });
+
+      await actionSignOut();
+
+      expect(signOutSpy).toHaveBeenCalledWith();
+
+      expect(redirect).toHaveBeenCalledWith("/sign-in");
     });
   });
 });

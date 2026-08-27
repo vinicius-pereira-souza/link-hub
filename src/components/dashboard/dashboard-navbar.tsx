@@ -3,6 +3,7 @@ import Link from "next/link";
 import { cn } from "@/lib/tw-merge";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, Link2, Palette, Settings, Info } from "lucide-react";
+import ButtonSignOut from "../auth/button-sign-out";
 
 type NavLink = {
   href: string;
@@ -47,7 +48,7 @@ export default function DashboardNavbar({
         </Link>
         <div className="border-t border-neutral-300 pt-6 flex flex-col gap-y-2 mt-6">
           <NavLink href="/help" label="Ajuda" icon={<Info size={20} />} />
-          <button className="block w-full">Sair</button>
+          <ButtonSignOut />
         </div>
       </nav>
     </aside>

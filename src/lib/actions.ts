@@ -76,3 +76,21 @@ export async function signInWithEmail(
 
   redirect("/dashboard");
 }
+
+export async function signOut() {
+  try {
+    const { error } = await auth.signOut();
+
+    if (error) {
+      throw new Error(error.message);
+    }
+  } catch (error) {
+    console.error(error);
+    return {
+      error_message:
+        "Houve um problema na realização do LogOut. Por favor, tente novamente mais tarde.",
+    };
+  }
+
+  redirect("/sign-in");
+}
