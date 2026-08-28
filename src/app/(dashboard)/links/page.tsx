@@ -1,6 +1,10 @@
-import LinkActiveList from "@/components/dashboard/link-active-list";
-import { Search, MousePointerClick, Star, Plus } from "lucide-react";
-import Link from "next/link";
+import LinkList from "@/components/dashboard/link-list";
+import LinkMetricsOverview from "@/components/dashboard/link-metrics-overview";
+import {
+  LinkMetricsOverviewSkeleton,
+  LinkListSkeleton,
+} from "@/components/ui/skeletons";
+import { Search, Plus } from "lucide-react";
 
 export default function Page() {
   return (
@@ -22,43 +26,7 @@ export default function Page() {
         </div>
       </header>
       <main className="px-6">
-        <section className="grid grid-cols-[310px_1fr] gap-6 my-12">
-          <div className="bg-white rounded-xl p-6 border border-neutral-300/30">
-            <div className="flex items-center justify-between text-sm text-zinc-600 font-medium mb-6">
-              <span>Total de Cliques</span>
-              <MousePointerClick color="#312c85" size={25} />
-            </div>
-            <span className="text-indigo-900 font-semibold tracking-tighter text-5xl mt-12.5 block">
-              24,892
-            </span>
-          </div>
-          <div className="bg-linear-to-r from-indigo-900  to-slate-600  rounded-xl p-6 pb-3 border border-neutral-300/30 text-white">
-            <div
-              className={`flex items-center justify-between text-gray-300 font-medium 
-                text-sm mb-3 leading-5`}
-            >
-              <h5>Link de Melhor Desempenho</h5>
-              <Star color="#fff" size={20} />
-            </div>
-            <h1 className="font-semibold text-[32px] mb-1 leading-10">
-              Portfolio showcase 2024
-            </h1>
-            <h2 className="font-semibold text-xs mb-3 text-gray-300 leading-4">
-              curate.io/alex/portfolio-2024
-            </h2>
-            <div className="flex items-center justify-between">
-              <span className="font-normal text-base">
-                8.4K Unique Visitors
-              </span>
-              <Link
-                href=""
-                className="block rounded-full bg-white text-indigo-900 py-1 px-6 text-sm font-medium"
-              >
-                Ver estatísticas
-              </Link>
-            </div>
-          </div>
-        </section>
+        <LinkMetricsOverview />
         <section>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl text-indigo-900 font-medium">
@@ -68,7 +36,7 @@ export default function Page() {
               <Plus /> adicionar novo link
             </button>
           </div>
-          <LinkActiveList />
+          <LinkList />
         </section>
       </main>
     </div>
