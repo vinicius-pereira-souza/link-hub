@@ -5,11 +5,11 @@ export default function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main className="min-h-screen overflow-hidden bg-gray-5 grid grid-cols-[256px_1fr]">
+    <main className="h-screen overflow-hidden bg-gray-50 grid grid-cols-[256px_1fr]">
       <DashboardNavbar>
         <UserAvatarServer />
       </DashboardNavbar>
-      {children}
+      <div className="overflow-y-auto">{children}</div>
     </main>
   );
 }

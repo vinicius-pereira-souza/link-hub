@@ -7,5 +7,5 @@ export default auth.middleware({
 
 export const config = {
   // Protected routes requiring authentication
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/dashboard/:path*", "/links/:path*"],
 };
