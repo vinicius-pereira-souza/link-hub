@@ -1,4 +1,5 @@
-import { Search, MousePointerClick, Star } from "lucide-react";
+import LinkActiveList from "@/components/dashboard/link-active-list";
+import { Search, MousePointerClick, Star, Plus } from "lucide-react";
 import Link from "next/link";
 
 export default function Page() {
@@ -34,15 +35,15 @@ export default function Page() {
           <div className="bg-linear-to-r from-indigo-900  to-slate-600  rounded-xl p-6 pb-3 border border-neutral-300/30 text-white">
             <div
               className={`flex items-center justify-between text-gray-300 font-medium 
-                text-sm mb-3`}
+                text-sm mb-3 leading-5`}
             >
               <h5>Link de Melhor Desempenho</h5>
               <Star color="#fff" size={20} />
             </div>
-            <h1 className="font-semibold text-[32px] mb-1">
+            <h1 className="font-semibold text-[32px] mb-1 leading-10">
               Portfolio showcase 2024
             </h1>
-            <h2 className="font-semibold text-xs mb-4 text-gray-300">
+            <h2 className="font-semibold text-xs mb-3 text-gray-300 leading-4">
               curate.io/alex/portfolio-2024
             </h2>
             <div className="flex items-center justify-between">
@@ -58,7 +59,17 @@ export default function Page() {
             </div>
           </div>
         </section>
-        <section></section>
+        <section>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl text-indigo-900 font-medium">
+              Linkes Ativos
+            </h2>
+            <button className="flex items-center text-center text-white text-sm font-medium bg-indigo-900 px-6 py-3 rounded-lg cursor-pointer transition-all hover:bg-indigo-700">
+              <Plus /> adicionar novo link
+            </button>
+          </div>
+          <LinkActiveList />
+        </section>
       </main>
     </div>
   );
