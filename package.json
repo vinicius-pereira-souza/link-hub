@@ -7,12 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:unit": "vitest",
+    "test:unit": "vitest run --project unit",
+    "test:unit:watch": "vitest --project unit",
+    "test:integration": "dotenv -e .env.test -- vitest run --project integration",
     "test:e2e": "cypress run",
     "cypress:open": "cypress open",
     "db:migrate:create": "node-pg-migrate create",
     "db:migrate:up": "dotenv -e .env.local -- node-pg-migrate up --config-file-name src/config/migrate.ts",
-    "db:migrate:down": "dotenv -e .env.local -- node-pg-migrate down --config-file-name src/config/migrate.ts"
+    "db:migrate:down": "dotenv -e .env.local -- node-pg-migrate down --config-file-name src/config/migrate.ts",
+    "db:test:migrate": "dotenv -e .env.test -- node-pg-migrate up --config-file-name src/config/migrate.ts"
   },
   "dependencies": {
     "@neondatabase/auth": "0.5.0-beta",

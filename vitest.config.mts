@@ -1,3 +1,4 @@
+// vitest.config.ts
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 
@@ -7,20 +8,44 @@ export default defineConfig({
     tsconfigPaths: true,
   },
   test: {
-    environment: "jsdom",
     globals: true,
-    pool: "threads",
-    fileParallelism: false,
-    setupFiles: ["./vitest.setup.ts"],
-    include: ["src/**/*.{test,spec}.{ts,tsx}"],
-    server: {
-      deps: {
-        inline: ["@neondatabase/auth"],
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: "unit",
+          globals: true,
+          environment: "jsdom",
+          include: [
+            "src/**/*.unit.test.{ts,tsx}",
+            "src/**/*.component.test.{ts,tsx}",
+          ],
+          setupFiles: ["./vitest.setup.ts"],
+          pool: "threads",
+          fileParallelism: false,
+          server: {
+            deps: {
+              inline: ["@neondatabase/auth"],
+            },
+          },
+          env: {
+            NEON_AUTH_COOKIE_SECRET: "test-secret-only",
+          },
+        },
       },
-    },
-    env: {
-      // variable for the test environment only
-      NEON_AUTH_COOKIE_SECRET: "DvrwLYyj2o5YM8EfHZA55c5/18lqmB59KesYh4fHH2U=",
-    },
+      {
+        extends: true,
+        test: {
+          name: "integration",
+          globals: true,
+          environment: "node",
+          include: ["src/**/*.integration.test.ts"],
+          setupFiles: ["./vitest.integration.setup.ts"],
+          pool: "forks",
+          fileParallelism: false,
+          testTimeout: 15_000,
+        },
+      },
+    ],
   },
 });
