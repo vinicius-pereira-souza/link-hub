@@ -40,7 +40,6 @@ export default defineConfig({
           globals: true,
           environment: "node",
           include: ["src/**/*.integration.test.ts"],
-          setupFiles: ["./vitest.integration.setup.ts"],
           pool: "forks",
           fileParallelism: false,
           testTimeout: 15_000,
