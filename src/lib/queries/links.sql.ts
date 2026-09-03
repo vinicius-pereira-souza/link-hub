@@ -1,7 +1,6 @@
 import { sql } from "@/config/db";
 
 /*
-  - [ ] = buscar dados dos cards de Visão geral das métricas de links
   - [ ] = buscar lista de links ordenando por decrescente
   - [ ] = buscar link por id 
 */
@@ -22,6 +21,28 @@ export async function fetchLinkMetricsOverview(userId: string) {
         clicks: clickAmountResponse[0] ?? null,
         topLink: topPerformingLinkResponse[0] ?? null,
       },
+    };
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch metrics overview data.");
+  }
+}
+
+export async function fetchSearchListOfLinksByFilter(
+  userid: string,
+  search = "",
+) {
+  const searchPattern: string = `%${search}%`;
+
+  try {
+    const rowsLinksPromise =
+      await sql`SELECT id, title, url, click_amount as total_click
+      FROM links WHERE user_id = ${userid} AND
+      is_active = true AND title ILIKE ${searchPattern}
+      ORDER BY total_click DESC`;
+
+    return {
+      data: rowsLinksPromise ?? [],
     };
   } catch (error) {
     console.error("Database Error:", error);

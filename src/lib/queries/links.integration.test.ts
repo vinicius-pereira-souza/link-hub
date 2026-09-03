@@ -1,4 +1,7 @@
-import { fetchLinkMetricsOverview } from "./links.sql";
+import {
+  fetchLinkMetricsOverview,
+  fetchSearchListOfLinksByFilter,
+} from "./links.sql";
 
 const userId = "e6828746-e7a7-4f8d-ba87-b9329d6d5a54";
 
@@ -16,5 +19,13 @@ describe("Link Queries (Neon Test Branch)", () => {
       url: expect.any(String),
       total_click: expect.any(Number),
     });
+  });
+
+  it(`must return a list containing all active links that have the characters 'ins' somewhere 
+    in the title.`, async () => {
+    const { data } = await fetchSearchListOfLinksByFilter(userId, "ins");
+
+    expect(data).toBeDefined();
+    expect(Array.isArray(data)).toBeTruthy();
   });
 });
