@@ -1,12 +1,19 @@
 import LinkList from "@/components/dashboard/link-list";
 import LinkMetricsOverview from "@/components/dashboard/link-metrics-overview";
+import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import {
   LinkMetricsOverviewSkeleton,
   LinkListSkeleton,
 } from "@/components/ui/skeletons";
 import { Search, Plus } from "lucide-react";
+import { auth } from "@/lib/auth/server";
 
-export default function Page() {
+export default async function Page() {
+  const { data: session } = await auth.getSession();
+
+  if (!session) return redirect("/sign-in");
+
   return (
     <div>
       <header className="py-2 px-6 border-b border-neutral-300">
@@ -26,7 +33,9 @@ export default function Page() {
         </div>
       </header>
       <main className="px-6">
-        <LinkMetricsOverview />
+        <Suspense fallback={<LinkMetricsOverviewSkeleton />}>
+          <LinkMetricsOverview userid={session.user.id} />
+        </Suspense>
         <section>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl text-indigo-900 font-medium">
