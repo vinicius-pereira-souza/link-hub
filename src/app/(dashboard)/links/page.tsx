@@ -45,7 +45,9 @@ export default async function Page() {
               <Plus /> adicionar novo link
             </button>
           </div>
-          <LinkList />
+          <Suspense fallback={<LinkListSkeleton />}>
+            <LinkList userid={session.user.id} />
+          </Suspense>
         </section>
       </main>
     </div>

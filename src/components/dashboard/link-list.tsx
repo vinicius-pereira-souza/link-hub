@@ -1,40 +1,55 @@
-import { Globe, Pencil } from "lucide-react";
+import { Link as IconLink, Plus, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { fetchSearchListOfLinksByFilter } from "@/lib/queries/links.sql";
+import LinkListItem from "./link-list-item";
 
-export default function LinkList() {
-  return (
-    <ul>
-      <LinkListItem />
-    </ul>
-  );
-}
+export default async function LinkList({ userid }: { userid: string }) {
+  const { data } = await fetchSearchListOfLinksByFilter(userid);
 
-function LinkListItem() {
-  return (
-    <li className="p-6 bg-white border border-neutral-300 rounded-xl grid grid-cols-[auto_1fr_auto] items-center gap-6 transition-all hover:bg-neutral-100 hover:-translate-y-1.5 mb-2">
-      <div className="w-12 h-12 rounded-lg bg-gray-200 flex items-center justify-center text-indigo-900 ">
-        <Globe />
-      </div>
-      <div>
-        <p className="text-zinc-900 text-2xl font-medium leading-8">
-          My Design Portfolio
-        </p>
-        <p className="text-zinc-600 text-xs font-medium leading-4">
-          https://alexrivera.design
-        </p>
-      </div>
-      <div className="text-end flex items-center gap-9">
-        <div>
-          <span className="block text-zinc-900 text-sm font-medium leading-5">
-            3.2K
-          </span>
-          <span className="block text-zinc-600 text-xs font-semibold leading-3">
-            Cliques
-          </span>
+  if (!data)
+    return (
+      <div className="bg-white py-20 mb-11 rounded-xl border border-neutral-300/30">
+        <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
+          <IconLink color="#37437a" size={30} />
         </div>
-        <button className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-neutral-200 hover:text-indigo-900 transition-all cursor-pointer">
-          <Pencil size={20} />
-        </button>
+        <h3 className="text-center text-zinc-900 text-2xl leading-8 font-medium">
+          Nenhum link adicionado ainda
+        </h3>
+        <p className="max-w-[384px] mx-auto text-center text-zinc-700 text-base leading-6 font-normal mb-11">
+          Sua página no Link-hub aguarda seu conteúdo. Adicione seu portfólio,
+          perfis em redes sociais, lojas ou artigos para começar a compartilhar.
+        </p>
+        <Link
+          href="/link/add-link"
+          className="w-62.5 mx-auto flex items-center justify-center gap-3.5 text-white text-sm font-medium bg-indigo-900 px-6 py-3 rounded-lg cursor-pointer transition-all hover:bg-indigo-700"
+        >
+          <Plus /> Crie seu primeiro link
+        </Link>
       </div>
-    </li>
+    );
+
+  return (
+    <div>
+      <ul>
+        {data &&
+          data!.map((link) => <LinkListItem key={link.id} {...(link ?? {})} />)}
+      </ul>
+      <div className="bg-gray-100 py-20 mb-11 rounded-xl border-dashed border-2 border-neutral-300">
+        <Sparkles color="#767680" size={50} className="mx-auto mb-3" />
+        <h3 className="text-center text-zinc-600 text-2xl leading-8 font-medium">
+          Otimize sua presença
+        </h3>
+        <p className="max-w-[384px] mx-auto text-center text-zinc-700 text-base leading-6 font-normal mb-11">
+          Use insights de análise para organizar os links mais clicados no topo
+          do seu perfil e obter melhores taxas de conversão.
+        </p>
+        <Link
+          href="/dashboard"
+          className="block text-indigo-900 text-center text-sm font-medium transition-all hover:text-indigo-700"
+        >
+          Ver estratégias avançadas
+        </Link>
+      </div>
+    </div>
   );
 }
