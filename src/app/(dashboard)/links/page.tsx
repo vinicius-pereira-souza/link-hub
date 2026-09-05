@@ -6,11 +6,19 @@ import {
   LinkMetricsOverviewSkeleton,
   LinkListSkeleton,
 } from "@/components/ui/skeletons";
-import { Search, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { auth } from "@/lib/auth/server";
+import SearchInput from "@/components/dashboard/search";
 
-export default async function Page() {
+export default async function Page(props: {
+  searchParams?: Promise<{
+    query?: string;
+  }>;
+}) {
   const { data: session } = await auth.getSession();
+
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || "";
 
   if (!session) return redirect("/sign-in");
 
@@ -19,17 +27,7 @@ export default async function Page() {
       <header className="py-2 px-6 border-b border-neutral-300">
         <div className="flex items-center justify-between">
           <h3 className="text-indigo-900 font-bold text-lg">Visão geral</h3>
-          <div
-            className={`
-            flex items-center gap-4 px-3 rounded-full bg-gray-100 border border-neutral-300`}
-          >
-            <Search size={16} color="#525252" />
-            <input
-              className="block h-8 text-sm text-neutral-700 active:border-0"
-              type="text"
-              placeholder="Buscar Links..."
-            />
-          </div>
+          <SearchInput placeholder="Buscar links..." />
         </div>
       </header>
       <main className="px-6">
@@ -46,7 +44,7 @@ export default async function Page() {
             </button>
           </div>
           <Suspense fallback={<LinkListSkeleton />}>
-            <LinkList userid={session.user.id} />
+            <LinkList userid={session.user.id} query={query} />
           </Suspense>
         </section>
       </main>

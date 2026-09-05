@@ -3,8 +3,14 @@ import Link from "next/link";
 import { fetchSearchListOfLinksByFilter } from "@/lib/queries/links.sql";
 import LinkListItem from "./link-list-item";
 
-export default async function LinkList({ userid }: { userid: string }) {
-  const { data } = await fetchSearchListOfLinksByFilter(userid);
+export default async function LinkList({
+  userid,
+  query,
+}: {
+  userid: string;
+  query: string;
+}) {
+  const { data } = await fetchSearchListOfLinksByFilter(userid, query);
 
   if (!data)
     return (
