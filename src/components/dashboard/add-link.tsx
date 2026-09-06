@@ -4,6 +4,7 @@ import { GripVertical, ChevronDown, Trash } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { cn } from "@/lib/tw-merge";
 import React, { useState } from "react";
+import IconsModal from "./icons-modal";
 
 export default function AddLink() {
   const [selectedIcon, setSelectedIcon] = useState<string>("");
@@ -36,6 +37,11 @@ export default function AddLink() {
 
   return (
     <div className="bg-white rounded-xl p-6 border border-neutral-300/30 relative">
+      <IconsModal
+        onCloseModal={closeIconsModal}
+        onSelectIcon={selectIcon}
+        isActiveModal={true}
+      />
       <div className="flex items-center mb-6">
         <button className="cursor-pointer">
           <GripVertical color="#767680" size={25} />
