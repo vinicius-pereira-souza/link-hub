@@ -1,3 +1,5 @@
+import AddLink from "@/components/dashboard/add-link";
+
 export default function Page() {
   return (
     <div className="flex items-center">
@@ -13,6 +15,9 @@ export default function Page() {
           </div>
           <button>adicionar link</button>
         </header>
+        <main>
+          <AddLink />
+        </main>
       </div>
       <div className="flex-1 min-h-screen">teste</div>
     </div>
