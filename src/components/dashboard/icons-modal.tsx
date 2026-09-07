@@ -3,42 +3,28 @@
 import { DynamicIcon } from "lucide-react/dynamic";
 import { X, Search } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/tw-merge";
+import {
+  type IconNameTypeKey,
+  type IconCurrentNameTypeValue,
+  IconNameObject,
+  iconsNameList,
+} from "@/utils/icons";
 
 interface ModalProps {
+  seletectedIcon: IconNameTypeKey | undefined;
   onCloseModal: () => void;
-  onSelectIcon: (iconName: string) => void;
+  onSelectIcon: (iconName: IconNameTypeKey) => void;
   isActiveModal: boolean;
 }
 
-type IconNameType = keyof typeof IconNameObject;
-
-const IconNameObject = {
-  Instagram: "camera",
-  YouTube: "play",
-  TikTok: "music-2",
-  LinkedIn: "briefcase",
-  GitHub: "code",
-  Spotify: "audio-lines",
-  Twitter: "x",
-  Discord: "messages-square",
-  Website: "globe",
-  Email: "mail",
-  Phone: "phone",
-  PodCast: "mic",
-  Store: "shopping-bag",
-  Dribble: "paintbrush",
-} as const;
-
-type IconName = keyof typeof IconNameObject;
-
-const iconsNameList = Object.keys(IconNameObject) as IconName[];
-
 export default function IconsModal({
+  seletectedIcon,
   onCloseModal,
   onSelectIcon,
   isActiveModal,
 }: ModalProps) {
-  const [listIcon, setListIcon] = useState<IconNameType[]>(iconsNameList);
+  const [listIcon, setListIcon] = useState<IconNameTypeKey[]>(iconsNameList);
   const [search, setSearch] = useState<string>("");
 
   if (!isActiveModal) return null;
@@ -48,11 +34,11 @@ export default function IconsModal({
     setSearch(currentValue);
 
     if (!currentValue.trim()) {
-      setListIcon(iconsNameList as IconNameType[]);
+      setListIcon(iconsNameList as IconNameTypeKey[]);
       return;
     }
 
-    const filteredIcons = (iconsNameList as IconNameType[]).filter((name) =>
+    const filteredIcons = (iconsNameList as IconNameTypeKey[]).filter((name) =>
       name.toLowerCase().includes(currentValue.toLowerCase()),
     );
 
@@ -60,7 +46,10 @@ export default function IconsModal({
   };
 
   return (
-    <div className="bg-white p-6 rounded-2xl absolute z-10 shadow top-16 w-93.75">
+    <div
+      data-testid="modal-options-icon"
+      className="bg-white p-6 rounded-2xl absolute z-10 shadow top-16 w-93.75"
+    >
       <div className=" grid grid-cols-[1fr_auto] items-center mb-4 w-full">
         <label
           htmlFor="search-icon"
@@ -96,6 +85,7 @@ export default function IconsModal({
         {listIcon.length > 0 ? (
           listIcon.map((iconObjectKey) => (
             <IconButton
+              seletectedIcon={seletectedIcon}
               key={iconObjectKey}
               iconName={iconObjectKey}
               onSelectIcon={onSelectIcon}
@@ -112,21 +102,36 @@ export default function IconsModal({
 }
 
 interface IconButtonProps {
-  iconName: IconNameType;
-  onSelectIcon: (iconName: string) => void;
+  iconName: IconNameTypeKey;
+  seletectedIcon: IconNameTypeKey | undefined;
+  onSelectIcon: (iconName: IconNameTypeKey) => void;
 }
 
-type IconCurrentName = (typeof IconNameObject)[keyof typeof IconNameObject];
+function IconButton({
+  iconName,
+  seletectedIcon,
+  onSelectIcon,
+}: IconButtonProps) {
+  const icon: IconCurrentNameTypeValue = IconNameObject[iconName];
 
-function IconButton({ iconName, onSelectIcon }: IconButtonProps) {
-  const icon: IconCurrentName = IconNameObject[iconName];
+  const isIconSelected = seletectedIcon ?? seletectedIcon === iconName;
 
   return (
     <button
       onClick={() => onSelectIcon(iconName)}
-      className="flex flex-col items-center justify-center gap-1 text-xs leading-4 p-2.5 rounded-xl transition-all hover:bg-indigo-900/10 cursor-pointer text-zinc-600"
+      className={cn(
+        `flex flex-col items-center justify-center gap-1 text-xs leading-4 p-2.5 rounded-xl transition-all cursor-pointer hover:bg-indigo-900/10`,
+        isIconSelected
+          ? `text-indigo-900 font-semibold border-2 border-indigo-900`
+          : `text-zinc-600`,
+      )}
     >
-      <DynamicIcon name={icon} size={20} color="#5F5E5E" /> {iconName}
+      <DynamicIcon
+        name={icon}
+        size={20}
+        color={isIconSelected ? "#312c85" : "#52525c"}
+      />{" "}
+      {iconName}
     </button>
   );
 }

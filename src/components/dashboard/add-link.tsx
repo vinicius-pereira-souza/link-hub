@@ -5,9 +5,12 @@ import { DynamicIcon } from "lucide-react/dynamic";
 import { cn } from "@/lib/tw-merge";
 import React, { useState } from "react";
 import IconsModal from "./icons-modal";
+import { type IconNameTypeKey, IconNameObject } from "@/utils/icons";
 
 export default function AddLink() {
-  const [selectedIcon, setSelectedIcon] = useState<string>("");
+  const [selectedIcon, setSelectedIcon] = useState<IconNameTypeKey | undefined>(
+    undefined,
+  );
   const [activateIconSelector, setActivateIconSelector] =
     useState<boolean>(false);
   const [link, setLink] = useState<{ title: string; url: string }>({
@@ -31,16 +34,18 @@ export default function AddLink() {
     setActivateIconSelector(false);
   };
 
-  const selectIcon = (iconName: string) => {
+  const selectIcon = (iconName: IconNameTypeKey) => {
+    setSelectedIcon(iconName);
     setActivateIconSelector(false);
   };
 
   return (
     <div className="bg-white rounded-xl p-6 border border-neutral-300/30 relative">
       <IconsModal
+        seletectedIcon={selectedIcon}
         onCloseModal={closeIconsModal}
         onSelectIcon={selectIcon}
-        isActiveModal={true}
+        isActiveModal={activateIconSelector}
       />
       <div className="flex items-center mb-6">
         <button className="cursor-pointer">
@@ -57,8 +62,12 @@ export default function AddLink() {
         >
           {selectedIcon ? (
             <>
-              <DynamicIcon name="camera" color="#312c85" size={20} />
-              Instagram
+              <DynamicIcon
+                name={IconNameObject[selectedIcon]}
+                color="#312c85"
+                size={20}
+              />
+              {selectedIcon}
             </>
           ) : (
             "Selecionar icone"
