@@ -114,7 +114,7 @@ function IconButton({
 }: IconButtonProps) {
   const icon: IconCurrentNameTypeValue = IconNameObject[iconName];
 
-  const isIconSelected = seletectedIcon ?? seletectedIcon === iconName;
+  const isIconSelected = seletectedIcon && seletectedIcon === iconName;
 
   return (
     <button
@@ -122,7 +122,7 @@ function IconButton({
       className={cn(
         `flex flex-col items-center justify-center gap-1 text-xs leading-4 p-2.5 rounded-xl transition-all cursor-pointer hover:bg-indigo-900/10`,
         isIconSelected
-          ? `text-indigo-900 font-semibold border-2 border-indigo-900`
+          ? `text-indigo-900 font-semibold border-2 border-indigo-900 bg-indigo-900/10`
           : `text-zinc-600`,
       )}
     >

@@ -19,10 +19,10 @@ export default function AddLink() {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputName: string = e.currentTarget.name;
+    const { name, value } = e.target;
     setLink((prevState) => ({
       ...prevState,
-      [inputName]: e.currentTarget.value,
+      [name]: value,
     }));
   };
 
