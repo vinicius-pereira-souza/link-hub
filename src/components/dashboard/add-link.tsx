@@ -11,6 +11,7 @@ export default function AddLink() {
   const [selectedIcon, setSelectedIcon] = useState<IconNameTypeKey | undefined>(
     undefined,
   );
+  const [isLinkActive, setIsLinkActive] = useState<boolean>(true);
   const [activateIconSelector, setActivateIconSelector] =
     useState<boolean>(false);
   const [link, setLink] = useState<{ title: string; url: string }>({
@@ -37,6 +38,12 @@ export default function AddLink() {
   const selectIcon = (iconName: IconNameTypeKey) => {
     setSelectedIcon(iconName);
     setActivateIconSelector(false);
+  };
+
+  const handleActiveLink = () => {
+    const isActive = !isLinkActive;
+
+    setIsLinkActive(isActive);
   };
 
   return (
@@ -78,8 +85,19 @@ export default function AddLink() {
         <button className="cursor-pointer ml-auto mr-3">
           <Trash color="#5F5E5E" size={20} />
         </button>
-        <button className="cursor-pointer w-11 h-6 rounded-full bg-zinc-200 relative">
-          <span className="absolute w-5 h-5 rounded-full bg-white top-0.5 left-0.5" />
+        <button
+          onClick={() => handleActiveLink()}
+          className={cn(
+            `cursor-pointer w-11 h-6 rounded-full  relative`,
+            isLinkActive ? `bg-indigo-900` : `bg-zinc-200`,
+          )}
+        >
+          <span
+            className={cn(
+              `absolute w-5 h-5 rounded-full bg-white top-0.5`,
+              isLinkActive ? `right-0.5` : `left-0.5`,
+            )}
+          />
         </button>
       </div>
       <div className="flex items-center gap-6">
