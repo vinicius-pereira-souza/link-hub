@@ -1,4 +1,4 @@
-import AddLink from "@/components/dashboard/add-link";
+import SortableList from "@/components/dashboard/sortable-list";
 
 export default function Page() {
   return (
@@ -16,7 +16,7 @@ export default function Page() {
           <button>adicionar link</button>
         </header>
         <main>
-          <AddLink />
+          <SortableList />
         </main>
       </div>
       <div className="flex-1 min-h-screen">teste</div>

@@ -6,17 +6,30 @@ import { cn } from "@/lib/tw-merge";
 import React, { useState } from "react";
 import IconsModal from "./icons-modal";
 import { type IconNameTypeKey, IconNameObject } from "@/utils/icons";
+import { type NewLinkObjectType } from "@/lib/stores/manager-links";
+import { useSortable } from "@dnd-kit/react/sortable";
 
-export default function AddLink() {
+interface SortableListItemProps extends NewLinkObjectType {
+  index: number;
+}
+
+export default function SortableListItem({
+  id,
+  title,
+  url,
+  iconName,
+  index,
+}: SortableListItemProps) {
+  const { ref, handleRef } = useSortable({ id, index });
   const [selectedIcon, setSelectedIcon] = useState<IconNameTypeKey | undefined>(
-    undefined,
+    iconName || undefined,
   );
   const [isLinkActive, setIsLinkActive] = useState<boolean>(true);
   const [activateIconSelector, setActivateIconSelector] =
     useState<boolean>(false);
   const [link, setLink] = useState<{ title: string; url: string }>({
-    title: "",
-    url: "",
+    title: title ?? "",
+    url: url ?? "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,8 +48,8 @@ export default function AddLink() {
     setActivateIconSelector(false);
   };
 
-  const selectIcon = (iconName: IconNameTypeKey) => {
-    setSelectedIcon(iconName);
+  const selectIcon = (iconNameOption: IconNameTypeKey) => {
+    setSelectedIcon(iconNameOption);
     setActivateIconSelector(false);
   };
 
@@ -47,7 +60,10 @@ export default function AddLink() {
   };
 
   return (
-    <div className="bg-white rounded-xl p-6 border border-neutral-300/30 relative">
+    <div
+      ref={ref}
+      className="bg-white rounded-xl p-6 border border-neutral-300/30 relative mb-2.5"
+    >
       <IconsModal
         seletectedIcon={selectedIcon}
         onCloseModal={closeIconsModal}
@@ -55,8 +71,11 @@ export default function AddLink() {
         isActiveModal={activateIconSelector}
       />
       <div className="flex items-center mb-6">
-        <button className="cursor-pointer">
-          <GripVertical color="#767680" size={25} />
+        <button
+          className="cursor-pointer transition-all hover:bg-neutral-300 rounded-lg block p-1.5 mr-3.5"
+          ref={handleRef}
+        >
+          <GripVertical color="#767680" size={18} />
         </button>
         <button
           className={cn(
@@ -70,7 +89,7 @@ export default function AddLink() {
           {selectedIcon ? (
             <>
               <DynamicIcon
-                name={IconNameObject[selectedIcon]}
+                name={IconNameObject[iconName ?? selectedIcon]}
                 color="#312c85"
                 size={20}
               />
