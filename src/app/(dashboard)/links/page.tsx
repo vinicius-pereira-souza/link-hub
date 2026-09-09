@@ -1,3 +1,4 @@
+import Link from "next/link";
 import LinkList from "@/components/dashboard/link-list";
 import LinkMetricsOverview from "@/components/dashboard/link-metrics-overview";
 import { redirect } from "next/navigation";
@@ -39,9 +40,12 @@ export default async function Page(props: {
             <h2 className="text-xl text-indigo-900 font-medium">
               Linkes Ativos
             </h2>
-            <button className="flex items-center text-center text-white text-sm font-medium bg-indigo-900 px-6 py-3 rounded-lg cursor-pointer transition-all hover:bg-indigo-700">
-              <Plus /> adicionar novo link
-            </button>
+            <Link
+              href="/links/add-links"
+              className="flex items-center text-center text-white text-sm font-medium bg-indigo-900 px-6 py-3 rounded-lg cursor-pointer transition-all hover:bg-indigo-700"
+            >
+              <Plus /> novo link
+            </Link>
           </div>
           <Suspense fallback={<LinkListSkeleton />}>
             <LinkList userid={session.user.id} query={query} />
