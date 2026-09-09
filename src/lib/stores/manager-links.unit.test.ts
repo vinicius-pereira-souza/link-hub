@@ -18,6 +18,7 @@ describe("list link manager", () => {
         title: "LinkedIn",
         url: "https://linkedin.com",
         iconName: "LinkedIn",
+        position_at: 2,
       },
     ];
     const store = createManagerLinkStore({
@@ -36,12 +37,14 @@ describe("list link manager", () => {
         title: "Instagr",
         url: "http://instagram.com",
         iconName: "Instagram",
+        position_at: 1,
       },
       {
         id: 2,
         title: "LinkedIn",
         url: "https://linkedin.com",
         iconName: "LinkedIn",
+        position_at: 2,
       },
     ];
 
@@ -55,6 +58,7 @@ describe("list link manager", () => {
       title: "My Instagram Profile",
       url: "https://instagram.com",
       iconName: "Instagram",
+      position_at: 1,
     };
 
     store.getState().updateLink(linkUpdated);
@@ -69,7 +73,7 @@ describe("list link manager", () => {
     expect(hasLinkUpdated).toBeTruthy();
   });
 
-  it(`must return a completely new list`, () => {
+  it(`must return a new array`, () => {
     const store = createManagerLinkStore();
 
     const listLink: NewLinkObjectType[] = [
@@ -78,12 +82,14 @@ describe("list link manager", () => {
         title: "Instagr",
         url: "http://instagram.com",
         iconName: "Instagram",
+        position_at: 1,
       },
       {
         id: 2,
         title: "LinkedIn",
         url: "https://linkedin.com",
         iconName: "LinkedIn",
+        position_at: 2,
       },
     ];
 
