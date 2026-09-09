@@ -10,14 +10,22 @@ const listLinks: Array<NewLinkObjectType> = [
     title: "Instagram",
     url: "http://instagram.com",
     iconName: "Instagram",
+    position_at: 1,
   },
   {
     id: 2,
     title: "Lindkedin",
     url: "http://lindkedin.com",
     iconName: "LinkedIn",
+    position_at: 2,
   },
-  { id: 3, title: "Spotfy", url: "http://spotfy.com", iconName: "Spotify" },
+  {
+    id: 3,
+    title: "Spotfy",
+    url: "http://spotfy.com",
+    iconName: "Spotify",
+    position_at: 3,
+  },
 ];
 
 export default function SortableList() {
@@ -31,6 +39,7 @@ export default function SortableList() {
           title={link.title}
           url={link.url}
           index={i}
+          position_at={i}
         />
       ))}
     </DragDropProvider>
