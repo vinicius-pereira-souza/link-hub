@@ -5,6 +5,7 @@ export type NewLinkObjectType = {
   id: number;
   title: string;
   url: string;
+  position_at: number;
   iconName: IconNameTypeKey;
 };
 
