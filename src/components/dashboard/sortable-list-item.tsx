@@ -11,14 +11,14 @@ import { useSortable } from "@dnd-kit/react/sortable";
 
 type ComponentState = {
   iconName: IconNameTypeKey | undefined;
-  isActive: boolean;
+  isActiveLink: boolean;
   isModalOpen: boolean;
 };
 
 type ComponentAction =
   | { type: "SELECT_ICON"; payload: IconNameTypeKey }
-  | { type: "SET_ACTIVE_LINK"; payload: boolean }
-  | { type: "SET_TOGGLE_MODAL"; payload: boolean };
+  | { type: "SET_TOGGLE_MODAL"; payload: boolean }
+  | { type: "SET_ACTIVE_LINK" };
 
 function reducer(state: ComponentState, action: ComponentAction) {
   switch (action.type) {
@@ -27,7 +27,7 @@ function reducer(state: ComponentState, action: ComponentAction) {
     case "SELECT_ICON":
       return { ...state, iconName: action.payload, isModalOpen: false };
     case "SET_ACTIVE_LINK":
-      return { ...state, isActiveLink: action.payload };
+      return { ...state, isActiveLink: !state.isActiveLink };
     default:
       return state;
   }
@@ -50,7 +50,7 @@ export default function SortableListItem({
   const [state, dispatch] = useReducer(reducer, {
     iconName: iconName ?? undefined,
     isModalOpen: false,
-    isActive: true,
+    isActiveLink: true,
   });
 
   const [link, setLink] = useState<{ title: string; url: string }>({
@@ -79,8 +79,7 @@ export default function SortableListItem({
   };
 
   const handleActiveLink = () => {
-    const isActive = !state.isActive;
-    dispatch({ type: "SET_ACTIVE_LINK", payload: isActive });
+    dispatch({ type: "SET_ACTIVE_LINK" });
   };
 
   return (
@@ -132,13 +131,13 @@ export default function SortableListItem({
           onClick={() => handleActiveLink()}
           className={cn(
             `cursor-pointer w-11 h-6 rounded-full  relative`,
-            state.isActive ? `bg-indigo-900` : `bg-zinc-200`,
+            state.isActiveLink ? `bg-indigo-900` : `bg-zinc-200`,
           )}
         >
           <span
             className={cn(
               `absolute w-5 h-5 rounded-full bg-white top-0.5`,
-              state.isActive ? `right-0.5` : `left-0.5`,
+              state.isActiveLink ? `right-0.5` : `left-0.5`,
             )}
           />
         </button>
