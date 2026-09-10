@@ -12,17 +12,17 @@ import {
 } from "@/utils/icons";
 
 interface ModalProps {
+  isActiveModal: boolean;
   seletectedIcon: IconNameTypeKey | undefined;
   onCloseModal: () => void;
   onSelectIcon: (iconName: IconNameTypeKey) => void;
-  isActiveModal: boolean;
 }
 
 export default function IconsModal({
   seletectedIcon,
+  isActiveModal,
   onCloseModal,
   onSelectIcon,
-  isActiveModal,
 }: ModalProps) {
   const [listIcon, setListIcon] = useState<IconNameTypeKey[]>(iconsNameList);
   const [search, setSearch] = useState<string>("");

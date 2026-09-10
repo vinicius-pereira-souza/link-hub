@@ -3,13 +3,40 @@
 import { GripVertical, ChevronDown, Trash } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { cn } from "@/lib/tw-merge";
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import IconsModal from "./icons-modal";
 import { type IconNameTypeKey, IconNameObject } from "@/utils/icons";
 import { type NewLinkObjectType } from "@/lib/stores/manager-links";
 import { useSortable } from "@dnd-kit/react/sortable";
 
-interface SortableListItemProps extends NewLinkObjectType {
+type ComponentState = {
+  iconName: IconNameTypeKey | undefined;
+  isActive: boolean;
+  isModalOpen: boolean;
+};
+
+type ComponentAction =
+  | { type: "SELECT_ICON"; payload: IconNameTypeKey }
+  | { type: "SET_ACTIVE_LINK"; payload: boolean }
+  | { type: "SET_TOGGLE_MODAL"; payload: boolean };
+
+function reducer(state: ComponentState, action: ComponentAction) {
+  switch (action.type) {
+    case "SET_TOGGLE_MODAL":
+      return { ...state, isModalOpen: action.payload };
+    case "SELECT_ICON":
+      return { ...state, iconName: action.payload, isModalOpen: false };
+    case "SET_ACTIVE_LINK":
+      return { ...state, isModalOpen: action.payload };
+    default:
+      return state;
+  }
+}
+
+type PartialLinkObject = Partial<NewLinkObjectType>;
+
+interface SortableListItemProps extends PartialLinkObject {
+  id: number;
   index: number;
 }
 
@@ -21,12 +48,13 @@ export default function SortableListItem({
   index,
 }: SortableListItemProps) {
   const { ref, handleRef } = useSortable({ id, index });
-  const [selectedIcon, setSelectedIcon] = useState<IconNameTypeKey | undefined>(
-    iconName || undefined,
-  );
-  const [isLinkActive, setIsLinkActive] = useState<boolean>(true);
-  const [activateIconSelector, setActivateIconSelector] =
-    useState<boolean>(false);
+
+  const [state, dispatch] = useReducer(reducer, {
+    iconName: iconName ?? undefined,
+    isModalOpen: false,
+    isActive: true,
+  });
+
   const [link, setLink] = useState<{ title: string; url: string }>({
     title: title ?? "",
     url: url ?? "",
@@ -41,22 +69,20 @@ export default function SortableListItem({
   };
 
   const openIconsModal = () => {
-    setActivateIconSelector(true);
+    dispatch({ type: "SET_TOGGLE_MODAL", payload: true });
   };
 
   const closeIconsModal = () => {
-    setActivateIconSelector(false);
+    dispatch({ type: "SET_TOGGLE_MODAL", payload: false });
   };
 
   const selectIcon = (iconNameOption: IconNameTypeKey) => {
-    setSelectedIcon(iconNameOption);
-    setActivateIconSelector(false);
+    dispatch({ type: "SELECT_ICON", payload: iconNameOption });
   };
 
   const handleActiveLink = () => {
-    const isActive = !isLinkActive;
-
-    setIsLinkActive(isActive);
+    const isActive = !state.isActive;
+    dispatch({ type: "SET_ACTIVE_LINK", payload: isActive });
   };
 
   return (
@@ -65,10 +91,10 @@ export default function SortableListItem({
       className="bg-white rounded-xl p-6 border border-neutral-300/30 relative mb-2.5"
     >
       <IconsModal
-        seletectedIcon={selectedIcon}
+        seletectedIcon={state.iconName}
+        isActiveModal={state.isModalOpen}
         onCloseModal={closeIconsModal}
         onSelectIcon={selectIcon}
-        isActiveModal={activateIconSelector}
       />
       <div className="flex items-center mb-6">
         <button
@@ -80,20 +106,20 @@ export default function SortableListItem({
         <button
           className={cn(
             `flex items-center gap-x-3 bg-zinc-200 py-1.5 px-3.5 rounded-lg text-sm cursor-pointer`,
-            activateIconSelector
-              ? `border-2 border-indigo-900 text-indigo-900 font-bold`
+            state.isModalOpen
+              ? `border-2 border-indigo-900 text-indigo-900`
               : `border border-neutral-300 text-black `,
           )}
           onClick={() => openIconsModal()}
         >
-          {selectedIcon ? (
+          {state.iconName ? (
             <>
               <DynamicIcon
-                name={IconNameObject[iconName ?? selectedIcon]}
+                name={IconNameObject[iconName ?? state.iconName]}
                 color="#312c85"
                 size={20}
               />
-              {selectedIcon}
+              {state.iconName}
             </>
           ) : (
             "Selecionar icone"
@@ -108,13 +134,13 @@ export default function SortableListItem({
           onClick={() => handleActiveLink()}
           className={cn(
             `cursor-pointer w-11 h-6 rounded-full  relative`,
-            isLinkActive ? `bg-indigo-900` : `bg-zinc-200`,
+            state.isActive ? `bg-indigo-900` : `bg-zinc-200`,
           )}
         >
           <span
             className={cn(
               `absolute w-5 h-5 rounded-full bg-white top-0.5`,
-              isLinkActive ? `right-0.5` : `left-0.5`,
+              state.isActive ? `right-0.5` : `left-0.5`,
             )}
           />
         </button>
