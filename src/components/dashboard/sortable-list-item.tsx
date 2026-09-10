@@ -27,15 +27,13 @@ function reducer(state: ComponentState, action: ComponentAction) {
     case "SELECT_ICON":
       return { ...state, iconName: action.payload, isModalOpen: false };
     case "SET_ACTIVE_LINK":
-      return { ...state, isModalOpen: action.payload };
+      return { ...state, isActiveLink: action.payload };
     default:
       return state;
   }
 }
 
-type PartialLinkObject = Partial<NewLinkObjectType>;
-
-interface SortableListItemProps extends PartialLinkObject {
+interface SortableListItemProps extends Partial<NewLinkObjectType> {
   id: number;
   index: number;
 }
@@ -115,7 +113,7 @@ export default function SortableListItem({
           {state.iconName ? (
             <>
               <DynamicIcon
-                name={IconNameObject[iconName ?? state.iconName]}
+                name={IconNameObject[state.iconName]}
                 color="#312c85"
                 size={20}
               />
