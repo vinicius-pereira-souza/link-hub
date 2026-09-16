@@ -1,4 +1,5 @@
-type LinkTableType = {
+import { Platform } from "@/utils/icons";
+export interface LinkRow {
   id: number;
   user_id: string;
   title: string;
@@ -8,11 +9,13 @@ type LinkTableType = {
   is_active: boolean;
   created_at: string;
   updated_at: string;
-};
+}
 
-export type ClickAmountType = Pick<LinkTableType, "total_click">;
-
-export type TopPerformingLinkRowType = Pick<
-  LinkTableType,
-  "id" | "title" | "url" | "total_click"
->;
+export interface LinkItem extends Pick<
+  LinkRow,
+  "title" | "url" | "position_at" | "is_active"
+> {
+  id?: string | number;
+  iconName: Platform;
+  isNew?: boolean;
+}

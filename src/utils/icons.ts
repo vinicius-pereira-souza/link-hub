@@ -1,4 +1,4 @@
-export const IconNameObject = {
+export const ICON_BY_PLATFORM = {
   Instagram: "camera",
   YouTube: "play",
   TikTok: "music-2",
@@ -12,11 +12,9 @@ export const IconNameObject = {
   Phone: "phone",
   PodCast: "mic",
   Store: "shopping-bag",
-  Dribble: "paintbrush",
+  Dribbble: "paintbrush",
 } as const;
 
-export type IconNameTypeKey = keyof typeof IconNameObject;
-export type IconCurrentNameTypeValue =
-  (typeof IconNameObject)[keyof typeof IconNameObject];
+export type Platform = keyof typeof ICON_BY_PLATFORM;
 
-export const iconsNameList = Object.keys(IconNameObject) as IconNameTypeKey[];
+export type PlatformIconName = (typeof ICON_BY_PLATFORM)[Platform];

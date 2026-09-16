@@ -1,31 +1,25 @@
 import { createStore } from "zustand/vanilla";
-import { type IconNameTypeKey } from "@/utils/icons";
-
-export type NewLinkObjectType = {
-  id: number;
-  title: string;
-  url: string;
-  position_at: number;
-  iconName: IconNameTypeKey;
-};
+import type { LinkItem } from "@/lib/definitions";
 
 export type ManagerLinkState = {
-  isChange: boolean;
-  listLink: Array<NewLinkObjectType>;
+  hasChanges: boolean;
+  linksRemoved: Array<string | number>;
+  links: LinkItem[];
 };
 
-export type ManagerLinkAction = {
-  isChangeFn: () => void;
-  updateLink: (updatedLink: NewLinkObjectType) => void;
-  updateList: (list: Array<NewLinkObjectType>) => void;
-  finalizeChanges: () => void;
+export type ManagerLinkActions = {
+  addLink: (link: LinkItem) => void;
+  updateLink: (updatedLink: Partial<LinkItem>) => void;
+  deleteLink: (linkId: string | number) => void;
+  setLinks: (links: LinkItem[]) => void;
 };
 
-export type ManagerLinkStore = ManagerLinkState & ManagerLinkAction;
+export type ManagerLinkStore = ManagerLinkState & ManagerLinkActions;
 
 export const defaultInitState: ManagerLinkState = {
-  isChange: false,
-  listLink: [],
+  hasChanges: false,
+  linksRemoved: [],
+  links: [],
 };
 
 export const createManagerLinkStore = (
@@ -33,22 +27,25 @@ export const createManagerLinkStore = (
 ) => {
   return createStore<ManagerLinkStore>()((set) => ({
     ...initState,
+    addLink: (link) => {
+      set((state) => ({ links: [link, ...state.links], hasChanges: true }));
+    },
     updateLink: (updatedLink) => {
       set((state) => ({
-        isChange: true,
-        listLink: state.listLink.map((item) =>
-          item.id == updatedLink.id ? updatedLink : item,
+        links: state.links.map((link) =>
+          link.id === updatedLink.id ? { ...link, ...updatedLink } : link,
         ),
+        hasChanges: true,
       }));
     },
-    updateList: (list) => {
-      set({ isChange: true, listLink: list });
+    deleteLink: (linkId) => {
+      set((state) => ({
+        links: [...state.links].filter((link) => link.id !== linkId),
+        linksRemoved: [...state.linksRemoved, linkId],
+      }));
     },
-    isChangeFn: () => {
-      set({ isChange: true });
-    },
-    finalizeChanges: () => {
-      set({ isChange: false });
+    setLinks: (links) => {
+      set({ links: links });
     },
   }));
 };
