@@ -9,7 +9,7 @@ export type ManagerLinkState = {
 
 export type ManagerLinkActions = {
   addLink: (link: LinkItem) => void;
-  updateLink: (updatedLink: Partial<LinkItem>) => void;
+  updateLink: (linkId: string | number, updateData: Partial<LinkItem>) => void;
   deleteLink: (linkId: string | number) => void;
   setLinks: (links: LinkItem[]) => void;
 };
@@ -30,10 +30,10 @@ export const createManagerLinkStore = (
     addLink: (link) => {
       set((state) => ({ links: [link, ...state.links], hasChanges: true }));
     },
-    updateLink: (updatedLink) => {
+    updateLink: (linkId, updateData) => {
       set((state) => ({
         links: state.links.map((link) =>
-          link.id === updatedLink.id ? { ...link, ...updatedLink } : link,
+          link.id === linkId ? { ...link, ...updateData } : link,
         ),
         hasChanges: true,
       }));
