@@ -4,41 +4,39 @@ import { DynamicIcon } from "lucide-react/dynamic";
 import { X, Search } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/tw-merge";
-import {
-  type IconNameTypeKey,
-  type IconCurrentNameTypeValue,
-  IconNameObject,
-  iconsNameList,
-} from "@/utils/icons";
+import type { Platform, PlatformIconName } from "@/utils/icons";
+import { ICON_BY_PLATFORM } from "@/utils/icons";
 
-interface ModalProps {
-  isActiveModal: boolean;
-  seletectedIcon: IconNameTypeKey | undefined;
-  onCloseModal: () => void;
-  onSelectIcon: (iconName: IconNameTypeKey) => void;
+interface IconPickerModalProps {
+  isOpen: boolean;
+  selectedIcon?: Platform;
+  onClose: () => void;
+  onSelect: (iconName: Platform) => void;
 }
 
-export default function IconsModal({
-  seletectedIcon,
-  isActiveModal,
-  onCloseModal,
-  onSelectIcon,
-}: ModalProps) {
-  const [listIcon, setListIcon] = useState<IconNameTypeKey[]>(iconsNameList);
+export default function IconPickerModal({
+  selectedIcon,
+  isOpen,
+  onClose,
+  onSelect,
+}: IconPickerModalProps) {
+  const iconsPlatform = Object.keys(ICON_BY_PLATFORM) as Platform[];
+
+  const [listIcon, setListIcon] = useState<Platform[]>(iconsPlatform);
   const [search, setSearch] = useState<string>("");
 
-  if (!isActiveModal) return null;
+  if (!isOpen) return null;
 
   const handleIconSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const currentValue = e.currentTarget.value;
     setSearch(currentValue);
 
     if (!currentValue.trim()) {
-      setListIcon(iconsNameList as IconNameTypeKey[]);
+      setListIcon(iconsPlatform);
       return;
     }
 
-    const filteredIcons = (iconsNameList as IconNameTypeKey[]).filter((name) =>
+    const filteredIcons = iconsPlatform.filter((name) =>
       name.toLowerCase().includes(currentValue.toLowerCase()),
     );
 
@@ -47,7 +45,7 @@ export default function IconsModal({
 
   return (
     <div
-      data-testid="modal-options-icon"
+      data-testid="icon-picker-modal"
       className="bg-white p-6 rounded-2xl absolute z-10 shadow top-16 w-93.75"
     >
       <div className=" grid grid-cols-[1fr_auto] items-center mb-4 w-full">
@@ -57,7 +55,11 @@ export default function IconsModal({
         >
           Selecionar Icone
         </label>
-        <button className="cursor-pointer" onClick={() => onCloseModal()}>
+        <button
+          data-testid="modal-close-button"
+          className="cursor-pointer"
+          onClick={() => onClose()}
+        >
           <X color="#767680" size={20} />
         </button>
       </div>
@@ -83,12 +85,12 @@ export default function IconsModal({
       </div>
       <div className="grid grid-cols-4 gap-1 mt-4 h-32  overflow-y-auto">
         {listIcon.length > 0 ? (
-          listIcon.map((iconObjectKey) => (
-            <IconButton
-              seletectedIcon={seletectedIcon}
-              key={iconObjectKey}
-              iconName={iconObjectKey}
-              onSelectIcon={onSelectIcon}
+          listIcon.map((iconPlatform) => (
+            <IconPickerTrigger
+              selectedIcon={selectedIcon}
+              key={iconPlatform}
+              iconName={iconPlatform}
+              onSelect={onSelect}
             />
           ))
         ) : (
@@ -101,24 +103,25 @@ export default function IconsModal({
   );
 }
 
-interface IconButtonProps {
-  iconName: IconNameTypeKey;
-  seletectedIcon: IconNameTypeKey | undefined;
-  onSelectIcon: (iconName: IconNameTypeKey) => void;
+interface IconPickerTriggerProps {
+  iconName: Platform;
+  selectedIcon?: Platform;
+  onSelect: (iconName: Platform) => void;
 }
 
-function IconButton({
+function IconPickerTrigger({
   iconName,
-  seletectedIcon,
-  onSelectIcon,
-}: IconButtonProps) {
-  const icon: IconCurrentNameTypeValue = IconNameObject[iconName];
+  selectedIcon,
+  onSelect,
+}: IconPickerTriggerProps) {
+  const icon: PlatformIconName = ICON_BY_PLATFORM[iconName];
 
-  const isIconSelected = seletectedIcon && seletectedIcon === iconName;
+  const isIconSelected = selectedIcon && selectedIcon === iconName;
 
   return (
     <button
-      onClick={() => onSelectIcon(iconName)}
+      data-testid={`icon-picker-trigger-${icon}`}
+      onClick={() => onSelect(iconName)}
       className={cn(
         `flex flex-col items-center justify-center gap-1 text-xs leading-4 p-2.5 rounded-xl transition-all cursor-pointer hover:bg-indigo-900/10`,
         isIconSelected

@@ -4,7 +4,7 @@ import React, { useState, useReducer } from "react";
 import { GripVertical, ChevronDown, Trash } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { cn } from "@/lib/tw-merge";
-import IconsModal from "./icons-modal";
+import IconsModal from "./icon-picker-modal";
 import type { Platform } from "@/utils/icons";
 import { ICON_BY_PLATFORM } from "@/utils/icons";
 import type { LinkItem } from "@/lib/definitions";
