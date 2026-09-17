@@ -1,22 +1,23 @@
 "use client";
 
+import React, { useState, useReducer } from "react";
 import { GripVertical, ChevronDown, Trash } from "lucide-react";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { cn } from "@/lib/tw-merge";
-import React, { useState, useReducer } from "react";
 import IconsModal from "./icons-modal";
-import { type IconNameTypeKey, IconNameObject } from "@/utils/icons";
-import { type NewLinkObjectType } from "@/lib/stores/manager-links";
+import type { Platform } from "@/utils/icons";
+import { ICON_BY_PLATFORM } from "@/utils/icons";
+import type { LinkItem } from "@/lib/definitions";
 import { useSortable } from "@dnd-kit/react/sortable";
 
 type ComponentState = {
-  iconName: IconNameTypeKey | undefined;
+  iconName: Platform | undefined;
   isActiveLink: boolean;
   isModalOpen: boolean;
 };
 
 type ComponentAction =
-  | { type: "SELECT_ICON"; payload: IconNameTypeKey }
+  | { type: "SELECT_ICON"; payload: Platform }
   | { type: "SET_TOGGLE_MODAL"; payload: boolean }
   | { type: "SET_ACTIVE_LINK" };
 
@@ -33,24 +34,20 @@ function reducer(state: ComponentState, action: ComponentAction) {
   }
 }
 
-interface SortableListItemProps extends Partial<NewLinkObjectType> {
-  id: number;
-  index: number;
-}
-
 export default function SortableListItem({
   id,
   title,
   url,
+  is_active,
   iconName,
-  index,
-}: SortableListItemProps) {
-  const { ref, handleRef } = useSortable({ id, index });
+  position_at,
+}: LinkItem) {
+  const { ref, handleRef } = useSortable({ id, index: position_at });
 
   const [state, dispatch] = useReducer(reducer, {
     iconName: iconName ?? undefined,
     isModalOpen: false,
-    isActiveLink: true,
+    isActiveLink: is_active,
   });
 
   const [link, setLink] = useState<{ title: string; url: string }>({
@@ -74,7 +71,7 @@ export default function SortableListItem({
     dispatch({ type: "SET_TOGGLE_MODAL", payload: false });
   };
 
-  const selectIcon = (iconNameOption: IconNameTypeKey) => {
+  const selectIcon = (iconNameOption: Platform) => {
     dispatch({ type: "SELECT_ICON", payload: iconNameOption });
   };
 
@@ -112,7 +109,7 @@ export default function SortableListItem({
           {state.iconName ? (
             <>
               <DynamicIcon
-                name={IconNameObject[state.iconName]}
+                name={ICON_BY_PLATFORM[state.iconName]}
                 color="#312c85"
                 size={20}
               />

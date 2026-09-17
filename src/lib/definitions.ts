@@ -15,7 +15,7 @@ export interface LinkItem extends Pick<
   LinkRow,
   "title" | "url" | "position_at" | "is_active"
 > {
-  id?: string | number;
+  id: string | number;
   iconName: Platform;
   isNew?: boolean;
 }

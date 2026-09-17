@@ -35,15 +35,7 @@ export default function SortableList() {
   return (
     <DragDropProvider>
       {listLinks.map((link, i) => (
-        <SortableListItem
-          key={link.id}
-          id={link.id}
-          iconName={link.iconName}
-          title={link.title}
-          url={link.url}
-          index={i}
-          position_at={i}
-        />
+        <SortableListItem {...link} key={link.id} position_at={i} />
       ))}
     </DragDropProvider>
   );
