@@ -1,6 +1,8 @@
 import DashboardNavbar from "@/components/dashboard/dashboard-navbar";
 import UserAvatarServer from "@/components/dashboard/user-avatar-server";
 
+export const dynamic = "force-dynamic";
+
 export default function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

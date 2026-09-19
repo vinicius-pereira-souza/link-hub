@@ -28,7 +28,7 @@ describe("Icon Picker Modal", () => {
     const { container } = render(<IconPickerModal {...props} />);
 
     const iconPickerTrigger = container.querySelector(
-      '[data-testid="icon-picker-trigger-camera"]',
+      '[data-testid="icon-picker-trigger-Instagram"]',
     );
 
     if (iconPickerTrigger) {

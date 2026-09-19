@@ -2,13 +2,16 @@
 
 import React, { useState, useReducer } from "react";
 import { GripVertical, ChevronDown, Trash } from "lucide-react";
-import { DynamicIcon } from "lucide-react/dynamic";
 import { cn } from "@/lib/tw-merge";
-import IconsModal from "./icon-picker-modal";
 import type { Platform } from "@/utils/icons";
 import { ICON_BY_PLATFORM } from "@/utils/icons";
 import type { LinkItem } from "@/lib/definitions";
 import { useSortable } from "@dnd-kit/react/sortable";
+import dynamic from "next/dynamic";
+
+const IconsModal = dynamic(() => import("./icon-picker-modal"), {
+  ssr: false,
+});
 
 type ComponentState = {
   iconName: Platform | undefined;
@@ -43,12 +46,13 @@ export default function SortableListItem({
   position_at,
 }: LinkItem) {
   const { ref, handleRef } = useSortable({ id, index: position_at });
-
   const [state, dispatch] = useReducer(reducer, {
     iconName: iconName ?? undefined,
     isModalOpen: false,
     isActiveLink: is_active,
   });
+
+  const SelectedIcon = state.iconName ? ICON_BY_PLATFORM[state.iconName] : null;
 
   const [link, setLink] = useState<{ title: string; url: string }>({
     title: title ?? "",
@@ -64,7 +68,13 @@ export default function SortableListItem({
   };
 
   const openIconsModal = () => {
-    dispatch({ type: "SET_TOGGLE_MODAL", payload: true });
+    const isModalOpen = state.isModalOpen;
+
+    if (isModalOpen) {
+      dispatch({ type: "SET_TOGGLE_MODAL", payload: false });
+    } else {
+      dispatch({ type: "SET_TOGGLE_MODAL", payload: true });
+    }
   };
 
   const closeIconsModal = () => {
@@ -85,10 +95,10 @@ export default function SortableListItem({
       className="bg-white rounded-xl p-6 border border-neutral-300/30 relative mb-2.5"
     >
       <IconsModal
-        seletectedIcon={state.iconName}
-        isActiveModal={state.isModalOpen}
-        onCloseModal={closeIconsModal}
-        onSelectIcon={selectIcon}
+        selectedIcon={state.iconName}
+        isOpen={state.isModalOpen}
+        onClose={closeIconsModal}
+        onSelect={selectIcon}
       />
       <div className="flex items-center mb-6">
         <button
@@ -104,15 +114,11 @@ export default function SortableListItem({
               ? `border-2 border-indigo-900 text-indigo-900`
               : `border border-neutral-300 text-black `,
           )}
-          onClick={() => openIconsModal()}
+          onClick={openIconsModal}
         >
-          {state.iconName ? (
+          {SelectedIcon ? (
             <>
-              <DynamicIcon
-                name={ICON_BY_PLATFORM[state.iconName]}
-                color="#312c85"
-                size={20}
-              />
+              <SelectedIcon color="#312c85" size={20} />
               {state.iconName}
             </>
           ) : (
@@ -125,9 +131,9 @@ export default function SortableListItem({
           <Trash color="#5F5E5E" size={20} />
         </button>
         <button
-          onClick={() => handleActiveLink()}
+          onClick={handleActiveLink}
           className={cn(
-            `cursor-pointer w-11 h-6 rounded-full  relative`,
+            `cursor-pointer w-11 h-6 rounded-full relative`,
             state.isActiveLink ? `bg-indigo-900` : `bg-zinc-200`,
           )}
         >
@@ -143,7 +149,7 @@ export default function SortableListItem({
         <div>
           <label
             className="text-xs uppercase font-semibold leading-4 tracking-[0.6px] mb-2 block"
-            htmlFor="title"
+            htmlFor={`title-${id}`}
           >
             Titulo
           </label>
@@ -151,7 +157,7 @@ export default function SortableListItem({
             className="border border-neutral-300 p-1 text-black text-base block"
             type="text"
             name="title"
-            id="title"
+            id={`title-${id}`}
             value={link.title ?? ""}
             onChange={handleChange}
           />
@@ -159,7 +165,7 @@ export default function SortableListItem({
         <div>
           <label
             className="text-xs uppercase font-semibold leading-4 tracking-[0.6px] mb-2 block"
-            htmlFor="url"
+            htmlFor={`url-${id}`}
           >
             url
           </label>
@@ -167,7 +173,7 @@ export default function SortableListItem({
             className="border border-neutral-300 p-1 text-black text-base block"
             type="text"
             name="url"
-            id="url"
+            id={`url-${id}`}
             value={link.url ?? ""}
             onChange={handleChange}
           />
