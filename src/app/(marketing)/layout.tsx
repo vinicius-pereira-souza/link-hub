@@ -1,5 +1,5 @@
 import { geist } from "@/components/ui/fonts";
-import { PublicLinks } from "@/components/ui/links";
+import { MarketingNavLinks } from "@/components/ui/links";
 import { cn } from "@/lib/tw-merge";
 import Link from "next/link";
 
@@ -20,7 +20,7 @@ export default function LayoutLandingPage({
           <span className="font-bold text-2xl text-indigo-900">LinkHub</span>
           <nav className="flex-1 hidden md:block">
             <ul className="flex items-center gap-x-6 ml-20">
-              <PublicLinks />
+              <MarketingNavLinks />
               <li className="ml-auto mr-9">
                 <Link
                   href="/sign-in"

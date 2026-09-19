@@ -13,6 +13,11 @@ import {
   Mic,
   ShoppingBag,
   Paintbrush,
+  LayoutDashboard,
+  Link2,
+  Palette,
+  Settings,
+  Info,
 } from "lucide-react";
 
 export const ICON_BY_PLATFORM = {
@@ -35,3 +40,13 @@ export const ICON_BY_PLATFORM = {
 export type Platform = keyof typeof ICON_BY_PLATFORM;
 
 export type PlatformIconName = (typeof ICON_BY_PLATFORM)[Platform];
+
+export const NAV_ICON_MAP = {
+  dashboard: LayoutDashboard,
+  links: Link2,
+  appearance: Palette,
+  settings: Settings,
+  info: Info,
+} as const;
+
+export type NavIconKey = keyof typeof NAV_ICON_MAP;

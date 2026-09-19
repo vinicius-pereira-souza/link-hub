@@ -21,7 +21,7 @@ export default function ButtonSignOut() {
           `flex items-center gap-x-3 p-3 text-sm font-medium text-zinc-700 hover:bg-red-100 hover:text-red-700 rounded-lg transition-all cursor-pointer`,
         )}
       >
-        <LogOut />
+        <LogOut size={20} />
         Sair
       </button>
     </>
