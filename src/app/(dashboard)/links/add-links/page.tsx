@@ -1,4 +1,5 @@
 import SortableList from "@/components/dashboard/sortable-list";
+import UnsavedChangesBar from "@/components/dashboard/unsaved-changes-bar";
 
 export default function Page() {
   return (
@@ -18,8 +19,9 @@ export default function Page() {
         <main>
           <SortableList />
         </main>
+        <UnsavedChangesBar />
       </div>
-      <div className="flex-1 min-h-screen">teste</div>
+      <div className="flex-1 min-h-screen"></div>
     </div>
   );
 }
