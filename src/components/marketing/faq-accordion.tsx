@@ -31,8 +31,6 @@ export default function FaqAccordion({
 function FaqAccordionItem({ question, answer }: FaqItemData) {
   const [aswerOpen, setAswerOpen] = useState<boolean>(false);
 
-  console.log(answer);
-
   const handleToggleShowAswer = (e: React.ToggleEvent<HTMLDetailsElement>) => {
     if (e.newState == "open") {
       setAswerOpen(true);
