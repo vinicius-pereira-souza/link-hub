@@ -1,7 +1,7 @@
 import {
   compareFeaturesTableHead,
   compareFeaturesTableData,
-} from "@/lib/marketing-data.ts";
+} from "@/utils/marketing";
 import { Minus, Check } from "lucide-react";
 
 type TableDataProps = {

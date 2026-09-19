@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/tw-merge";
 import { CircleCheck } from "lucide-react";
-import { optionsPlansData } from "@/lib/marketing-data.ts";
+import { optionsPlansData } from "@/utils/marketing";
 
 interface CardPrice {
   title: string;

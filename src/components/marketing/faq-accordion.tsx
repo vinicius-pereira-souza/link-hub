@@ -4,31 +4,34 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/tw-merge";
 
-export interface Question {
+export type FaqItemData = {
   question: string;
-  aswer: string;
-}
+  answer: string;
+};
 
-export default function WrapperButtonCallapseList({
-  questionList,
+export type FaqListProps = {
+  questions: FaqItemData[];
+};
+export type FaqItemProps = FaqItemData;
+
+export default function FaqAccordion({
+  questions,
 }: {
-  questionList: Question[];
+  questions: FaqItemProps[];
 }) {
   return (
     <>
-      {questionList.map(({ aswer, question }: Question) => (
-        <QuestionsButtonCallapse
-          key={question}
-          question={question}
-          aswer={aswer}
-        />
+      {questions.map((faq: FaqItemProps) => (
+        <FaqAccordionItem key={faq.question} {...faq} />
       ))}
     </>
   );
 }
 
-function QuestionsButtonCallapse({ question, aswer }: Question) {
+function FaqAccordionItem({ question, answer }: FaqItemData) {
   const [aswerOpen, setAswerOpen] = useState<boolean>(false);
+
+  console.log(answer);
 
   const handleToggleShowAswer = (e: React.ToggleEvent<HTMLDetailsElement>) => {
     if (e.newState == "open") {
@@ -55,7 +58,7 @@ function QuestionsButtonCallapse({ question, aswer }: Question) {
           `overflow-hidden transition- p-6 pt-0 max-w-225 leading-7 text-zinc-600`,
         )}
       >
-        <p>{aswer}</p>
+        <p>{answer}</p>
       </div>
     </details>
   );

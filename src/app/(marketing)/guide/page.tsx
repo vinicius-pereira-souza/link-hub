@@ -1,7 +1,7 @@
 import Image from "next/image";
 import WrapperCardDetails from "@/components/marketing/cards-detail-guia";
-import WrapperButtonCallapseList from "@/components/marketing/collapse-buttons";
-import { questionGuiaPage } from "@/lib/marketing-data.ts";
+import FaqAccordion from "@/components/marketing/faq-accordion";
+import { questionGuiaPage } from "@/utils/marketing";
 import ButtonLink from "@/components/marketing/button-link";
 
 export default function Guia() {
@@ -42,7 +42,7 @@ export default function Guia() {
           <h2 className="text-[32px] leading-10 font-semibold text-zinc-900 mb-20 text-center">
             Dúvidas Frequentes
           </h2>
-          <WrapperButtonCallapseList questionList={questionGuiaPage} />
+          <FaqAccordion questions={questionGuiaPage} />
         </div>
       </section>
       <section className="px-6 mb-20">

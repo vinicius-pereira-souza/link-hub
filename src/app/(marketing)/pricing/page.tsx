@@ -1,8 +1,8 @@
 import ButtonLink from "@/components/marketing/button-link";
-import WrapperButtonCallapseList from "@/components/marketing/collapse-buttons";
+import FaqAccordion from "@/components/marketing/faq-accordion";
 import CompareFeaturesTable from "@/components/marketing/compare-features-table";
 import PricingPlans from "@/components/marketing/plans";
-import { questionPricingPage } from "@/lib/marketing-data.ts";
+import { questionPricingPage } from "@/utils/marketing";
 import { TriangleAlert } from "lucide-react";
 
 export default function Pricing() {
@@ -36,7 +36,7 @@ export default function Pricing() {
           <h2 className="text-[32px] leading-10 font-semibold text-zinc-900 mb-20 text-center">
             Dúvidas Frequentes
           </h2>
-          <WrapperButtonCallapseList questionList={questionPricingPage} />
+          <FaqAccordion questions={questionPricingPage} />
         </div>
       </section>
       <section className="px-6">
