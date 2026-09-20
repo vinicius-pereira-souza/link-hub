@@ -1,6 +1,6 @@
 "use client";
 
-import { TopPerformingLinkRowType } from "@/lib/definitions";
+import { LinkRow } from "@/lib/definitions";
 import { Globe, Pencil } from "lucide-react";
 
 export default function LinkListItem({
@@ -8,7 +8,7 @@ export default function LinkListItem({
   title,
   total_click,
   url,
-}: Partial<TopPerformingLinkRowType>) {
+}: Partial<LinkRow>) {
   return (
     <li className="p-6 bg-white border border-neutral-300 rounded-xl grid grid-cols-[auto_1fr_auto] items-center gap-6 transition-all hover:bg-neutral-100 hover:-translate-y-1.5 mb-2">
       <div className="w-12 h-12 rounded-lg bg-gray-200 flex items-center justify-center text-indigo-900 ">
