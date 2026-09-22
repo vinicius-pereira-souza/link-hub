@@ -1,6 +1,6 @@
 import DashboardNavbar from "@/components/dashboard/dashboard-navbar";
 import UserAvatarServer from "@/components/dashboard/user-avatar-server";
-import { MessageStoreProvider } from "@/providers/manager-links-provider";
+import { ManagerLinksStoreProvider } from "@/providers/manager-links-provider";
 
 export const dynamic = "force-dynamic";
 
@@ -12,9 +12,9 @@ export default function DashboardLayout({
       <DashboardNavbar>
         <UserAvatarServer />
       </DashboardNavbar>
-      <MessageStoreProvider>
+      <ManagerLinksStoreProvider>
         <div className="overflow-y-auto">{children}</div>
-      </MessageStoreProvider>
+      </ManagerLinksStoreProvider>
     </main>
   );
 }

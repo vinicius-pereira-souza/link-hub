@@ -15,7 +15,7 @@ export interface ManagerLinksStoreProviderProps {
   children: ReactNode;
 }
 
-export function MessageStoreProvider({
+export function ManagerLinksStoreProvider({
   children,
 }: ManagerLinksStoreProviderProps) {
   const [store] = useState(() => createManagerLinkStore());

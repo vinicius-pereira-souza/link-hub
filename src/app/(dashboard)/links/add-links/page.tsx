@@ -1,5 +1,34 @@
+import AddLinkButton from "@/components/dashboard/add-link-button";
 import SortableList from "@/components/dashboard/sortable-list";
 import UnsavedChangesBar from "@/components/dashboard/unsaved-changes-bar";
+import { LinkItem } from "@/lib/definitions";
+
+const listLinks: LinkItem[] = [
+  {
+    id: 1,
+    title: "Instagram",
+    url: "http://instagram.com",
+    iconName: "Instagram",
+    position_at: 1,
+    is_active: true,
+  },
+  {
+    id: 2,
+    title: "Lindkedin",
+    url: "http://lindkedin.com",
+    iconName: "LinkedIn",
+    position_at: 2,
+    is_active: true,
+  },
+  {
+    id: 3,
+    title: "Meu perfil do spotfy",
+    url: "http://spotfy.com",
+    iconName: "Spotify",
+    position_at: 3,
+    is_active: true,
+  },
+];
 
 export default function Page() {
   return (
@@ -14,10 +43,10 @@ export default function Page() {
               Gerencie e organize o perfil do seu link público.
             </h2>
           </div>
-          <button>adicionar link</button>
+          <AddLinkButton />
         </header>
         <main>
-          <SortableList />
+          <SortableList links={listLinks} />
         </main>
         <UnsavedChangesBar />
       </div>
