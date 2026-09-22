@@ -51,6 +51,7 @@
     "eslint-config-next": "16.2.9",
     "jsdom": "^30.0.1",
     "node-pg-migrate": "^9.0.0",
+    "resize-observer-polyfill": "^1.5.1",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite-tsconfig-paths": "^6.1.1",

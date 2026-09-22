@@ -2,6 +2,7 @@
 
 import React, { useState, useReducer } from "react";
 import { GripVertical, ChevronDown, Trash } from "lucide-react";
+import { useManagerLinksStore } from "@/providers/manager-links-provider";
 import { cn } from "@/lib/tw-merge";
 import type { Platform } from "@/utils/icons";
 import { ICON_BY_PLATFORM } from "@/utils/icons";
@@ -45,6 +46,7 @@ export default function SortableListItem({
   iconName,
   position_at,
 }: LinkItem) {
+  const { deleteLink } = useManagerLinksStore((state) => state);
   const { ref, handleRef } = useSortable({ id, index: position_at });
   const [state, dispatch] = useReducer(reducer, {
     iconName: iconName ?? undefined,
@@ -89,6 +91,10 @@ export default function SortableListItem({
     dispatch({ type: "SET_ACTIVE_LINK" });
   };
 
+  const onDeleteLink = () => {
+    deleteLink(id);
+  };
+
   return (
     <div
       ref={ref}
@@ -127,7 +133,11 @@ export default function SortableListItem({
 
           <ChevronDown color="#767680" size={20} />
         </button>
-        <button className="cursor-pointer ml-auto mr-3">
+        <button
+          className="cursor-pointer ml-auto mr-3"
+          onClick={onDeleteLink}
+          data-testid="delete-link"
+        >
           <Trash color="#5F5E5E" size={20} />
         </button>
         <button
