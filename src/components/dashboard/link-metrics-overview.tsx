@@ -1,7 +1,7 @@
 import { MousePointerClick, Star, ChartLine } from "lucide-react";
 import { cn } from "@/lib/tw-merge";
 import Link from "next/link";
-import { ClickAmountType, TopPerformingLinkRowType } from "@/lib/definitions";
+import type { LinkRow } from "@/lib/definitions";
 import { fetchLinkMetricsOverview } from "@/lib/queries/links.sql";
 
 export default async function LinkMetricsOverview({
@@ -19,7 +19,7 @@ export default async function LinkMetricsOverview({
   );
 }
 
-function TotalClicksCard({ total_click }: ClickAmountType) {
+function TotalClicksCard({ total_click }: Pick<LinkRow, "total_click">) {
   return (
     <div className="bg-white rounded-xl p-6 border border-neutral-300/30">
       <div className="flex items-center justify-between text-sm text-zinc-600 font-medium mb-6">
@@ -38,7 +38,7 @@ function TopPerformingLinkCard({
   total_click,
   id,
   url,
-}: Partial<TopPerformingLinkRowType>) {
+}: Partial<LinkRow>) {
   if (!id)
     return (
       <div
