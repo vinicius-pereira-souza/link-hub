@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { ManagerLinksStoreContext } from "@/providers/manager-links-provider";
 import { createManagerLinkStore } from "@/lib/stores/manager-links";
 import type { LinkItem } from "@/lib/definitions";
@@ -22,6 +22,14 @@ const initialStoreState = {
 };
 
 describe("SortableListItem", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it(`should render the title input with the correct value`, () => {
     const testStore = createManagerLinkStore(initialStoreState);
 
@@ -80,5 +88,34 @@ describe("SortableListItem", () => {
     fireEvent.click(button);
 
     expect(testStore.getState().links[0].is_active).toBeFalsy();
+  });
+
+  it(`updates the store title 3 seconds after typing stops`, () => {
+    const testStore = createManagerLinkStore(initialStoreState);
+
+    render(
+      <ManagerLinksStoreContext.Provider value={testStore}>
+        <DragDropProvider>
+          <SortableListItem {...link} />
+        </DragDropProvider>
+      </ManagerLinksStoreContext.Provider>,
+    );
+
+    const input = screen.getByRole("textbox", { name: /Titulo/i });
+
+    expect(input).toBeInTheDocument();
+
+    act(() => {
+      fireEvent.change(input, { target: { value: "Perfil do instagram" } });
+    });
+
+    expect(input).toHaveValue("Perfil do instagram");
+    expect(testStore.getState().links[0].title).toBe("instagram");
+
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
+
+    expect(testStore.getState().links[0].title).toBe("Perfil do instagram");
   });
 });

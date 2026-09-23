@@ -8,6 +8,7 @@ import type { Platform } from "@/utils/icons";
 import { ICON_BY_PLATFORM } from "@/utils/icons";
 import type { LinkItem } from "@/lib/definitions";
 import { useSortable } from "@dnd-kit/react/sortable";
+import { useDebouncedCallback } from "use-debounce";
 import dynamic from "next/dynamic";
 
 const IconsModal = dynamic(() => import("./icon-picker-modal"), {
@@ -53,13 +54,18 @@ export default function SortableListItem({
     isModalOpen: false,
     isActiveLink: is_active,
   });
-
-  const SelectedIcon = state.iconName ? ICON_BY_PLATFORM[state.iconName] : null;
-
   const [link, setLink] = useState<{ title: string; url: string }>({
     title: title ?? "",
     url: url ?? "",
   });
+  const SelectedIcon = state.iconName ? ICON_BY_PLATFORM[state.iconName] : null;
+
+  const autoUpdateDebounced = useDebouncedCallback(
+    (name: string, value: string) => {
+      updateLink(id, { [name]: value });
+    },
+    3000,
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -67,6 +73,8 @@ export default function SortableListItem({
       ...prevState,
       [name]: value,
     }));
+
+    autoUpdateDebounced(name, value);
   };
 
   const openIconsModal = () => {
