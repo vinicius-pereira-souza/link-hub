@@ -46,7 +46,7 @@ export default function SortableListItem({
   iconName,
   position_at,
 }: LinkItem) {
-  const { deleteLink } = useManagerLinksStore((state) => state);
+  const { deleteLink, updateLink } = useManagerLinksStore((state) => state);
   const { ref, handleRef } = useSortable({ id, index: position_at });
   const [state, dispatch] = useReducer(reducer, {
     iconName: iconName ?? undefined,
@@ -89,6 +89,9 @@ export default function SortableListItem({
 
   const handleActiveLink = () => {
     dispatch({ type: "SET_ACTIVE_LINK" });
+
+    if (!is_active) updateLink(id, { is_active: true });
+    updateLink(id, { is_active: false });
   };
 
   const onDeleteLink = () => {
@@ -141,6 +144,7 @@ export default function SortableListItem({
           <Trash color="#5F5E5E" size={20} />
         </button>
         <button
+          data-testid="toggle-link"
           onClick={handleActiveLink}
           className={cn(
             `cursor-pointer w-11 h-6 rounded-full relative`,

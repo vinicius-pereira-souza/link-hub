@@ -60,4 +60,25 @@ describe("SortableListItem", () => {
     expect(testStore.getState().links).toHaveLength(0);
     expect(testStore.getState().linksRemoved).toHaveLength(1);
   });
+
+  it(`toggles is_active state from true to false on click`, () => {
+    const testStore = createManagerLinkStore(initialStoreState);
+
+    render(
+      <ManagerLinksStoreContext.Provider value={testStore}>
+        <DragDropProvider>
+          <SortableListItem {...link} />
+        </DragDropProvider>
+      </ManagerLinksStoreContext.Provider>,
+    );
+
+    const button = screen.getByTestId("toggle-link");
+
+    expect(button).toBeInTheDocument();
+    expect(testStore.getState().links[0].is_active).toBeTruthy();
+
+    fireEvent.click(button);
+
+    expect(testStore.getState().links[0].is_active).toBeFalsy();
+  });
 });
