@@ -129,4 +129,44 @@ describe("list link manager", () => {
     store.getState().setLinks(newLinks);
     expect(store.getState().links).toHaveLength(1);
   });
+
+  it(`must set an array with a new ordering`, () => {
+    const originalLinks: Array<LinkItem> = [
+      {
+        id: "ID001",
+        title: "",
+        url: "",
+        iconName: "Website",
+        is_active: true,
+        position_at: 0,
+        isNew: true,
+      },
+      {
+        id: "ID002",
+        title: "",
+        url: "",
+        iconName: "Website",
+        is_active: true,
+        position_at: 0,
+        isNew: true,
+      },
+    ];
+
+    const store = createManagerLinkStore({
+      links: originalLinks,
+      hasChanges: false,
+      linksRemoved: [],
+    });
+
+    expect(store.getState().hasChanges).toBeFalsy();
+    expect(store.getState().links[0].id).toBe("ID001");
+    expect(store.getState().links[1].id).toBe("ID002");
+
+    const newOrder = originalLinks.reverse();
+    store.getState().reorderLinks(newOrder);
+
+    expect(store.getState().hasChanges).toBeTruthy();
+    expect(store.getState().links[0].id).toBe("ID002");
+    expect(store.getState().links[1].id).toBe("ID001");
+  });
 });

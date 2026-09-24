@@ -12,6 +12,7 @@ export type ManagerLinkActions = {
   updateLink: (linkId: string | number, updateData: Partial<LinkItem>) => void;
   deleteLink: (linkId: string | number) => void;
   setLinks: (links: LinkItem[]) => void;
+  reorderLinks: (newLinks: LinkItem[]) => void;
 };
 
 export type ManagerLinkStore = ManagerLinkState & ManagerLinkActions;
@@ -46,6 +47,13 @@ export const createManagerLinkStore = (
     },
     setLinks: (links) => {
       set({ links: links });
+    },
+    reorderLinks: (newLinks) => {
+      const updatedLinks = newLinks.map((link, index) => ({
+        ...link,
+        position_at: index,
+      }));
+      set({ hasChanges: true, links: updatedLinks });
     },
   }));
 };
