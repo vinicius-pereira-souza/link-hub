@@ -5,6 +5,7 @@ export interface LinkRow {
   title: string;
   url: string;
   total_click: number;
+  displayType: "card" | "circle";
   position_at: number;
   is_active: boolean;
   created_at: string;
@@ -13,7 +14,7 @@ export interface LinkRow {
 
 export interface LinkItem extends Pick<
   LinkRow,
-  "title" | "url" | "position_at" | "is_active"
+  "title" | "url" | "position_at" | "is_active" | "displayType"
 > {
   id: string | number;
   iconName: Platform;

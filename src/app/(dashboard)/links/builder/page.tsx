@@ -12,6 +12,7 @@ const listLinks: LinkItem[] = [
     iconName: "Instagram",
     position_at: 1,
     is_active: true,
+    displayType: "circle",
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ const listLinks: LinkItem[] = [
     iconName: "LinkedIn",
     position_at: 2,
     is_active: true,
+    displayType: "card",
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const listLinks: LinkItem[] = [
     iconName: "Spotify",
     position_at: 3,
     is_active: true,
+    displayType: "card",
   },
 ];
 

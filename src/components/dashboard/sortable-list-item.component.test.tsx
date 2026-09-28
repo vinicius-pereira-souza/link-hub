@@ -13,6 +13,7 @@ const link: LinkItem = {
   url: "https://instagram.com",
   is_active: true,
   position_at: 0,
+  displayType: "circle",
 };
 
 const initialStoreState = {

@@ -15,6 +15,7 @@ export default function AddLinkButton() {
       isNew: true,
       iconName: "Website",
       position_at: 0,
+      displayType: "card",
     };
 
     onAddLink(emptyLink);
