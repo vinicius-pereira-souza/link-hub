@@ -23,6 +23,8 @@ describe("list link manager", () => {
       is_active: true,
       position_at: 0,
       isNew: true,
+      display_type: "card",
+      total_click: 0,
     };
 
     store.getState().addLink(mockLink);
@@ -45,6 +47,8 @@ describe("list link manager", () => {
           is_active: true,
           position_at: 0,
           isNew: true,
+          display_type: "card",
+          total_click: 0,
         },
       ],
     });
@@ -75,6 +79,8 @@ describe("list link manager", () => {
           is_active: true,
           position_at: 0,
           isNew: true,
+          display_type: "card",
+          total_click: 0,
         },
       ],
     });
@@ -95,6 +101,8 @@ describe("list link manager", () => {
         is_active: true,
         position_at: 0,
         isNew: true,
+        display_type: "circle",
+        total_click: 150,
       },
       {
         id: "ID002",
@@ -104,6 +112,8 @@ describe("list link manager", () => {
         is_active: true,
         position_at: 0,
         isNew: true,
+        total_click: 0,
+        display_type: "circle",
       },
     ];
 
@@ -116,6 +126,8 @@ describe("list link manager", () => {
         is_active: true,
         position_at: 0,
         isNew: true,
+        total_click: 0,
+        display_type: "circle",
       },
     ];
 
@@ -140,6 +152,8 @@ describe("list link manager", () => {
         is_active: true,
         position_at: 0,
         isNew: true,
+        total_click: 0,
+        display_type: "circle",
       },
       {
         id: "ID002",
@@ -149,6 +163,8 @@ describe("list link manager", () => {
         is_active: true,
         position_at: 0,
         isNew: true,
+        total_click: 150,
+        display_type: "circle",
       },
     ];
 

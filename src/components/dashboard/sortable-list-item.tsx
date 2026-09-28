@@ -1,7 +1,18 @@
 "use client";
 
 import React, { useState, useReducer } from "react";
-import { GripVertical, ChevronDown, Trash } from "lucide-react";
+import Link from "next/link";
+import {
+  GripVertical,
+  Trash,
+  MousePointerClick,
+  ChartLine,
+  Link2,
+  Pen,
+  CirclePause,
+  StretchHorizontal,
+  CircleDot,
+} from "lucide-react";
 import { useManagerLinksStore } from "@/providers/manager-links-provider";
 import { cn } from "@/lib/tw-merge";
 import type { Platform } from "@/utils/icons";
@@ -37,6 +48,9 @@ export default function SortableListItem({
   is_active,
   iconName,
   position_at,
+  display_type,
+  total_click,
+  isNew,
 }: LinkItem) {
   const { deleteLink, updateLink } = useManagerLinksStore((state) => state);
   const { ref, handleRef } = useSortable({ id, index: position_at });
@@ -91,6 +105,15 @@ export default function SortableListItem({
     closeIconsModal();
   };
 
+  const toggledisplayType = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const currentDisplayMode = e.currentTarget.dataset.displayMode as
+      | "circle"
+      | "card";
+
+    if (display_type === currentDisplayMode) return;
+    updateLink(id, { display_type: currentDisplayMode });
+  };
+
   const handleActiveLink = () => {
     updateLink(id, { is_active: !is_active });
   };
@@ -102,7 +125,10 @@ export default function SortableListItem({
   return (
     <div
       ref={ref}
-      className="bg-white rounded-xl p-6 border border-neutral-300/30 relative mb-2.5"
+      className={cn(
+        `bg-white rounded-xl p-6 border border-neutral-300 relative mb-6`,
+        isNew && `opacity-0 animate-show-card`,
+      )}
     >
       <IconsModal
         selectedIcon={iconName}
@@ -110,100 +136,145 @@ export default function SortableListItem({
         onClose={closeIconsModal}
         onSelect={selectIcon}
       />
-
-      <div className="flex items-center mb-6">
-        <button
-          type="button"
-          className="cursor-pointer transition-all hover:bg-neutral-300 rounded-lg block p-1.5 mr-3.5"
-          ref={handleRef}
-        >
-          <GripVertical color="#767680" size={18} />
-        </button>
-
-        <button
-          type="button"
-          className={cn(
-            `flex items-center gap-x-3 bg-zinc-200 py-1.5 px-3.5 rounded-lg text-sm cursor-pointer`,
-            state.isModalOpen
-              ? `border-2 border-indigo-900 text-indigo-900`
-              : `border border-neutral-300 text-black `,
-          )}
-          onClick={openIconsModal}
-        >
-          {SelectedIcon ? (
-            <>
-              <SelectedIcon color="#312c85" size={20} />
-              {iconName}
-            </>
-          ) : (
-            "Selecionar icone"
-          )}
-
-          <ChevronDown color="#767680" size={20} />
-        </button>
-
-        <button
-          type="button"
-          className="cursor-pointer ml-auto mr-3"
-          onClick={onDeleteLink}
-          data-testid="delete-link"
-        >
-          <Trash color="#5F5E5E" size={20} />
-        </button>
-
-        <button
-          type="button"
-          data-testid="toggle-link"
-          onClick={handleActiveLink}
-          className={cn(
-            `cursor-pointer w-11 h-6 rounded-full relative`,
-            is_active ? `bg-indigo-900` : `bg-zinc-200`,
-          )}
-        >
-          <span
-            className={cn(
-              `absolute w-5 h-5 rounded-full bg-white top-0.5`,
-              is_active ? `right-0.5` : `left-0.5`,
-            )}
-          />
-        </button>
-      </div>
-
-      <div className="flex items-center gap-6">
-        <div>
-          <label
-            className="text-xs uppercase font-semibold leading-4 tracking-[0.6px] mb-2 block"
-            htmlFor={`title-${id}`}
+      <header className="flex items-center justify-between pb-4 border-b border-zinc-200 mb-3">
+        <div className="flex items-center">
+          <button
+            type="button"
+            className="cursor-pointer transition-all hover:bg-neutral-300 rounded-lg block p-1.5 text-zinc-500 hover:text-zinc-900"
+            ref={handleRef}
           >
+            <GripVertical size={18} />
+          </button>
+          <div className="grid grid-cols-[auto_1fr] gap-x-3 leading-0">
+            <button
+              className={cn(
+                `size-9 bg-gray-100 border border-neutral-300 flex items-center justify-center rounded-lg row-span-2 cursor-pointer relative shadow text-indigo-900 transition-colors`,
+                state.isModalOpen && `border-indigo-900`,
+              )}
+              onClick={openIconsModal}
+            >
+              {SelectedIcon ? <SelectedIcon size={20} /> : <Link2 size={20} />}
+              <span
+                className={cn(
+                  `w-5 h-5 rounded-full bg-indigo-900 flex items-center justify-center absolute -right-1.5 -bottom-1.5 shadow text-white`,
+                  !is_active && `hidden`,
+                  state.isModalOpen && `z-30`,
+                )}
+              >
+                <Pen size={11} />
+              </span>
+            </button>
+            <span className="text-sm font-semibold text-zinc-900 leading-5 tracking-[0.28px]">
+              {prevProps.title ? prevProps.title : "Nome de exibição"}
+            </span>
+            <span className="text-xs font-semibold text-zinc-600 leading-5 tracking-[0.6px]">
+              {prevProps.url ? prevProps.url : "https://..."}
+            </span>
+          </div>
+        </div>
+        <div className="flex items-center gap-6">
+          <div className="p-1 rounded-lg border border-neutral-300 bg-gray-100 flex">
+            <button
+              data-active={display_type === "card"}
+              data-display-mode={"card"}
+              data-testid="display-mode-card"
+              onClick={toggledisplayType}
+              className={`size-8 flex items-center justify-center cursor-pointer rounded-md data-[active=true]:bg-white group`}
+            >
+              <StretchHorizontal className="size-4.5 text-zinc-600 group-data-[active=true]:text-indigo-900" />
+            </button>
+            <button
+              data-active={display_type === "circle"}
+              data-display-mode={"circle"}
+              data-testid="display-mode-circle"
+              onClick={toggledisplayType}
+              className={`size-8 flex items-center justify-center cursor-pointer rounded-md data-[active=true]:bg-white group`}
+            >
+              <CircleDot className="size-4.5 text-zinc-600 group-data-[active=true]:text-indigo-900" />
+            </button>
+          </div>
+          <button
+            type="button"
+            data-testid="toggle-link"
+            onClick={handleActiveLink}
+            className={cn(
+              `cursor-pointer w-11 h-6 rounded-full relative `,
+              is_active ? `bg-indigo-900` : `bg-zinc-200`,
+            )}
+          >
+            <span
+              className={cn(
+                `absolute w-5 h-5 rounded-full bg-white top-0.5 transition-transform`,
+                is_active ? `translate-x-0` : `-translate-x-full`,
+              )}
+            />
+          </button>
+          <button
+            type="button"
+            className="cursor-pointer ml-auto mr-3 text-zinc-600 hover:text-red-600 transition-colors"
+            onClick={onDeleteLink}
+            data-testid="delete-link"
+          >
+            <Trash size={20} />
+          </button>
+        </div>
+      </header>
+      <section className="flex items-center gap-6 mb-3">
+        <div className="flex-1">
+          <label className="sortable-item-label" htmlFor={`title-${id}`}>
             Titulo
           </label>
           <input
-            className="border border-neutral-300 p-1 text-black text-base block"
+            className="sortable-item-input"
             type="text"
             name="title"
             id={`title-${id}`}
             value={link.title}
             onChange={handleChange}
+            placeholder="Nome de exibição"
           />
         </div>
-
-        <div>
-          <label
-            className="text-xs uppercase font-semibold leading-4 tracking-[0.6px] mb-2 block"
-            htmlFor={`url-${id}`}
-          >
+        <div className="flex-1">
+          <label className="sortable-item-label" htmlFor={`url-${id}`}>
             url
           </label>
           <input
-            className="border border-neutral-300 p-1 text-black text-base block"
+            className="sortable-item-input"
             type="text"
             name="url"
             id={`url-${id}`}
             value={link.url}
             onChange={handleChange}
+            placeholder="https://..."
           />
         </div>
-      </div>
+      </section>
+      <footer className="pt-3 flex items-center justify-between border-t border-gray-200">
+        <div className="flex items-center gap-x-1 text-zinc-600 text-xs leading-4">
+          {is_active ? (
+            <>
+              <MousePointerClick className="size-4.5 text-[#37437A]" />
+              <span className="text-zinc-900 font-medium">{total_click}</span>
+              <span>cliques</span>
+            </>
+          ) : (
+            <>
+              <CirclePause className="size-4.5 text-zinc-600" />
+              <span className="text-zinc-600">Desativado no perfil</span>
+            </>
+          )}
+        </div>
+
+        <div>
+          <Link
+            href="#"
+            className="text-sm text-indigo-900 fill-indigo-900 flex items-center gap-x-1 font-medium"
+          >
+            <ChartLine size={18} />
+            Ver análise
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -13,7 +13,8 @@ const link: LinkItem = {
   url: "https://instagram.com",
   is_active: true,
   position_at: 0,
-  displayType: "circle",
+  display_type: "circle",
+  total_click: 150,
 };
 
 const initialStoreState = {
@@ -118,5 +119,26 @@ describe("SortableListItem", () => {
     });
 
     expect(testStore.getState().links[0].title).toBe("Perfil do instagram");
+  });
+
+  it(`should toggle display_type from "circle" to "card" on button click`, async () => {
+    const testStore = createManagerLinkStore(initialStoreState);
+
+    render(
+      <ManagerLinksStoreContext.Provider value={testStore}>
+        <DragDropProvider>
+          <SortableListItem {...link} />
+        </DragDropProvider>
+      </ManagerLinksStoreContext.Provider>,
+    );
+
+    const button = screen.getByTestId("display-mode-card");
+
+    expect(button).toBeInTheDocument();
+    expect(testStore.getState().links[0].display_type).toBe("circle");
+
+    fireEvent.click(button);
+
+    expect(testStore.getState().links[0].display_type).toBe("card");
   });
 });

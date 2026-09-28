@@ -58,7 +58,8 @@ describe("AddLinkButton", () => {
       isNew: true,
       iconName: "Website",
       position_at: 0,
-      displayType: "card",
+      display_type: "card",
+      total_click: 0,
     });
   });
 });

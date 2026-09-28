@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-show-card: show-card 0.2s ease-in-out forwards;
+
+  @keyframes show-card {
+    from {
+      transform: scale(0%);
+      opacity: 0%;
+    }
+    to {
+      transform: scale(100%);
+      opacity: 100%;
+    }
+  }
+}
+
 @layer utilities {
   .card-base {
     @apply p-12 rounded-lg border hover:-translate-y-1.5 hover:shadow transition-all;
@@ -11,5 +26,13 @@
 
   .modal-overlay {
     @apply w-full h-screen fixed top-0 left-0 z-20 bg-black/25 backdrop-blur-[2px] opacity-0 transition-opacity duration-200 ease-linear;
+  }
+
+  .sortable-item-label {
+    @apply text-xs uppercase font-medium leading-4 tracking-[0.6px] mb-2 block text-zinc-600;
+  }
+
+  .sortable-item-input {
+    @apply block w-full py-2 px-3 border border-neutral-300 bg-gray-100 text-zinc-900 text-sm leading-5 font-normal rounded-lg outline-0 placeholder:text-zinc-600 transition-colors focus:border focus:border-indigo-900;
   }
 }
