@@ -1,18 +1,28 @@
+"use client";
 import { ExternalLink, X, User, Link2Off } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/tw-merge";
+import { useUIStore } from "@/lib/stores/useUIStore";
 
 export default function LivePreviewDrawer() {
+  const isLivePreviewOpen = useUIStore((state) => state.isLivePreviewOpen);
+  const toggleLivePreview = useUIStore((state) => state.toggleLivePreview);
+  const setLivePreviewOpen = useUIStore((state) => state.setLivePreviewOpen);
+
   return (
     <div
       className={cn(
-        `w-full h-screen fixed top-0 left-0 z-10 visible transition-[visibility] duration-200 ease-linear`,
+        `w-full h-screen fixed top-0 left-0 z-10 invisible transition-[visibility] duration-200 ease-linear group`,
+        isLivePreviewOpen && `visible`,
       )}
     >
-      <div className={cn(`modal-overlay`)} />
+      <div
+        className={cn(`modal-overlay group-[.visible]:opacity-100`)}
+        onClick={() => setLivePreviewOpen(false)}
+      />
       <aside
         className={cn(
-          `w-full max-w-110 h-screen fixed top-0 right-0 z-30 bg-gray-200 overflow-y-auto border-l border-neutral-300 transition-transform duration-200 ease-linear`,
+          `w-full max-w-110 h-screen fixed top-0 right-0 z-30 bg-gray-200 overflow-y-auto border-l border-neutral-300 transition-transform duration-200 ease-linear translate-x-full group-[.visible]:translate-0`,
         )}
       >
         <header className="bg-gray-100 border-b border-zinc-200 py-5.5 px-5 flex items-center sticky top-0 z-20">
@@ -26,7 +36,10 @@ export default function LivePreviewDrawer() {
           <Link className="block p-2.5 hover:bg-gray-200 rounded" href="#">
             <ExternalLink color="#45464F" size={18} />
           </Link>
-          <button className="block p-2.5 hover:bg-gray-200 cursor-pointer rounded">
+          <button
+            className="block p-2.5 hover:bg-gray-200 cursor-pointer rounded"
+            onClick={() => toggleLivePreview()}
+          >
             <X color="#45464F" size={18} />
           </button>
         </header>

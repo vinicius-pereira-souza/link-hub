@@ -10,6 +10,6 @@
   }
 
   .modal-overlay {
-    @apply w-full h-screen fixed top-0 left-0 z-20 bg-black/25 backdrop-blur-[2px] opacity-100 transition-opacity duration-200 ease-linear;
+    @apply w-full h-screen fixed top-0 left-0 z-20 bg-black/25 backdrop-blur-[2px] opacity-0 transition-opacity duration-200 ease-linear;
   }
 }
