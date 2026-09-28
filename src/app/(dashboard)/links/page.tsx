@@ -41,7 +41,7 @@ export default async function Page(props: {
               Linkes Ativos
             </h2>
             <Link
-              href="/links/add-links"
+              href="/links/builder"
               className="flex items-center text-center text-white text-sm font-medium bg-indigo-900 px-6 py-3 rounded-lg cursor-pointer transition-all hover:bg-indigo-700"
             >
               <Plus /> novo link
