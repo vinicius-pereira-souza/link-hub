@@ -1,5 +1,6 @@
 import DashboardNavbar from "@/components/dashboard/dashboard-navbar";
 import UserAvatarServer from "@/components/dashboard/user-avatar-server";
+import LivePreviewSheet from "@/components/dashboard/live-preview-sheet";
 import { ManagerLinksStoreProvider } from "@/providers/manager-links-provider";
 
 export const dynamic = "force-dynamic";
@@ -13,7 +14,8 @@ export default function DashboardLayout({
         <UserAvatarServer />
       </DashboardNavbar>
       <ManagerLinksStoreProvider>
-        <div className="overflow-y-auto">{children}</div>
+        {children}
+        <LivePreviewSheet />
       </ManagerLinksStoreProvider>
     </main>
   );
