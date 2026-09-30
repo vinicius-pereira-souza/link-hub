@@ -1,5 +1,5 @@
 "use client";
-import { ExternalLink, X, User, Link2Off } from "lucide-react";
+import { ExternalLink, X, User, Link2Off, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/tw-merge";
 import { useUIStore } from "@/lib/stores/useUIStore";
@@ -90,5 +90,18 @@ function MobileDevicePreview() {
         </span>
       </footer>
     </div>
+  );
+}
+
+export function ButtonOpenLivePreview() {
+  const setLivePreviewOpen = useUIStore((state) => state.setLivePreviewOpen);
+
+  return (
+    <button
+      className="flex items-center gap-x-2 py-3 px-5 bg-indigo-900 hover:bg-indigo-900/70 transition-colors fixed right-8 bottom-6 text-white text-sm leading-5 font-medium cursor-pointer rounded-full shadow"
+      onClick={() => setLivePreviewOpen(true)}
+    >
+      <Smartphone size={18} /> Ver Prévia
+    </button>
   );
 }

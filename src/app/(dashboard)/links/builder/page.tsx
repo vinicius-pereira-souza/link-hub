@@ -1,5 +1,5 @@
 import AddLinkButton from "@/components/dashboard/add-link-button";
-import LivePreviewDrawer from "@/components/dashboard/live-preview-sheet";
+import { ButtonOpenLivePreview } from "@/components/dashboard/live-preview-sheet";
 import SortableList from "@/components/dashboard/sortable-list";
 import UnsavedChangesBar from "@/components/dashboard/unsaved-changes-bar";
 import { LinkItem } from "@/lib/definitions";
@@ -40,7 +40,6 @@ const listLinks: LinkItem[] = [
 export default function Page() {
   return (
     <div className="min-h-screen p-12 overflow-auto">
-      <LivePreviewDrawer />
       <header className="flex items-end justify-between mb-12">
         <div>
           <h1 className="text-[32px] leading-10 font-semibold text-indigo-900">
@@ -56,6 +55,7 @@ export default function Page() {
         <SortableList links={listLinks} />
         <UnsavedChangesBar />
       </main>
+      <ButtonOpenLivePreview />
     </div>
   );
 }
