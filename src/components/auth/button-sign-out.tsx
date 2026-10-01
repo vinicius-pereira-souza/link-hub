@@ -8,22 +8,20 @@ export default function ButtonSignOut() {
   const [isPending, startTransition] = useTransition();
 
   return (
-    <>
-      <button
-        data-testid="button-sign-out"
-        disabled={isPending}
-        onClick={() => {
-          startTransition(() => {
-            signOut();
-          });
-        }}
-        className={cn(
-          `flex items-center gap-x-3 p-3 text-sm font-medium text-zinc-700 hover:bg-red-100 hover:text-red-700 rounded-lg transition-all cursor-pointer`,
-        )}
-      >
-        <LogOut size={20} />
-        Sair
-      </button>
-    </>
+    <button
+      data-testid="button-sign-out"
+      disabled={isPending}
+      onClick={() => {
+        startTransition(() => {
+          signOut();
+        });
+      }}
+      className={cn(
+        `py-2.5 px-3 w-full flex items-center gap-x-2.5 text-slate-800 text-sm font-medium leading-5 cursor-pointer hover:bg-red-600/10 rounded-xl mt-2 transition-colors`,
+      )}
+    >
+      <LogOut size={15} />
+      Sair
+    </button>
   );
 }

@@ -49,13 +49,18 @@ export function DashboardNavLink({ href, label, icon }: DashboardNavItem) {
   return (
     <Link
       href={href}
+      // className={cn(
+      //   `flex items-center gap-x-3 p-3 text-sm font-medium text-zinc-700 hover:bg-gray-100 hover:text-indigo-700 rounded-lg transition-all`,
+      //   pathname.startsWith(href) && `bg-gray-200 text-indigo-900`,
+      // )}
       className={cn(
-        `flex items-center gap-x-3 p-3 text-sm font-medium text-zinc-700 hover:bg-gray-100 hover:text-indigo-700 rounded-lg transition-all`,
-        pathname.startsWith(href) && `bg-gray-200 text-indigo-900`,
+        `flex items-center gap-x-4 font-medium text-zinc-700 text-sm leading-5 tracking-[0.28px] p-4 rounded-xl hover:bg-indigo-100/50 mb-1 transition-colors group`,
+        pathname.startsWith(href) && `bg-indigo-100/70 text-indigo-900`,
       )}
     >
-      <Icon size={20} />
+      <Icon className="size-4 md:size-5" />
       <span>{label}</span>
+      <span className="hidden group-[.text-indigo-900]:block w-2 h-2 rounded-full bg-indigo-900 ml-auto" />
     </Link>
   );
 }
