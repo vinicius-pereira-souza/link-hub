@@ -66,3 +66,22 @@ export function LinkListItemSkeleton() {
     </li>
   );
 }
+
+export function UserAvatarSkeleton() {
+  return (
+    <div className="bg-white rounded-xl p-2.5 border border-gray-200 mt-auto grid grid-cols-[40px_1fr] group-data-[sidebar=collapsed]/sidebar:grid-cols-1 items-center mb-3.5">
+      <div
+        className="
+      flex items-center justify-center rounded-full size-8
+      bg-gray-200 animate-pulse
+      group-data-[sidebar=collapsed]/sidebar:mx-auto
+      group-data-[sidebar=collapsed]/sidebar:size-7
+    "
+      />
+      <div className="min-w-32 space-y-1.5 group-data-[sidebar=collapsed]/sidebar:hidden">
+        <div className="h-4 w-24 rounded bg-gray-200 animate-pulse" />
+        <div className="h-3 w-32 rounded bg-gray-200 animate-pulse" />
+      </div>
+    </div>
+  );
+}

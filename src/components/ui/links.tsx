@@ -5,6 +5,7 @@ import { cn } from "@/lib/tw-merge";
 import type { NavItem, DashboardNavItem } from "@/utils/links";
 import { marketingNav, dashboardNav } from "@/utils/links";
 import { NAV_ICON_MAP } from "@/utils/icons";
+import SidebarItemText from "../dashboard/navigation/sidebar-item-text";
 
 export function MarketingNavLinks() {
   const pathName = usePathname();
@@ -49,18 +50,16 @@ export function DashboardNavLink({ href, label, icon }: DashboardNavItem) {
   return (
     <Link
       href={href}
-      // className={cn(
-      //   `flex items-center gap-x-3 p-3 text-sm font-medium text-zinc-700 hover:bg-gray-100 hover:text-indigo-700 rounded-lg transition-all`,
-      //   pathname.startsWith(href) && `bg-gray-200 text-indigo-900`,
-      // )}
       className={cn(
-        `flex items-center gap-x-4 font-medium text-zinc-700 text-sm leading-5 tracking-[0.28px] p-4 rounded-xl hover:bg-indigo-100/50 mb-1 transition-colors group`,
-        pathname.startsWith(href) && `bg-indigo-100/70 text-indigo-900`,
+        `flex items-center group-data-[sidebar=collapsed]/sidebar:justify-center gap-x-4 text-zinc-500 text-base group-data-[sidebar=collapsed]/sidebar:text-sm leading-5 tracking-[0.28px] p-2.5 px-3.5 rounded-xl hover:bg-indigo-100/30 mb-1 transition-colors relative group 
+      `,
+        pathname.startsWith(href) &&
+          `bg-indigo-100/50 text-slate-800 font-semibold`,
       )}
     >
-      <Icon className="size-4 md:size-5" />
-      <span>{label}</span>
-      <span className="hidden group-[.text-indigo-900]:block w-2 h-2 rounded-full bg-indigo-900 ml-auto" />
+      <Icon size={16} />
+      <SidebarItemText label={label} />
+      <span className="hidden absolute top-2/4 -translate-y-2/4 right-3.5 group-data-[sidebar=collapsed]/sidebar:right-1.5 group-[.text-slate-800]:block size-1.5 rounded-full bg-slate-800 ml-auto" />
     </Link>
   );
 }
