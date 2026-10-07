@@ -1,4 +1,4 @@
-import LivePreviewDrawer from "../dashboard/live-preview-sheet";
+import LivePreviewDrawer from "../feature/dashboard/live-preview-sheet";
 import DashboardNavbar from "./navigation/dashboard-navigation";
 
 export default function DashboardShell({

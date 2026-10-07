@@ -1,7 +1,7 @@
-import ButtonLink from "@/components/marketing/button-link";
-import FaqAccordion from "@/components/marketing/faq-accordion";
-import CompareFeaturesTable from "@/components/marketing/compare-features-table";
-import PricingPlans from "@/components/marketing/plans";
+import ButtonLink from "@/components/shared/button-link";
+import FaqAccordion from "@/components/feature/marketing/faq-accordion";
+import CompareFeaturesTable from "@/components/feature/marketing/compare-features-table";
+import PricingPlans from "@/components/feature/marketing/plans";
 import { questionPricingPage } from "@/utils/marketing";
 import { TriangleAlert } from "lucide-react";
 

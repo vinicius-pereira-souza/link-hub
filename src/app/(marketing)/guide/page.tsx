@@ -1,8 +1,8 @@
 import Image from "next/image";
-import WrapperCardDetails from "@/components/marketing/cards-detail-guia";
-import FaqAccordion from "@/components/marketing/faq-accordion";
+import WrapperCardDetails from "@/components/feature/marketing/cards-detail-guia";
+import FaqAccordion from "@/components/feature/marketing/faq-accordion";
 import { questionGuiaPage } from "@/utils/marketing";
-import ButtonLink from "@/components/marketing/button-link";
+import ButtonLink from "@/components/shared/button-link";
 
 export default function Guia() {
   return (

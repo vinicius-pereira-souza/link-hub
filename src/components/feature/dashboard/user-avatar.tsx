@@ -2,7 +2,7 @@
 import { User } from "lucide-react";
 import Image from "next/image";
 import useUserData from "@/hooks/useUserData";
-import { UserAvatarSkeleton } from "../ui/skeletons";
+import { UserAvatarSkeleton } from "../../ui/skeletons";
 
 export default function UserAvatar() {
   const { data, error, isLoading } = useUserData();

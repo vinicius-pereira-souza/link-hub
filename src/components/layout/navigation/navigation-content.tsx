@@ -1,12 +1,12 @@
 "use client";
 
-import ButtonSignOut from "@/components/auth/button-sign-out";
+import ButtonSignOut from "@/components/feature/auth/button-sign-out";
 import { DashboardNavLinks } from "@/components/ui/links";
 import { cn } from "@/lib/tw-merge";
 import { Link2, Waypoints, X, ChevronsLeft } from "lucide-react";
 import Link from "next/link";
 import SidebarItemText from "./sidebar-item-text";
-import UserAvatar from "../../dashboard/user-avatar";
+import UserAvatar from "../../feature/dashboard/user-avatar";
 
 interface NavigationContentProps {
   setSidebarOpen: (open: boolean) => void;

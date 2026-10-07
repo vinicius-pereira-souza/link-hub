@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SignInForm } from "@/components/auth/forms";
+import { SignInForm } from "@/components/feature/auth/forms";
 
 export default function SignIn() {
   return (

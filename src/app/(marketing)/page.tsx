@@ -1,6 +1,6 @@
-import ButtonLink from "@/components/marketing/button-link";
-import HomeGridCards from "@/components/marketing/home-grid-cards";
-import StaticDevice from "@/components/marketing/static-device";
+import ButtonLink from "@/components/shared/button-link";
+import HomeGridCards from "@/components/feature/marketing/home-grid-cards";
+import StaticDevice from "@/components/feature/marketing/static-device";
 import { BadgeCheck, CircleCheck } from "lucide-react";
 
 export default function Home() {

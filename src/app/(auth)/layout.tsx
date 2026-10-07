@@ -1,4 +1,4 @@
-import FlashMessage from "@/components/auth/flash-message";
+import FlashMessage from "@/components/feature/auth/flash-message";
 import { MessageStoreProvider } from "@/providers/message-store-provider";
 import { Link2 } from "lucide-react";
 

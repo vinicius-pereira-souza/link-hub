@@ -1,4 +1,4 @@
-import { ButtonOpenLivePreview } from "@/components/dashboard/live-preview-sheet";
+import { ButtonOpenLivePreview } from "@/components/feature/dashboard/live-preview-sheet";
 import PrependButton from "@/components/shared/prepend-button";
 import {
   ChartLine,
@@ -7,8 +7,8 @@ import {
   Sparkles,
   StretchHorizontal,
 } from "lucide-react";
-import SortableList from "@/components/dashboard/sortable-list";
-import UnsavedChangesBar from "@/components/dashboard/unsaved-changes-bar";
+import SortableList from "@/components/feature/dashboard/sortable-list";
+import UnsavedChangesBar from "@/components/feature/dashboard/unsaved-changes-bar";
 import { LinkItem } from "@/lib/definitions";
 
 const listLinks: LinkItem[] = [

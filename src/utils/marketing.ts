@@ -1,4 +1,4 @@
-import type { FaqItemData } from "@/components/marketing/faq-accordion";
+import type { FaqItemData } from "@/components/feature/marketing/faq-accordion";
 
 export const questionGuiaPage: FaqItemData[] = [
   {

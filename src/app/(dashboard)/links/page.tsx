@@ -1,6 +1,6 @@
 import Link from "next/link";
-import LinkList from "@/components/dashboard/link-list";
-import LinkMetricsOverview from "@/components/dashboard/link-metrics-overview";
+import LinkList from "@/components/feature/dashboard/link-list";
+import LinkMetricsOverview from "@/components/feature/dashboard/link-metrics-overview";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import {
@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/skeletons";
 import { Plus } from "lucide-react";
 import { auth } from "@/lib/auth/server";
-import SearchInput from "@/components/dashboard/search";
+import SearchInput from "@/components/feature/dashboard/search";
 
 export default async function Page(props: {
   searchParams?: Promise<{
