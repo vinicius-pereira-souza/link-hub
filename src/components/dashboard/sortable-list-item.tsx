@@ -126,7 +126,7 @@ export default function SortableListItem({
     <div
       ref={ref}
       className={cn(
-        `bg-white rounded-xl p-6 border border-neutral-300 relative mb-6`,
+        `bg-white rounded-xl p-3 md:p-6 border border-neutral-300 relative mb-6`,
         isNew && `opacity-0 animate-show-card`,
       )}
     >
@@ -136,24 +136,28 @@ export default function SortableListItem({
         onClose={closeIconsModal}
         onSelect={selectIcon}
       />
-      <header className="flex items-center justify-between pb-4 border-b border-zinc-200 mb-3">
+      <header className="flex items-center justify-between pb-3 md:pb-4 border-b border-zinc-200 mb-3">
         <div className="flex items-center">
           <button
             type="button"
             className="cursor-pointer transition-all hover:bg-neutral-300 rounded-lg block p-1.5 text-zinc-500 hover:text-zinc-900"
             ref={handleRef}
           >
-            <GripVertical size={18} />
+            <GripVertical className="size-3.5 md:size-4.5" />
           </button>
           <div className="grid grid-cols-[auto_1fr] gap-x-3 leading-0">
             <button
               className={cn(
-                `size-9 bg-gray-100 border border-neutral-300 flex items-center justify-center rounded-lg row-span-2 cursor-pointer relative shadow text-indigo-900 transition-colors`,
+                `size-7 md:size-9 bg-gray-100 border border-neutral-300 flex items-center justify-center rounded-lg row-span-2 cursor-pointer relative shadow text-indigo-900 transition-colors`,
                 state.isModalOpen && `border-indigo-900`,
               )}
               onClick={openIconsModal}
             >
-              {SelectedIcon ? <SelectedIcon size={20} /> : <Link2 size={20} />}
+              {SelectedIcon ? (
+                <SelectedIcon className="size-4 md:size-5" />
+              ) : (
+                <Link2 className="size-4 md:size-5" />
+              )}
               <span
                 className={cn(
                   `w-5 h-5 rounded-full bg-indigo-900 flex items-center justify-center absolute -right-1.5 -bottom-1.5 shadow text-white`,
@@ -164,33 +168,33 @@ export default function SortableListItem({
                 <Pen size={11} />
               </span>
             </button>
-            <span className="text-sm font-semibold text-zinc-900 leading-5 tracking-[0.28px]">
+            <span className="text-xs md:text-sm font-semibold text-zinc-900 leading-4 md:leading-5 tracking-[0.28px]">
               {prevProps.title ? prevProps.title : "Nome de exibição"}
             </span>
-            <span className="text-xs font-semibold text-zinc-600 leading-5 tracking-[0.6px]">
+            <span className="text-[10px] md:text-xs font-normal text-zinc-600 leading-4 md:leading-5 tracking-[0.6px]">
               {prevProps.url ? prevProps.url : "https://..."}
             </span>
           </div>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-2 md:gap-6">
           <div className="p-1 rounded-lg border border-neutral-300 bg-gray-100 flex">
             <button
               data-active={display_type === "card"}
               data-display-mode={"card"}
               data-testid="display-mode-card"
               onClick={toggledisplayType}
-              className={`size-8 flex items-center justify-center cursor-pointer rounded-md data-[active=true]:bg-white group`}
+              className={`size-5 md:size-8 flex items-center justify-center cursor-pointer rounded-md data-[active=true]:bg-white group`}
             >
-              <StretchHorizontal className="size-4.5 text-zinc-600 group-data-[active=true]:text-indigo-900" />
+              <StretchHorizontal className="size-3 md:size-4.5 text-zinc-600 group-data-[active=true]:text-indigo-900" />
             </button>
             <button
               data-active={display_type === "circle"}
               data-display-mode={"circle"}
               data-testid="display-mode-circle"
               onClick={toggledisplayType}
-              className={`size-8 flex items-center justify-center cursor-pointer rounded-md data-[active=true]:bg-white group`}
+              className={`size-5 md:size-8 flex items-center justify-center cursor-pointer rounded-md data-[active=true]:bg-white group`}
             >
-              <CircleDot className="size-4.5 text-zinc-600 group-data-[active=true]:text-indigo-900" />
+              <CircleDot className="size-3 md:size-4.5 text-zinc-600 group-data-[active=true]:text-indigo-900" />
             </button>
           </div>
           <button
@@ -198,30 +202,30 @@ export default function SortableListItem({
             data-testid="toggle-link"
             onClick={handleActiveLink}
             className={cn(
-              `cursor-pointer w-11 h-6 rounded-full relative `,
+              `cursor-pointer w-7 md:w-11 h-4 md:h-6 rounded-full relative `,
               is_active ? `bg-indigo-900` : `bg-zinc-200`,
             )}
           >
             <span
               className={cn(
-                `absolute w-5 h-5 rounded-full bg-white top-0.5 transition-transform`,
+                `absolute size-3 md:size-5 rounded-full bg-white top-0.5 transition-transform`,
                 is_active ? `translate-x-0` : `-translate-x-full`,
               )}
             />
           </button>
           <button
             type="button"
-            className="cursor-pointer ml-auto mr-3 text-zinc-600 hover:text-red-600 transition-colors"
+            className="cursor-pointer ml-auto md:mr-3 text-zinc-600 hover:text-red-600 transition-colors"
             onClick={onDeleteLink}
             data-testid="delete-link"
           >
-            <Trash size={20} />
+            <Trash className="size-4 md:size-5" />
           </button>
         </div>
       </header>
-      <section className="flex items-center gap-6 mb-3">
-        <div className="flex-1">
-          <label className="sortable-item-label" htmlFor={`title-${id}`}>
+      <section className="flex items-center flex-col md:flex-row gap-2 md:gap-6 mb-3">
+        <div className="flex-1 w-full">
+          <label className="sortable-item-label " htmlFor={`title-${id}`}>
             Titulo
           </label>
           <input
@@ -234,7 +238,7 @@ export default function SortableListItem({
             placeholder="Nome de exibição"
           />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <label className="sortable-item-label" htmlFor={`url-${id}`}>
             url
           </label>
@@ -259,7 +263,7 @@ export default function SortableListItem({
             </>
           ) : (
             <>
-              <CirclePause className="size-4.5 text-zinc-600" />
+              <CirclePause className="size-3 md:size-4.5 text-zinc-600" />
               <span className="text-zinc-600">Desativado no perfil</span>
             </>
           )}

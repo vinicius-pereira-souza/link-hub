@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import AddLinkButton from "./add-link-button";
+import PrependButton from "./prepend-button";
 import {
   ManagerLinksStoreProvider,
   ManagerLinksStoreContext,
@@ -11,7 +11,7 @@ vi.stubGlobal("crypto", {
   randomUUID: () => "mocked-uuid-123",
 });
 
-describe("AddLinkButton", () => {
+describe("PrependButton", () => {
   beforeEach(() => {
     createManagerLinkStore().setState({ links: [] });
   });
@@ -19,7 +19,7 @@ describe("AddLinkButton", () => {
   it(`should render the button with the correct text`, () => {
     render(
       <ManagerLinksStoreProvider>
-        <AddLinkButton />
+        <PrependButton text="Adicionar link" hasIcon={true} />
       </ManagerLinksStoreProvider>,
     );
 
@@ -38,7 +38,7 @@ describe("AddLinkButton", () => {
 
     render(
       <ManagerLinksStoreContext.Provider value={testStore}>
-        <AddLinkButton />
+        <PrependButton text="Adicionar link" hasIcon={true} />
       </ManagerLinksStoreContext.Provider>,
     );
 

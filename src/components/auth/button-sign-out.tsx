@@ -3,7 +3,7 @@ import { useTransition } from "react";
 import { LogOut } from "lucide-react";
 import { signOut } from "@/lib/actions";
 import { cn } from "@/lib/tw-merge";
-import SidebarItemText from "../dashboard/navigation/sidebar-item-text";
+import SidebarItemText from "../layout/navigation/sidebar-item-text";
 
 export default function ButtonSignOut() {
   const [isPending, startTransition] = useTransition();

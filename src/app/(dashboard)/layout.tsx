@@ -1,5 +1,5 @@
 import { ManagerLinksStoreProvider } from "@/providers/manager-links-provider";
-import DashboardShell from "@/components/dashboard/dashboard-shell";
+import DashboardShell from "@/components/layout/dashboard-shell";
 
 export const dynamic = "force-dynamic";
 

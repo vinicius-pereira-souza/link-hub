@@ -5,7 +5,7 @@ import { cn } from "@/lib/tw-merge";
 import type { NavItem, DashboardNavItem } from "@/utils/links";
 import { marketingNav, dashboardNav } from "@/utils/links";
 import { NAV_ICON_MAP } from "@/utils/icons";
-import SidebarItemText from "../dashboard/navigation/sidebar-item-text";
+import SidebarItemText from "../layout/navigation/sidebar-item-text";
 
 export function MarketingNavLinks() {
   const pathName = usePathname();

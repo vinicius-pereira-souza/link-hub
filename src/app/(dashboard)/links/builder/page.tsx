@@ -76,8 +76,8 @@ export default function Page() {
   return (
     <div className="min-h-screen p-4 pb-12 md:p-12 overflow-auto">
       <header className="flex flex-col md:flex-row items-end justify-between mb-12">
-        <div>
-          <h1 className="text-2xl md:text-[32px] leading-10 font-semibold text-indigo-900 text-center">
+        <div className="w-full md:w-max">
+          <h1 className="text-2xl md:text-[32px] leading-10 font-semibold text-indigo-900 text-center md:text-left">
             Adicione seus links
           </h1>
           <h2 className="text-sm md:text-base leading-6 text-zinc-600 text-center md:text-left mb-5 md:mb-0">

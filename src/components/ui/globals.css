@@ -29,7 +29,7 @@
   }
 
   .sortable-item-label {
-    @apply text-xs uppercase font-medium leading-4 tracking-[0.6px] mb-2 block text-zinc-600;
+    @apply text-[10px] text-xs uppercase font-medium leading-4 tracking-[0.6px] mb-1 md:mb-2 block text-zinc-600;
   }
 
   .sortable-item-input {
