@@ -5,16 +5,14 @@ import { cn } from "@/lib/tw-merge";
 
 export default function DashboardNavbar() {
   const isSidebarOpen = useUIStore((state) => state.isSidebarOpen);
-
   const setSidebarOpen = useUIStore((state) => state.setSidebarOpen);
-  const toggleSidebar = useUIStore((state) => state.toggleSidebar);
 
   return (
     <>
       {/* Drawer Mobile Navigation */}
       <div
         className={cn(
-          `md:hidden w-full h-screen fixed top-0 left-0 z-10 invisible transition-[visibility] duration-200 ease-linear group`,
+          `md:hidden w-full h-screen fixed top-0 left-0 z-30 invisible transition-[visibility] duration-200 ease-linear group`,
           isSidebarOpen && `visible`,
         )}
       >
@@ -24,10 +22,10 @@ export default function DashboardNavbar() {
         />
         <aside
           className={cn(
-            `flex h-screen fixed z- w-full max-w-66.25 z-30 bg-white py-6 px-4 flex-col transition-transform duration-200 ease-linear -translate-x-full group-[.visible]:translate-0 shadow`,
+            `flex h-screen fixed w-full max-w-66.25 z-30 bg-white py-6 px-4 flex-col transition-transform duration-200 ease-linear -translate-x-full group-[.visible]:translate-0 shadow`,
           )}
         >
-          <NavigationContent setSidebarOpen={setSidebarOpen} />
+          <NavigationContent />
         </aside>
       </div>
 
@@ -38,10 +36,7 @@ export default function DashboardNavbar() {
           `group/sidebar hidden md:flex h-screen w-66.25 relative bg-white py-6 px-4 flex-col  data-[sidebar=collapsed]:max-w-20 transition-transform shadow`,
         )}
       >
-        <NavigationContent
-          setSidebarOpen={setSidebarOpen}
-          toggleSidebar={toggleSidebar}
-        />
+        <NavigationContent />
       </aside>
     </>
   );
