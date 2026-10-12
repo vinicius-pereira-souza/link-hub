@@ -1,23 +1,34 @@
-import LivePreviewDrawer from "../feature/dashboard/live-preview-sheet";
-import DashboardNavbar from "./navigation/dashboard-navigation";
-import { DrawerButton } from "./navigation/buttons-actions";
-import Logo from "../ui/logo";
-
 export default function DashboardShell({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="h-screen overflow-hidden bg-gray-50 grid grid-cols-1 md:grid-cols-[auto_1fr]">
-      <DashboardNavbar />
-      <main className="overflow-y-auto min-w-0">
-        <header className="flex md:hidden items-center gap-2 py-3 px-4 sticky top-0 z-10 shadow  backdrop-blur-lg">
-          <DrawerButton action="open" />
-          <Logo />
+    <div className="h-screen overflow-hidden bg-slate-50 grid grid-cols-1 lg:grid-cols-[auto_1fr]">
+      <aside className="bg-red-600">
+        <nav>
+          <ul>
+            <li>anvegação</li>
+          </ul>
+        </nav>
+      </aside>
+      <div>
+        <header className="py-2.5 md:py-3 px-3.5 md:px-5 lg:py-3 lg-px-8 bg-white sticky top-0 border-b border-slate-200">
+          <div className="container mx-auto flex items-center justify-between flex-wrap">
+            <button>toggle</button>
+            <span>linkhub.io/alex</span>
+            <input type="text" />
+            <button>live preview</button>
+            <button>novo link</button>
+          </div>
         </header>
-        {children}
-        <footer></footer>
-      </main>
-      <LivePreviewDrawer />
+        <main className="overflow-y-auto min-w-0 p-3 md:p-5 lg:py-7 lg:px-8">
+          {children}
+        </main>
+        <footer className="py-3 lg:py-4 px-5 lg:px-8 bg-white border-t border-slate-200">
+          <div className="container mx-auto text-slate-500 text-xs leading-4 font-normal">
+            <p>© 2026 LinkHub Inc. Todos os direitos reservados.</p>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }
