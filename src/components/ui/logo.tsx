@@ -1,18 +1,14 @@
-import { cn } from "@/lib/tw-merge";
 import { Link2 } from "lucide-react";
 
-export default function Logo({ subClass }: { subClass?: string | string[] }) {
+export default function Logo() {
   return (
-    <div
-      className={cn(
-        `flex items-center gap-x-3 text-zinc-900 font-semibold text-sm md:text-lg leading-[17.5px]`,
-        subClass,
-      )}
-    >
-      <span className="size-9 flex items-center justify-center bg-indigo-900 shadow rounded-xl text-white">
+    <div className="flex items-center gap-x-2.5 font-extrabold text-[20px] leading-7 tracking-[-0.5px] text-white">
+      <div className="size-9 flex items-center justify-center rounded-xl bg-linear-to-r from-indigo-600  to-indigo-800">
         <Link2 size={18} />
+      </div>
+      <span className="group-data-[navigationbar=collapsed]/navigationbar:hidden">
+        LinkHub
       </span>
-      <span>LinkHub</span>
     </div>
   );
 }

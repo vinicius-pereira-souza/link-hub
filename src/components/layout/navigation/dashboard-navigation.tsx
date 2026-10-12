@@ -31,7 +31,8 @@ export default function DashboardNavbar() {
 
       {/* SideBar Tablet/Desktop Navigation */}
       <aside
-        data-sidebar={!isSidebarOpen && "collapsed"}
+        // data-sidebar={!isSidebarOpen && "collapsed"}
+        data-sidebar="collapsed"
         className={cn(
           `group/sidebar hidden md:flex h-screen w-66.25 relative bg-white py-6 px-4 flex-col  data-[sidebar=collapsed]:max-w-20 transition-transform shadow`,
         )}

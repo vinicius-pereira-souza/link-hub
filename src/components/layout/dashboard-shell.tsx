@@ -1,19 +1,16 @@
+import DashboardNavigation from "./dashboard-navigation";
+import { ToggleSideBar } from "./navigation/buttons-actions";
+
 export default function DashboardShell({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="h-screen overflow-hidden bg-slate-50 grid grid-cols-1 lg:grid-cols-[auto_1fr]">
-      <aside className="bg-red-600">
-        <nav>
-          <ul>
-            <li>anvegação</li>
-          </ul>
-        </nav>
-      </aside>
+      <DashboardNavigation />
       <div>
         <header className="py-2.5 md:py-3 px-3.5 md:px-5 lg:py-3 lg-px-8 bg-white sticky top-0 border-b border-slate-200">
           <div className="container mx-auto flex items-center justify-between flex-wrap">
-            <button>toggle</button>
+            <ToggleSideBar />
             <span>linkhub.io/alex</span>
             <input type="text" />
             <button>live preview</button>

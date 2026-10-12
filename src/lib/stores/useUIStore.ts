@@ -1,21 +1,23 @@
 import { create } from "zustand";
 
 interface UIState {
-  isSidebarOpen: boolean;
-  isLivePreviewOpen: boolean;
-  toggleSidebar: () => void;
-  toggleLivePreview: () => void;
-  setSidebarOpen: (isOpen: boolean) => void;
-  setLivePreviewOpen: (isOpen: boolean) => void;
+  // isNavigationBarOpen: boolean;
+  // isLivePreviewOpen: boolean;
+  // togglecollapsedSidebar: () => void;
+  // toggleLivePreview: () => void;
+  // setSidebarOpen: (isOpen: boolean) => void;
+  // setLivePreviewOpen: (isOpen: boolean) => void;
+  isNavigationBarOpen: boolean;
+  toggleCollapsedSidebar: () => void;
 }
 
 export const useUIStore = create<UIState>()((set) => ({
-  isSidebarOpen: true,
-  isLivePreviewOpen: false,
-  toggleSidebar: () =>
-    set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
-  toggleLivePreview: () =>
-    set((state) => ({ isLivePreviewOpen: !state.isLivePreviewOpen })),
-  setSidebarOpen: (isOpen) => set({ isSidebarOpen: isOpen }),
-  setLivePreviewOpen: (isOpen) => set({ isLivePreviewOpen: isOpen }),
+  isNavigationBarOpen: true,
+  // isLivePreviewOpen: false,
+  toggleCollapsedSidebar: () =>
+    set((state) => ({ isNavigationBarOpen: !state.isNavigationBarOpen })),
+  // toggleLivePreview: () =>
+  //   set((state) => ({ isLivePreviewOpen: !state.isLivePreviewOpen })),
+  // setSidebarOpen: (isOpen) => set({ isNavigationBarOpen: isOpen }),
+  // setLivePreviewOpen: (isOpen) => set({ isLivePreviewOpen: isOpen }),
 }));
