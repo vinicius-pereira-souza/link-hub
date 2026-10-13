@@ -1,11 +1,11 @@
 "use client";
 
 import { Menu, X, ChevronsLeft } from "lucide-react";
-import { useUIStore } from "@/lib/stores/useUIStore";
+import { useNavigationStore } from "@/lib/stores/useNavigationStore";
 import { cn } from "@/lib/tw-merge";
 
 export function DrawerButton({ action }: { action: "open" | "close" }) {
-  const setDrawerNavigationOpen = useUIStore(
+  const setDrawerNavigationOpen = useNavigationStore(
     (state) => state.setDrawerNavigationOpen,
   );
   const actionValue = action === "open" ? true : false;
@@ -26,9 +26,11 @@ export function DrawerButton({ action }: { action: "open" | "close" }) {
   );
 }
 
-export function ToggleSideBar() {
-  const isNavigationBarOpen = useUIStore((state) => state.isNavigationBarOpen);
-  const toggleCollapsedSidebar = useUIStore(
+export function ToggleButtonColapseSideBar() {
+  const IsNavigationSidebarCollapsed = useNavigationStore(
+    (state) => state.IsNavigationSidebarCollapsed,
+  );
+  const toggleCollapsedSidebar = useNavigationStore(
     (state) => state.toggleCollapsedSidebar,
   );
 
@@ -38,7 +40,7 @@ export function ToggleSideBar() {
       onClick={() => toggleCollapsedSidebar()}
       className={cn(
         "size-9 hidden md:flex items-center justify-center bg-white border border-gray-200 rounded-xl text-zinc-500 cursor-pointer hover:shadow",
-        !isNavigationBarOpen && "rotate-180",
+        IsNavigationSidebarCollapsed && "rotate-180",
       )}
     >
       <ChevronsLeft size={18} />

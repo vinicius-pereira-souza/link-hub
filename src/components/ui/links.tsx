@@ -9,7 +9,7 @@ import {
   dashboardNavPreferences,
 } from "@/utils/links";
 import { NAV_ICON_MAP } from "@/utils/icons";
-import { useUIStore } from "@/lib/stores/useUIStore";
+import { useNavigationStore } from "@/lib/stores/useNavigationStore";
 
 export function MarketingNavLinks() {
   const pathName = usePathname();
@@ -81,7 +81,9 @@ export function DashboardNavLink({
   icon,
   badge,
 }: DashboardNavItem) {
-  const isNavigationBarOpen = useUIStore((state) => state.isNavigationBarOpen);
+  const IsNavigationSidebarCollapsed = useNavigationStore(
+    (state) => state.IsNavigationSidebarCollapsed,
+  );
 
   const pathname = usePathname();
   const Icon = NAV_ICON_MAP[icon];
@@ -99,7 +101,7 @@ export function DashboardNavLink({
       <span
         className={cn(
           "block text-sm w-max left-14 px-1 rounded-xl transition-opacity flex-1",
-          !isNavigationBarOpen &&
+          IsNavigationSidebarCollapsed &&
             "group-data-[navigationbar=collapsed]/navigationbar" &&
             "absolute shadow bg-white hidden text-xs group-hover:block text-indigo-600/50 border border-gray-200",
         )}
@@ -110,7 +112,7 @@ export function DashboardNavLink({
         className={cn(
           "hidden p-0.5 px-1 mr-auto bg-indigo-800 rounded-full text-xs font-bold leading-4 text-white",
           badge !== undefined && "block ",
-          !isNavigationBarOpen &&
+          IsNavigationSidebarCollapsed &&
             `group-data-[navigationbar=collapsed]/navigationbar` &&
             ` absolute -top-2 -right-2 border border-slate-900 bg-transparent`,
         )}

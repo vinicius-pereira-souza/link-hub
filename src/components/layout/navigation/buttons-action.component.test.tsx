@@ -1,46 +1,51 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { useUIStore } from "@/lib/stores/useUIStore";
-import { ToggleSideBar, DrawerButton } from "./buttons-actions";
+import { useNavigationStore } from "@/lib/stores/useNavigationStore";
+import { ToggleButtonColapseSideBar, DrawerButton } from "./buttons-actions";
 
 beforeEach(() => {
-  useUIStore.setState({
-    isSidebarOpen: false,
+  useNavigationStore.setState({
+    IsNavigationDrawerOpen: false,
+    IsNavigationSidebarCollapsed: false,
   });
 });
 
-describe("ToggleSideBar", () => {
-  it(`should change the state of isSidebarOpen to true after the ToggleSideBar click`, () => {
-    render(<ToggleSideBar />);
+describe("ToggleButtonColapseSideBar", () => {
+  it(`should set IsNavigationSidebarCollapsed to true on click`, () => {
+    render(<ToggleButtonColapseSideBar />);
 
     const button = screen.getByTestId("toggle-button-sidebar");
 
-    expect(useUIStore.getState().isSidebarOpen).toBeFalsy();
+    expect(
+      useNavigationStore.getState().IsNavigationSidebarCollapsed,
+    ).toBeFalsy();
     fireEvent.click(button);
-    expect(useUIStore.getState().isSidebarOpen).toBeTruthy();
+    expect(
+      useNavigationStore.getState().IsNavigationSidebarCollapsed,
+    ).toBeTruthy();
   });
 });
 
 describe("DrawerButton", () => {
-  it(`must set isSidebarOpen to true with action="open"`, () => {
+  it(`must set IsNavigationDrawerOpen to true with action="open"`, () => {
     render(<DrawerButton action="open" />);
 
     const button = screen.getByTestId("drawer-button-sidebar");
 
-    expect(useUIStore.getState().isSidebarOpen).toBeFalsy();
+    expect(useNavigationStore.getState().IsNavigationDrawerOpen).toBeFalsy();
     fireEvent.click(button);
-    expect(useUIStore.getState().isSidebarOpen).toBeTruthy();
+    expect(useNavigationStore.getState().IsNavigationDrawerOpen).toBeTruthy();
   });
 
-  it(`must set isSidebarOpen to false with action="close"`, () => {
-    useUIStore.setState({
-      isSidebarOpen: true,
+  it(`must set IsNavigationDrawerOpen to false with action="close"`, () => {
+    useNavigationStore.setState({
+      IsNavigationDrawerOpen: true,
     });
     render(<DrawerButton action="close" />);
 
     const button = screen.getByTestId("drawer-button-sidebar");
 
-    expect(useUIStore.getState().isSidebarOpen).toBeTruthy();
+    expect(useNavigationStore.getState().IsNavigationDrawerOpen).toBeTruthy();
     fireEvent.click(button);
-    expect(useUIStore.getState().isSidebarOpen).toBeFalsy();
+    expect(useNavigationStore.getState().IsNavigationDrawerOpen).toBeFalsy();
   });
 });

@@ -1,5 +1,5 @@
 import DashboardNavigation from "./navigation/dashboard-navigation";
-import { ToggleSideBar } from "./navigation/buttons-actions";
+import { ToggleButtonColapseSideBar } from "./navigation/buttons-actions";
 
 export default function DashboardShell({
   children,
@@ -10,7 +10,7 @@ export default function DashboardShell({
       <div className="overflow-y-auto">
         <header className="py-2.5 md:py-3 px-3.5 md:px-5 lg:py-3 lg-px-8 bg-white sticky top-0 border-b border-slate-200">
           <div className="container mx-auto flex items-center justify-between flex-wrap">
-            <ToggleSideBar />
+            <ToggleButtonColapseSideBar />
             <span>linkhub.io/alex</span>
             <input type="text" />
             <button>live preview</button>
