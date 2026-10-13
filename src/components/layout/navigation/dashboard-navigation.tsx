@@ -1,5 +1,3 @@
-"use client";
-import { useNavigationStore } from "@/lib/stores/useNavigationStore";
 import Logo from "../../ui/logo";
 import { DashboardNavLinks } from "../../ui/links";
 import Link from "next/link";
@@ -8,15 +6,15 @@ import { DrawerButton } from "./buttons-actions";
 import ButtonSignOut from "@/components/feature/auth/button-sign-out";
 import UserAvatar from "@/components/feature/dashboard/user-avatar";
 
-export default function DashboardNavigation() {
-  const IsNavigationSidebarCollapsed = useNavigationStore(
-    (state) => state.IsNavigationSidebarCollapsed,
-  );
-
+export default function DashboardNavigation({
+  navigationbar,
+}: {
+  navigationbar: "collapsed" | "expanded";
+}) {
   return (
     <aside
-      data-navigationbar={IsNavigationSidebarCollapsed && "collapsed"}
-      className="h-screen hidden lg:flex flex-col w-[256px] data-[navigationbar=collapsed]:w-20 bg-slate-900 border-r border-slate-800 transition-all group/navigationbar"
+      data-navigationbar={navigationbar}
+      className="h-screen flex transtion-all z-30 flex-col data-[navigationbar=expanded]:w-[256px] data-[navigationbar=collapsed]:w-20 bg-slate-900 border-r border-slate-800 transition-all group/navigationbar"
     >
       <div className="py-3.25 px-3 border-b border-slate-800 flex items-center justify-between gap-y-5 lg:group-data-[navigationbar=collapsed]/navigationbar:justify-center">
         <Logo />

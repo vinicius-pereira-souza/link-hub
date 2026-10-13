@@ -14,10 +14,10 @@ export function DrawerButton({ action }: { action: "open" | "close" }) {
     <button
       data-testid="drawer-button-sidebar"
       className={cn(
-        `flex md:hidden items-center justify-center transition-colors cursor-pointer`,
+        `size-9 flex lg:hidden items-center justify-center rounded-xl cursor-pointer hover:shadow border`,
         action === "open"
-          ? `size-10 hover:bg-gray-200/50 rounded-xl text-zinc-900`
-          : `size-9 md:hidden  bg-gray-100 hover:bg-gray-100/40 rounded-full text-zinc-700`,
+          ? `bg-white border-gray-200 text-zinc-500`
+          : `bg-slate-800 border-slate-700/80 text-zinc-500`,
       )}
       onClick={() => setDrawerNavigationOpen(actionValue)}
     >
@@ -39,7 +39,7 @@ export function ToggleButtonColapseSideBar() {
       data-testid="toggle-button-sidebar"
       onClick={() => toggleCollapsedSidebar()}
       className={cn(
-        "size-9 hidden md:flex items-center justify-center bg-white border border-gray-200 rounded-xl text-zinc-500 cursor-pointer hover:shadow",
+        "size-9 hidden lg:flex items-center justify-center bg-white border border-gray-200 rounded-xl text-zinc-500 cursor-pointer hover:shadow",
         IsNavigationSidebarCollapsed && "rotate-180",
       )}
     >
