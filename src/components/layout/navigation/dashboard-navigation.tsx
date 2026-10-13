@@ -17,7 +17,7 @@ export default function DashboardNavigation({
       className="h-screen flex transtion-all z-30 flex-col data-[navigationbar=expanded]:w-[256px] data-[navigationbar=collapsed]:w-20 bg-slate-900 border-r border-slate-800 transition-all group/navigationbar"
     >
       <div className="py-3.25 px-3 border-b border-slate-800 flex items-center justify-between gap-y-5 lg:group-data-[navigationbar=collapsed]/navigationbar:justify-center">
-        <Logo />
+        <Logo color="light" />
         <DrawerButton action="close" />
       </div>
       <div className="p-3">

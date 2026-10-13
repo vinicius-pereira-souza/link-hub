@@ -90,3 +90,13 @@ export function UserAvatarSkeleton() {
     </div>
   );
 }
+
+export function PublicUserLinkSkeleton() {
+  return (
+    <div className="py-1.5 px-3 bg-slate-200/80 rounded-lg flex items-center justify-center gap-x-2 animate-pulse w-fit">
+      <span className="block size-2 rounded-full bg-slate-300" />
+      <span className="h-3 w-24 bg-slate-300 rounded" />
+      <span className="size-3.5 bg-slate-300 rounded-xs " />
+    </div>
+  );
+}

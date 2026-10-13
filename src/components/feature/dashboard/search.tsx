@@ -1,10 +1,17 @@
 "use client";
 
+import { cn } from "@/lib/tw-merge";
 import { Search } from "lucide-react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-export default function SearchInput({ placeholder }: { placeholder: string }) {
+export default function SearchInput({
+  placeholder,
+  subClass,
+}: {
+  placeholder: string;
+  subClass?: string | string[];
+}) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -22,12 +29,13 @@ export default function SearchInput({ placeholder }: { placeholder: string }) {
   }, 300);
 
   return (
-    <div
-      className={`flex items-center gap-4 px-3 rounded-full bg-gray-100 border border-neutral-300`}
-    >
-      <Search size={16} color="#525252" />
+    <div className={`relative min-w-max ml-auto`}>
+      <Search className="size-4 text-slate-400 absolute top-2/4 -translate-y-2/4 left-2.5" />
       <input
-        className="block h-8 text-sm text-neutral-700 active:border-0"
+        className={cn(
+          `w-full block md:h-7.5 h-8 text-sm font-normal text-neutral-700 active:border-0 placeholder:text-slate-400 pr-3 pl-8 rounded-lg bg-slate-50 border border-slate-200 outline-0 focus:border-indigo-900 transition-colors`,
+          subClass,
+        )}
         type="text"
         placeholder={placeholder}
         onChange={(e) => handleSearch(e.currentTarget.value)}
