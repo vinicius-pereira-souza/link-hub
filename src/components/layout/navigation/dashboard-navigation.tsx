@@ -5,6 +5,7 @@ import { DashboardNavLinks } from "../../ui/links";
 import Link from "next/link";
 import { Waypoints } from "lucide-react";
 import { DrawerButton } from "./buttons-actions";
+import ButtonSignOut from "@/components/feature/auth/button-sign-out";
 
 export default function DashboardNavigation() {
   const IsNavigationSidebarCollapsed = useNavigationStore(
@@ -33,6 +34,7 @@ export default function DashboardNavigation() {
             Compartilhar Perfil
           </span>
         </Link>
+        <ButtonSignOut />
       </section>
     </aside>
   );

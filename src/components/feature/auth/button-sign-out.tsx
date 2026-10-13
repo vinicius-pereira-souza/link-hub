@@ -17,11 +17,16 @@ export default function ButtonSignOut() {
         });
       }}
       className={cn(
-        `py-2.5 px-3 w-full flex items-center gap-x-2.5 text-slate-800 text-sm font-medium leading-5 cursor-pointer hover:bg-red-600/10 rounded-xl mt-2 transition-colors relative group`,
+        `w-full flex items-center justify-center gap-x-2 bg-slate-800 hover:bg-red-800/50 border border-slate-700/80 rounded-xl p-1 text-sm font-medium leading-5 text-white transition-colors group-data-[navigationbar=collapsed]/navigationbar:size-11 mb-2 flex-nowrap overflow-hidden group`,
       )}
     >
-      <LogOut size={15} />
-      Sair
+      <LogOut
+        className="size-4 text-red-600 group-hover:text-white"
+        size={15}
+      />
+      <span className="group-data-[navigationbar=collapsed]/navigationbar:hidden">
+        Sair
+      </span>
     </button>
   );
 }
