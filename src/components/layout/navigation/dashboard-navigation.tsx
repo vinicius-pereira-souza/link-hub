@@ -1,44 +1,37 @@
 "use client";
 import { useUIStore } from "@/lib/stores/useUIStore";
-import NavigationContent from "./navigation-content";
-import { cn } from "@/lib/tw-merge";
+import Logo from "../../ui/logo";
+import { DashboardNavLinks } from "../../ui/links";
+import Link from "next/link";
+import { Waypoints } from "lucide-react";
+import { DrawerButton } from "./buttons-actions";
 
-export default function DashboardNavbar() {
-  const isSidebarOpen = useUIStore((state) => state.isSidebarOpen);
-  const setSidebarOpen = useUIStore((state) => state.setSidebarOpen);
+export default function DashboardNavigation() {
+  const isNavigationBarOpen = useUIStore((state) => state.isNavigationBarOpen);
 
   return (
-    <>
-      {/* Drawer Mobile Navigation */}
-      <div
-        className={cn(
-          `md:hidden w-full h-screen fixed top-0 left-0 z-30 invisible transition-[visibility] duration-200 ease-linear group`,
-          isSidebarOpen && `visible`,
-        )}
-      >
-        <div
-          className={cn(`modal-overlay group-[.visible]:opacity-100`)}
-          onClick={() => setSidebarOpen(false)}
-        />
-        <aside
-          className={cn(
-            `flex h-screen fixed w-full max-w-66.25 z-30 bg-white py-6 px-4 flex-col transition-transform duration-200 ease-linear -translate-x-full group-[.visible]:translate-0 shadow`,
-          )}
+    <aside
+      data-navigationbar={!isNavigationBarOpen && "collapsed"}
+      className="h-screen hidden lg:flex flex-col w-[256px] data-[navigationbar=collapsed]:w-20 bg-slate-900 border-r border-slate-800 transition-all group/navigationbar"
+    >
+      <section className="py-3.25 px-3 border-b border-slate-800 flex items-center justify-between gap-y-5 lg:group-data-[navigationbar=collapsed]/navigationbar:justify-center">
+        <Logo />
+        <DrawerButton action="close" />
+      </section>
+      <nav className="px-3 flex-1">
+        <DashboardNavLinks />
+      </nav>
+      <section className="px-3 py-4 border-t border-slate-800 ">
+        <Link
+          href="#"
+          className="flex items-center justify-center gap-x-2 bg-slate-800 hover:bg-slate-800/50 border border-slate-700/80 rounded-xl p-2.5 text-sm font-medium leading-5 text-white transition-colors group-data-[navigationbar=collapsed]/navigationbar:size-11 mb-2"
         >
-          <NavigationContent />
-        </aside>
-      </div>
-
-      {/* SideBar Tablet/Desktop Navigation */}
-      <aside
-        // data-sidebar={!isSidebarOpen && "collapsed"}
-        data-sidebar="collapsed"
-        className={cn(
-          `group/sidebar hidden md:flex h-screen w-66.25 relative bg-white py-6 px-4 flex-col  data-[sidebar=collapsed]:max-w-20 transition-transform shadow`,
-        )}
-      >
-        <NavigationContent />
-      </aside>
-    </>
+          <Waypoints className="text-indigo-400 size-4" />
+          <span className="group-data-[navigationbar=collapsed]/navigationbar:hidden">
+            Compartilhar Perfil
+          </span>
+        </Link>
+      </section>
+    </aside>
   );
 }

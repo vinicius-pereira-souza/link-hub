@@ -3,7 +3,6 @@ import { useTransition } from "react";
 import { LogOut } from "lucide-react";
 import { signOut } from "@/lib/actions";
 import { cn } from "@/lib/tw-merge";
-import SidebarItemText from "../../layout/navigation/sidebar-item-text";
 
 export default function ButtonSignOut() {
   const [isPending, startTransition] = useTransition();
@@ -22,7 +21,7 @@ export default function ButtonSignOut() {
       )}
     >
       <LogOut size={15} />
-      <SidebarItemText label="Sair" />
+      Sair
     </button>
   );
 }

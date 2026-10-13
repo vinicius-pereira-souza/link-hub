@@ -1,4 +1,4 @@
-import DashboardNavigation from "./dashboard-navigation";
+import DashboardNavigation from "./navigation/dashboard-navigation";
 import { ToggleSideBar } from "./navigation/buttons-actions";
 
 export default function DashboardShell({
@@ -7,7 +7,7 @@ export default function DashboardShell({
   return (
     <div className="h-screen overflow-hidden bg-slate-50 grid grid-cols-1 lg:grid-cols-[auto_1fr]">
       <DashboardNavigation />
-      <div>
+      <div className="overflow-y-auto">
         <header className="py-2.5 md:py-3 px-3.5 md:px-5 lg:py-3 lg-px-8 bg-white sticky top-0 border-b border-slate-200">
           <div className="container mx-auto flex items-center justify-between flex-wrap">
             <ToggleSideBar />
@@ -17,7 +17,7 @@ export default function DashboardShell({
             <button>novo link</button>
           </div>
         </header>
-        <main className="overflow-y-auto min-w-0 p-3 md:p-5 lg:py-7 lg:px-8">
+        <main className="min-w-0 p-3 md:p-5 lg:py-7 lg:px-8 min-h-screen">
           {children}
         </main>
         <footer className="py-3 lg:py-4 px-5 lg:px-8 bg-white border-t border-slate-200">
