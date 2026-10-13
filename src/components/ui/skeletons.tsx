@@ -1,3 +1,5 @@
+import { cn } from "@/lib/tw-merge";
+
 function TotalClicksCardSkeleton() {
   return (
     <div className="bg-white rounded-xl p-6 border border-neutral-300/30 animate-pulse">
@@ -69,18 +71,21 @@ export function LinkListItemSkeleton() {
 
 export function UserAvatarSkeleton() {
   return (
-    <div className="bg-white rounded-xl p-2.5 border border-gray-200 mt-auto grid grid-cols-[40px_1fr] group-data-[sidebar=collapsed]/sidebar:grid-cols-1 items-center mb-3.5">
-      <div
-        className="
-      flex items-center justify-center rounded-full size-8
-      bg-gray-200 animate-pulse
-      group-data-[sidebar=collapsed]/sidebar:mx-auto
-      group-data-[sidebar=collapsed]/sidebar:size-7
-    "
-      />
-      <div className="min-w-32 space-y-1.5 group-data-[sidebar=collapsed]/sidebar:hidden">
-        <div className="h-4 w-24 rounded bg-gray-200 animate-pulse" />
-        <div className="h-3 w-32 rounded bg-gray-200 animate-pulse" />
+    <div
+      className={cn(
+        `flex items-center gap-x-3 p-4 bg-slate-800/80 border border-slate-700/60 
+    rounded-2xl animate-pulse`,
+        "group-data-[navigationbar=collapsed]/navigationbar:p-0 group-data-[navigationbar=collapsed]/navigationbar:bg-transparent group-data-[navigationbar=collapsed]/navigationbar:border-0",
+      )}
+    >
+      <div className="size-10 relative">
+        <div className="size-10 rounded-full bg-slate-700 group-data-[navigationbar=collapsed]/navigationbar:mx-auto" />
+        <span className="size-3 rounded-full bg-slate-600 absolute bottom-0 right-0 border-2 border-slate-800/80" />
+      </div>
+
+      <div className="pr-2 space-y-1.5 flex-1 group-data-[navigationbar=collapsed]/navigationbar:hidden">
+        <div className="h-3 w-24 bg-slate-700 rounded" />
+        <div className="h-2.5 w-32 bg-slate-700/70 rounded" />
       </div>
     </div>
   );

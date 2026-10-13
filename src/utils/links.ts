@@ -24,12 +24,6 @@ export const {
     { href: "/guide", label: "Guia" },
   ],
   dashboardNavManager: [
-    {
-      href: "/dashboard",
-      label: "Painel de Controle",
-      icon: "dashboard",
-    },
-
     { href: "/links", label: "Links", icon: "links", badge: 0 },
     { href: "/metrics", label: "Métricas & Tráfego", icon: "metrics" },
     { href: "/appearance", label: "Aparéncia", icon: "appearance" },
