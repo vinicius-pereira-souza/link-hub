@@ -14,10 +14,11 @@ import {
   ShoppingBag,
   Paintbrush,
   LayoutDashboard,
-  Link2,
+  Link,
   Palette,
   Settings,
   Info,
+  ChartColumn,
 } from "lucide-react";
 
 export const ICON_BY_PLATFORM = {
@@ -43,7 +44,8 @@ export type PlatformIconName = (typeof ICON_BY_PLATFORM)[Platform];
 
 export const NAV_ICON_MAP = {
   dashboard: LayoutDashboard,
-  links: Link2,
+  links: Link,
+  metrics: ChartColumn,
   appearance: Palette,
   settings: Settings,
   info: Info,
