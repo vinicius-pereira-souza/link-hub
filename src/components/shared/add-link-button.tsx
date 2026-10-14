@@ -11,7 +11,7 @@ export default function AddLinkButton({
   return (
     <button
       className={cn(
-        `flex intems-center gap-x-2 py-1.75 md:py-2 lg:py-2.5 px-2.5 md:px-3.5 lg:px-4 rounded-lg bg-indigo-600 hover:bg-indigo-600/70 ml-auto text-white text-[11px] md:text-sm leading-[16.5px] md:leading-4 font-semibold cursor-pointer transition-colors`,
+        `flex items-center gap-x-2 py-1.75 md:py-2 lg:py-2.5 px-2.5 md:px-3.5 lg:px-4 rounded-lg bg-indigo-600 hover:bg-indigo-600/70 text-white text-[11px] md:text-sm leading-[16.5px] md:leading-4 font-semibold cursor-pointer transition-colors`,
         subClass,
       )}
     >

@@ -2,24 +2,15 @@
 import { ExternalLink, X, User, Link2Off, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/tw-merge";
-import { useUIStore } from "@/lib/stores/useUIStore";
 
 export default function LivePreviewDrawer() {
-  const isLivePreviewOpen = useUIStore((state) => state.isLivePreviewOpen);
-  const toggleLivePreview = useUIStore((state) => state.toggleLivePreview);
-  const setLivePreviewOpen = useUIStore((state) => state.setLivePreviewOpen);
-
   return (
     <div
       className={cn(
         `w-full h-screen fixed top-0 left-0 z-10 invisible transition-[visibility] duration-200 ease-linear group`,
-        isLivePreviewOpen && `visible`,
       )}
     >
-      <div
-        className={cn(`modal-overlay group-[.visible]:opacity-100`)}
-        onClick={() => setLivePreviewOpen(false)}
-      />
+      <div className={cn(`modal-overlay group-[.visible]:opacity-100`)} />
       <aside
         className={cn(
           `w-full max-w-110 h-screen fixed top-0 right-0 z-30 bg-gray-200 overflow-y-auto border-l border-neutral-300 transition-transform duration-200 ease-linear translate-x-full group-[.visible]:translate-0`,
@@ -36,10 +27,7 @@ export default function LivePreviewDrawer() {
           <Link className="block p-2.5 hover:bg-gray-200 rounded" href="#">
             <ExternalLink color="#45464F" size={18} />
           </Link>
-          <button
-            className="block p-2.5 hover:bg-gray-200 cursor-pointer rounded"
-            onClick={() => toggleLivePreview()}
-          >
+          <button className="block p-2.5 hover:bg-gray-200 cursor-pointer rounded">
             <X color="#45464F" size={18} />
           </button>
         </header>
@@ -94,14 +82,9 @@ function MobileDevicePreview() {
 }
 
 export function ButtonOpenLivePreview() {
-  const setLivePreviewOpen = useUIStore((state) => state.setLivePreviewOpen);
-
   return (
-    <button
-      className="flex items-center gap-x-2 py-3 px-5 bg-indigo-900 hover:bg-indigo-900/70 transition-colors fixed right-8 bottom-6 text-white text-sm leading-5 font-medium cursor-pointer rounded-full shadow"
-      onClick={() => setLivePreviewOpen(true)}
-    >
-      <Smartphone size={18} /> Ver Prévia
+    <button className="bg-white hover:bg-gray-50 transition-colors border border-slate-200 flex items-center gap-x-2 py-1.75 md:py-2 lg:py-2.5 px-2.5 md:px-3.5 lg:px-4 rounded-lg text-slate-600 text-xs font-semibold leading-4 cursor-pointer">
+      <Smartphone className="size-3.5 text-slate-400" /> Pré-visualização
     </button>
   );
 }
