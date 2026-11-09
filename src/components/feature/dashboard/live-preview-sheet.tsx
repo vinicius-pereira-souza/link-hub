@@ -84,7 +84,7 @@ function MobileDevicePreview() {
 export function ButtonOpenLivePreview() {
   return (
     <button className="bg-white hover:bg-gray-50 transition-colors border border-slate-200 flex items-center gap-x-2 py-1.75 md:py-2 lg:py-2.5 px-2.5 md:px-3.5 lg:px-4 rounded-lg text-slate-600 text-xs font-semibold leading-4 cursor-pointer">
-      <Smartphone className="size-3.5 text-slate-400" /> Pré-visualização
+      <Smartphone className="size-3.5 text-slate-400" /> Prévia
     </button>
   );
 }
