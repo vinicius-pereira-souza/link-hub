@@ -9,7 +9,7 @@ export default function DashboardShell({
       <DashboardNavigationContainer />
       <div className="overflow-y-auto">
         <DashboardHeader />
-        <main className="min-w-0 p-3 md:p-5 lg:py-7 lg:px-8 min-h-screen">
+        <main className="min-w-0 min-h-screen p-4 md:p-5 md:pb-14 lg:px-8 lg:pt-7 lg:pb-11">
           {children}
         </main>
         <footer className="py-3 lg:py-4 px-5 lg:px-8 bg-white border-t border-slate-200">
